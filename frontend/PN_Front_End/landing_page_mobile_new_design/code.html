@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Nature - Explorez l'Algérie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nature-green': '#4F634E',
+            'nature-orange': '#A64B16',
+            'nature-dark': '#2D342D',
+            'nature-beige': '#F9F6F0',
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    .hero-gradient {
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWqb0imt4EQpsty9PoEZxqTQBRLdTb49f32fA6qofTqqGWPMclYiMmFslw0SIV0Qouki9kCO5cyr4pD4J3i7wFrPqL4XI2tlxiDKcu_UFLPg7cmhQt_kD85KaPuh_S1Sdbn1vd8gyx1pC7MTWE0Ubpi3FXW-4fec5S57jkuFRHxYHfbB4kucX9fFq4oJiZKmJvUi3YD5VQdV1hOZrsSnOEx9OIbQdojf6WqEzx72p2UrsYziuhspR6YoLgy3S4LDWDNlpT1ZpsDtg');
+      background-size: cover;
+      background-position: center 10%;
+    }
+    .card-shadow {
+      box-shadow: 8px 8px 0px rgba(166, 75, 22, 0.2);
+    }
+    .text-outline {
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body class="bg-nature-beige text-nature-dark font-sans pb-24">
+<!-- BEGIN: MobileHeader -->
+<header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 px-4 py-3 flex justify-between items-center border-b border-gray-100">
+<div class="flex items-center gap-2">
+<span class="font-extrabold text-nature-orange text-xl tracking-tighter">Project Nature</span>
+</div>
+<a class="bg-nature-orange text-white px-4 py-2 rounded-lg font-bold text-sm" href="#">Rejoignez-nous</a>
+</header>
+<!-- END: MobileHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="hero-gradient h-[70vh] flex flex-col items-center justify-center text-center px-6 text-white relative overflow-hidden">
+<div class="bg-black/20 absolute inset-0"></div>
+<div class="relative z-10">
+<h1 class="text-4xl md:text-5xl font-black mb-4 uppercase tracking-tighter text-outline">Project Nature</h1>
+<p class="text-sm bg-white/10 backdrop-blur-sm p-3 rounded mb-6 border border-white/20">Explorez les recoins les plus sauvages de l'Algérie avec une communauté de passionnés.</p>
+<h2 class="text-3xl font-serif mb-8 text-yellow-400">dji wla ndjibouk !</h2>
+<button class="bg-nature-orange border-2 border-white/20 px-8 py-4 rounded font-bold uppercase tracking-widest shadow-xl active:scale-95 transition-transform">
+          Commencer l'aventure
+        </button>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: ServicesSection -->
+<section class="py-12 px-6">
+<h2 class="text-3xl font-bold text-nature-orange mb-8 text-center">Nos Services</h2>
+<!-- Hikes Highlight -->
+<div class="relative mb-12 rounded-xl overflow-hidden shadow-2xl group">
+<img alt="Hikes" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWqb0imt4EQpsty9PoEZxqTQBRLdTb49f32fA6qofTqqGWPMclYiMmFslw0SIV0Qouki9kCO5cyr4pD4J3i7wFrPqL4XI2tlxiDKcu_UFLPg7cmhQt_kD85KaPuh_S1Sdbn1vd8gyx1pC7MTWE0Ubpi3FXW-4fec5S57jkuFRHxYHfbB4kucX9fFq4oJiZKmJvUi3YD5VQdV1hOZrsSnOEx9OIbQdojf6WqEzx72p2UrsYziuhspR6YoLgy3S4LDWDNlpT1ZpsDtg" style="object-position: 10% 20%;"/>
+<div class="absolute bottom-0 left-0 right-0 bg-nature-green/90 p-4 text-white">
+<h3 class="text-xl font-bold">Hikes</h3>
+<p class="text-xs opacity-90">Des sentiers secrets à travers les montagnes du Tell.</p>
+</div>
+</div>
+<!-- Service Icons -->
+<div class="space-y-6">
+<div class="border-2 border-nature-green/20 p-6 rounded-xl flex items-start gap-4 bg-white">
+<div class="text-nature-orange">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 3l1.912 5.886H20.12l-4.854 3.528 1.854 5.706L12 14.594l-5.12 3.726 1.854-5.706-4.854-3.528h6.208L12 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<h4 class="font-bold text-lg">Camps</h4>
+<p class="text-sm text-gray-600">Vivez des nuits étoilées au milieu de nulle part. Matériel pro et sécurité garantie.</p>
+</div>
+</div>
+<div class="border-2 border-nature-green/20 p-6 rounded-xl flex items-start gap-4 bg-white">
+<div class="text-nature-orange">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 20l-5.447-2.724A2 2 0 013 15.483V8.416a2 2 0 011.137-1.816l7-3.5a2 2 0 011.726 0l7 3.5A2 2 0 0121 8.416v7.067a2 2 0 01-1.137 1.816L14.417 20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<h4 class="font-bold text-lg">Expéditions</h4>
+<p class="text-sm text-gray-600">Traversées de plusieurs jours pour les plus courageux.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ServicesSection -->
+<!-- BEGIN: ProfilesSection -->
+<section class="bg-nature-green py-16 px-6 text-white text-center">
+<h2 class="text-3xl font-bold mb-12">Pour Tous les Profils</h2>
+<div class="flex flex-col gap-12">
+<div class="flex flex-col items-center">
+<div class="w-40 h-40 rounded-3xl border-4 border-nature-orange p-2 mb-4 overflow-hidden">
+<img alt="Jeunes" class="w-full h-full object-cover rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7j2_0sgqctubhFplzFCfWcdQ9eRCtRMv0B_gZpuQ76sagup4nLRQI7f8wo81GqmD_-ChoIOKIqY7Y2P0p8NDNR_3VGeWHGHb0fKW8O9eIGzbp35-aZ3OX-YmREk4vghybdxHnFyBzU8hJEajSPXSUKtiT4fy8sQ87o8lAjG91TOhlV33TJvR4QoArgRWftQf9CqM7Q0Q3wr3NFR92lAxyqc09kY_qKNkUmsSYhbBWROHU2ZqHTGEqP4mjFs9GPB-0fx2JWXOnOng"/>
+</div>
+<span class="text-xl font-bold">Jeunes</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-40 h-40 rounded-3xl border-4 border-white/30 p-2 mb-4 overflow-hidden">
+<img alt="Athlètes" class="w-full h-full object-cover rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWkHl29LopoaPAS8XUMzRnjRxURISciRqgTgy7-fgTKPr-svVFimHPZAKQqVbVDyNUkAkHgbR5eFPAnx-dhnW94nKP4KirBzrjm71Pa7xcbJc2XRYdeKyjj__6g6-sQznX5QYb98utlkq5USAvW4A-_JbITxNZTAKSqjPwCyJ-NpqQdS7yeOshRLgI_QLPrZVM1VxIKVgC2Ys2DUHa8flFRIls62wEppVqT2v7_BkcfPeJM4D5MDLOsVNuoZPLfA2y5j4OBtbck1k"/>
+</div>
+<span class="text-xl font-bold">Athlètes</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-40 h-40 rounded-3xl border-4 border-white/30 p-2 mb-4 overflow-hidden">
+<img alt="Étudiants" class="w-full h-full object-cover rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWzdwzwM73hr1YxfNTcqv1u6tj7oPnI0QlKmC-YIs_8lqxSX9gG4irmF1_i_wSjQkneZbceiVNBk1r_ovg2SqwxtgeWBzrFE3n42OkuT4nnFwFCUDM2NsFwZSM6wqZPP-n908PUKGrztuTcnImCbsYy7Yute708NXkTT0suPJAcu9Tnaq31Co-M7gAZ1bHHuYvD4XRnR-j7P9n8irHEw9HOOGEwEGtlhenx3kUZzxJwf4gayEQ5wrsFHLQFCzgbKIZSqUTKGrQOJk"/>
+</div>
+<span class="text-xl font-bold">Étudiants</span>
+</div>
+</div>
+</section>
+<!-- END: ProfilesSection -->
+<!-- BEGIN: ExpeditionsSection -->
+<section class="py-16 px-6 bg-white">
+<h2 class="text-3xl font-extrabold text-nature-dark mb-10 text-center tracking-tight">Nos Expéditions Phares</h2>
+<div class="space-y-12">
+<!-- Card 1 -->
+<div class="bg-white border rounded-lg overflow-hidden card-shadow">
+<div class="relative">
+<img alt="Tassili" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw1D7yh-S2S_-uNz9MqNYvY7aE0scC1zw1dknbpxY0Tq6vCFd-Ubl1qgj7b8o0L-teLe18sRf95wdkaBMEH6H8ULoNkNIn6Bx47-ZqcOXalf1VUavVqJc9qqVSX1rWCqy5-n9-pDolEJ3Aiiwx88k3IXCq-DwPEjs5lEJ6GtA2lK0Li0QHWqF-mgWKQzpR3-X-1y1DckeNwK8FmBpYOZVqLqzvZhuFfTr-kG8fabvcJ5d5eUxgEGdKS8Xie39a1vTQH_jVoza60Ik"/>
+<span class="absolute top-4 left-4 bg-nature-orange text-white text-[10px] font-black px-2 py-1 uppercase">Top Départ</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-xl font-bold">Expédition Tassili</h3>
+<span class="bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase">7 Jours</span>
+</div>
+<p class="text-sm text-gray-500 mb-6">Traversée mystique au cœur des cités de pierre.</p>
+<div class="flex justify-between items-center pt-4 border-t">
+<span class="font-bold text-nature-dark">35.000 DA</span>
+<a class="text-nature-orange font-bold text-sm flex items-center gap-1" href="#">Réserver →</a>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border rounded-lg overflow-hidden card-shadow">
+<div class="relative">
+<img alt="Chrea" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcPRkZkb3tEMeC-BXnwxYm3SK8eebIZW_ButCCISONxgadtPZ9hYX00hJf0jNYBJ4WGoV7S9N9Pp2pTnuDsagCjuYkKj9h2TLxQQ3q_a28JewWqs8QvSLeC1P8KrqbrnC3ZgvuNJrk9fZle4VHJTqC1PndEFeeEiUR2mkpE9OmnZWtBLvot1NnKPAApCMXSC9PPco79IfmVITCW-AGC8A5PsJxuxSVTfKUuAvVfZT41y-S1PATtd5WApKIIpNG3-lnUasHGbHw_qU"/>
+<span class="absolute top-4 left-4 bg-nature-dark text-white text-[10px] font-black px-2 py-1 uppercase">Hivernal</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-xl font-bold">Bivouac Chrea</h3>
+<span class="bg-nature-orange/10 text-nature-orange text-[10px] font-bold px-2 py-0.5 rounded uppercase">Weekend</span>
+</div>
+<p class="text-sm text-gray-500 mb-6">Une nuit blanche sous les cèdres millénaires.</p>
+<div class="flex justify-between items-center pt-4 border-t">
+<span class="font-bold text-nature-dark">8.500 DA</span>
+<a class="text-nature-orange font-bold text-sm flex items-center gap-1" href="#">Réserver →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ExpeditionsSection -->
+<!-- BEGIN: TestimonialsSection -->
+<section class="py-16 px-6 bg-nature-beige overflow-hidden">
+<h2 class="text-3xl font-bold text-nature-orange mb-12 text-center">Nos Aventuriers</h2>
+<div class="space-y-8">
+<div class="bg-blue-100 p-6 rounded-lg rotate-[-2deg] relative card-shadow border border-blue-200">
+<p class="text-sm font-medium italic mb-4">"Une expérience qui change la vie. Je n'aurais jamais cru voir mon pays sous cet angle !"</p>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-nature-orange rounded"></div>
+<span class="text-xs font-bold">Amine, 24 ans</span>
+</div>
+</div>
+<div class="bg-nature-green p-6 rounded-lg rotate-[2deg] relative card-shadow text-white ml-8">
+<p class="text-sm font-medium italic mb-4">"L'organisation est top. On se sent en sécurité tout en vivant une vraie aventure."</p>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-nature-orange rounded"></div>
+<span class="text-xs font-bold">Lina, Athlète</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: TestimonialsSection -->
+<!-- BEGIN: StatsSection -->
+<section class="bg-nature-orange py-12 px-6 flex flex-col items-center gap-8 text-white text-center">
+<div>
+<div class="text-4xl font-black">410</div>
+<div class="text-sm uppercase tracking-widest opacity-80">Aventuriers</div>
+</div>
+<div>
+<div class="text-4xl font-black">24</div>
+<div class="text-sm uppercase tracking-widest opacity-80">Régions Visitées</div>
+</div>
+<div>
+<div class="text-4xl font-black">100%</div>
+<div class="text-sm uppercase tracking-widest opacity-80">Authenticité</div>
+</div>
+</section>
+<!-- END: StatsSection -->
+<!-- BEGIN: NewsletterSection -->
+<section class="py-16 px-4">
+<div class="bg-[#FDEBD0] p-8 rounded-3xl relative overflow-hidden border-2 border-nature-orange/20">
+<div class="absolute top-4 right-4 opacity-20">
+<svg class="w-12 h-12" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+</div>
+<h3 class="text-2xl font-black text-center mb-4">Prêt pour le prochain départ ?</h3>
+<p class="text-center text-sm text-gray-700 mb-8">Inscrivez-vous pour recevoir nos dernières expéditions en avant-première.</p>
+<div class="flex flex-col gap-3">
+<input class="w-full p-4 rounded-xl border-none shadow-inner focus:ring-2 focus:ring-nature-orange" placeholder="votre@email.com" type="email"/>
+<button class="bg-nature-orange text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition-transform">S'ABONNER</button>
+</div>
+</div>
+</section>
+<!-- END: NewsletterSection -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-nature-dark text-white py-12 px-6">
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="text-2xl font-black">Project Nature</span>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">La première plateforme d'aventure durable en Algérie. On explore, on préserve, on transmet.</p>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-12">
+<div>
+<h4 class="font-bold mb-4">Communauté</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li><a href="#">Instagram</a></li>
+<li><a href="#">Facebook</a></li>
+<li><a href="#">Youtube</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Légal</h4>
+<ul class="text-sm text-gray-400 space-y-2">
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Conditions Générales</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 flex flex-col items-center gap-4">
+<div class="flex gap-4 opacity-50">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 12.17l7.59-7.59L20 6l-9 11z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg>
+</div>
+<p class="text-[10px] text-gray-500">© 2024 Project Nature. dji wla ndjibouk !</p>
+</div>
+</footer>
+<!-- END: Footer -->
+<!-- BEGIN: MobileNavigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 flex justify-between items-center z-[60]">
+<a class="flex flex-col items-center gap-1 text-nature-orange" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="text-[10px] font-bold">Kherjat</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="text-[10px] font-bold">Souvenirs</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="text-[10px] font-bold">À Propos</span>
+</a>
+</nav>
+<!-- END: MobileNavigation -->
+</body></html>

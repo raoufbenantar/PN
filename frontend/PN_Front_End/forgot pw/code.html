@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Nature - Forgot Password</title>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800&amp;family=Space+Grotesk:wght@600&amp;family=Work+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b3cdb6",
+                    "secondary-fixed": "#ffdbcd",
+                    "secondary-container": "#fe844d",
+                    "primary": "#162c1c",
+                    "on-primary-fixed": "#0a2011",
+                    "on-surface": "#1a1c1b",
+                    "background": "#f9f9f7",
+                    "secondary-fixed-dim": "#ffb597",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-container-low": "#f4f4f2",
+                    "on-secondary-fixed": "#360f00",
+                    "surface-container-high": "#e8e8e6",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#7e2c00",
+                    "outline-variant": "#c3c8c0",
+                    "primary-container": "#2c4231",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "surface-variant": "#e2e3e1",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#4d6451",
+                    "on-tertiary-fixed-variant": "#574421",
+                    "on-primary-container": "#95ae98",
+                    "tertiary-fixed-dim": "#dfc296",
+                    "on-primary-fixed-variant": "#364c3a",
+                    "surface-container-highest": "#e2e3e1",
+                    "primary-fixed-dim": "#b3cdb6",
+                    "on-surface-variant": "#434842",
+                    "secondary": "#a23f0a",
+                    "surface-container": "#eeeeec",
+                    "on-tertiary-container": "#bfa47a",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#271900",
+                    "on-background": "#1a1c1b",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#fcdeb0",
+                    "tertiary": "#352505",
+                    "surface": "#f9f9f7",
+                    "tertiary-container": "#4d3a19",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#6b2500",
+                    "primary-fixed": "#cfe9d1",
+                    "surface-bright": "#f9f9f7",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dadad8",
+                    "outline": "#737972"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "overlap-sm": "-16px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "overlap-md": "-40px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "Work Sans"
+                    ],
+                    "label-caps": [
+                            "Space Grotesk"
+                    ],
+                    "headline-lg-mobile": [
+                            "Epilogue"
+                    ],
+                    "display-lg": [
+                            "Epilogue"
+                    ],
+                    "headline-md": [
+                            "Epilogue"
+                    ],
+                    "headline-lg": [
+                            "Epilogue"
+                    ],
+                    "body-lg": [
+                            "Work Sans"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "80px",
+                            {
+                                    "lineHeight": "90px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Custom Utilities for Brutalist/Tactile style */
+        .brutal-border { border: 2px solid #162c1c; }
+        .brutal-shadow { box-shadow: 4px 4px 0px 0px rgba(22,44,28,1); }
+        .brutal-shadow-hover:hover { box-shadow: 6px 6px 0px 0px rgba(22,44,28,1); transform: translate(-2px, -2px); }
+        .brutal-shadow-active:active { box-shadow: 0px 0px 0px 0px rgba(22,44,28,1); transform: translate(4px, 4px); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- Main Container: Split Screen Layout -->
+<main class="min-h-screen flex flex-col md:flex-row w-full">
+<!-- Left Panel: Hero Image (Hidden on small screens) -->
+<section class="hidden md:block w-1/2 relative brutal-border border-r-2 border-primary bg-primary overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A high-contrast, moody black and white photograph of a dense, misty pine forest extending into rolling mountains. The lighting is dramatic, emphasizing the rugged textures of the trees and jagged rocks. The image embodies a raw, organic adventurous aesthetic, evoking a sense of solitary exploration and brutalist nature photography. High grain, analog film style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBH0_xiomS43Pg1s3H5Rf8A_0mYI3Mw9zp_BkrkGZFEmUJku7_Vg3U_0En-Rw_4l_zdPbrvLPpyYCL-AC-BQBFnibuWkKnIvr2zSfTkUQrak_bOZb8IywyXWLDSi4HwgOrbt0FlKKPzOtMc9v2MEf7sD-nvLd-xOM-6TRu-cVHgYe6APO4-ARZu9clBnYOdYAtZOHg0VWaQ5zLkHuMBaJTfrGVvRtetLL_vxNYcHTiXdY3aTvsRP4tP')"></div>
+<!-- Overlay Brand Mark -->
+<div class="absolute top-margin-desktop left-margin-desktop bg-surface px-4 py-2 brutal-border brutal-shadow transform -rotate-2">
+<span class="font-headline-md text-headline-md text-primary uppercase tracking-tighter">Project Nature</span>
+</div>
+<!-- Overlay Quote -->
+<div class="absolute bottom-margin-desktop left-margin-desktop right-margin-desktop bg-primary-container p-6 brutal-border brutal-shadow transform rotate-1 text-on-primary">
+<p class="font-body-lg text-body-lg italic">"The wild requires a reset sometimes."</p>
+</div>
+</section>
+<!-- Right Panel: Form Area -->
+<section class="w-full md:w-1/2 flex flex-col justify-center px-margin-mobile md:px-margin-desktop py-margin-desktop bg-background relative z-10">
+<!-- Mobile Brand Header (Visible only on mobile) -->
+<div class="md:hidden mb-12 self-start bg-surface px-4 py-2 brutal-border brutal-shadow transform -rotate-1">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary uppercase tracking-tighter">Project Nature</span>
+</div>
+<div class="max-w-md w-full mx-auto relative">
+<!-- Decorative element behind the form -->
+<div class="absolute -inset-4 bg-tertiary-fixed brutal-border transform rotate-2 -z-10"></div>
+<div class="bg-surface p-8 brutal-border brutal-shadow relative z-0">
+<header class="mb-8">
+<h1 class="font-headline-lg text-headline-lg md:font-display-lg md:text-display-lg text-primary tracking-tighter uppercase mb-2">RÉINITIALISER LE MOT DE PASSE</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your email to receive a secure recovery code.</p>
+</header>
+<form class="space-y-6" id="reset-form">
+<!-- Email Input Group -->
+<div class="flex flex-col space-y-2">
+<label class="font-label-caps text-label-caps text-primary" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface border-2 border-primary text-primary font-body-md text-body-md focus:outline-none focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant" id="email" name="email" placeholder="explorer@wilderness.com" required="" type="email"/>
+</div>
+</div>
+<!-- OTP Input Group (Hidden initially, shown via JS) -->
+<div class="flex flex-col space-y-2 hidden opacity-0 transition-opacity duration-300" id="otp-container">
+<label class="font-label-caps text-label-caps text-primary" for="otp">Recovery Code</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">key</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface border-2 border-primary text-primary font-body-md text-body-md focus:outline-none focus:ring-0 focus:border-secondary transition-colors placeholder:text-outline-variant tracking-widest text-center" id="otp" maxlength="7" name="otp" placeholder="000-000" type="text"/>
+</div>
+<p class="text-xs font-body-md text-outline">Check your field notes (inbox) for the code.</p>
+</div>
+<!-- Actions -->
+<div class="pt-4">
+<button class="w-full bg-secondary text-on-secondary py-4 px-6 brutal-border brutal-shadow brutal-shadow-hover brutal-shadow-active font-label-caps text-label-caps uppercase tracking-widest transition-all flex items-center justify-center gap-2" id="submit-btn" type="button">
+                                CONTINUER
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Back to Login Link -->
+<div class="text-center mt-6">
+<a class="font-label-caps text-label-caps text-primary hover:text-secondary underline decoration-2 underline-offset-4 transition-colors inline-flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                                Back to Basecamp (Login)
+                            </a>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emailInput = document.getElementById('email');
+            const otpContainer = document.getElementById('otp-container');
+            const submitBtn = document.getElementById('submit-btn');
+            let isOtpVisible = false;
+
+            // Simple interaction: Show OTP field when email has valid format and user clicks continue
+            submitBtn.addEventListener('click', (e) => {
+                if (!isOtpVisible) {
+                    if (emailInput.value && emailInput.checkValidity()) {
+                        e.preventDefault();
+                        
+                        // Fake loading state
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> VERIFYING...';
+                        submitBtn.classList.add('opacity-80', 'pointer-events-none');
+
+                        setTimeout(() => {
+                            // Show OTP field
+                            otpContainer.classList.remove('hidden');
+                            // Trigger reflow for transition
+                            void otpContainer.offsetWidth;
+                            otpContainer.classList.remove('opacity-0');
+                            
+                            // Update button state
+                            submitBtn.innerHTML = 'VERIFY CODE <span class="material-symbols-outlined">check_circle</span>';
+                            submitBtn.classList.remove('opacity-80', 'pointer-events-none');
+                            
+                            // Lock email field
+                            emailInput.setAttribute('readonly', 'true');
+                            emailInput.classList.add('bg-surface-variant', 'text-on-surface-variant');
+                            
+                            isOtpVisible = true;
+                            
+                            // Focus OTP input
+                            document.getElementById('otp').focus();
+                        }, 800);
+                    } else {
+                        // Shake email input if invalid
+                        emailInput.parentElement.classList.add('animate-pulse', 'border-error');
+                        setTimeout(() => emailInput.parentElement.classList.remove('animate-pulse', 'border-error'), 500);
+                    }
+                } else {
+                    // Final submission logic would go here
+                    const otpInput = document.getElementById('otp');
+                    if(otpInput.value.length > 5) {
+                         submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> PROCESSING...';
+                         submitBtn.classList.add('opacity-80', 'pointer-events-none');
+                    } else {
+                         otpInput.parentElement.classList.add('border-error');
+                         setTimeout(() => otpInput.parentElement.classList.remove('border-error'), 500);
+                    }
+                }
+            });
+
+            // Auto-format OTP (e.g. 123-456)
+            const otpInput = document.getElementById('otp');
+            otpInput.addEventListener('input', function (e) {
+                let val = e.target.value.replace(/\D/g, '');
+                if (val.length > 3) {
+                    val = val.substring(0, 3) + '-' + val.substring(3, 6);
+                }
+                e.target.value = val;
+            });
+        });
+    </script>
+</body></html>

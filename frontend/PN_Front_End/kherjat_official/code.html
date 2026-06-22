@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Nature - Découvrez votre prochaine aventure</title>
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nature-orange': '#A64111',
+            'nature-green': '#445B4A',
+            'nature-dark-green': '#324237',
+            'nature-cream': '#F5F5F0',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    
+    .hero-title {
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .text-outline-accent {
+      /* Simulating the highlight style on 'AVENTURE' */
+      background: linear-gradient(to top, #E8CBA9 40%, transparent 40%);
+      padding: 0 4px;
+    }
+  </style>
+<style data-purpose="backgrounds">
+    body {
+      background-color: #F8F7F2;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    }
+    .card-shadow {
+      box-shadow: 10px 10px 0px 0px rgba(68, 91, 74, 0.1);
+    }
+    .btn-shadow {
+      box-shadow: 4px 4px 0px 0px #324237;
+    }
+  </style>
+</head>
+<body class="font-sans text-nature-dark-green">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-gray-100 py-4 px-8 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="flex items-center gap-2" data-purpose="logo">
+<svg class="w-6 h-6 text-nature-orange" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L1 21h22L12 2zm0 4.8L19.2 19H4.8L12 6.8z"></path>
+</svg>
+<span class="text-2xl font-extrabold text-nature-orange tracking-tight">Project Nature</span>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-semibold text-sm">
+<a class="text-nature-orange border-b-2 border-nature-orange pb-1" href="#">Kherjat</a>
+<a class="hover:text-nature-orange transition" href="#">Souvenirs</a>
+<a class="hover:text-nature-orange transition" href="#">À Propos</a>
+</nav>
+<button class="bg-nature-orange text-white px-6 py-2 rounded-md font-bold text-sm btn-shadow hover:brightness-110 transition">
+        Rejoignez-nous
+      </button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="max-w-7xl mx-auto px-8 pt-16 pb-12 relative">
+<!-- Decorative Background Elements -->
+<div class="absolute top-10 left-0 -z-10 opacity-10">
+<svg class="text-gray-400" fill="currentColor" height="200" viewbox="0 0 100 100" width="200">
+<path d="M50 10L10 90h80z"></path>
+</svg>
+</div>
+<h1 class="text-6xl md:text-7xl font-extrabold text-nature-orange hero-title uppercase mb-12">
+        Découvrez votre<br/>prochaine <span class="text-outline-accent">aventure</span>.
+      </h1>
+<!-- Search Bar -->
+<div class="bg-white p-6 rounded-sm border border-nature-green/20 max-w-4xl card-shadow flex flex-col md:flex-row gap-6 items-end">
+<div class="flex-1 w-full">
+<label class="block text-[10px] font-bold uppercase text-nature-orange mb-2 tracking-widest">Destination</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="w-full pl-10 border-gray-300 focus:ring-nature-orange focus:border-nature-orange text-sm" placeholder="Où voulez-vous aller ?" type="text"/>
+</div>
+</div>
+<div class="flex-1 w-full">
+<label class="block text-[10px] font-bold uppercase text-nature-orange mb-2 tracking-widest">Difficulté</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<select class="w-full pl-10 border-gray-300 focus:ring-nature-orange focus:border-nature-orange text-sm">
+<option>Toutes difficultés</option>
+<option>Facile</option>
+<option>Modéré</option>
+<option>Difficile</option>
+</select>
+</div>
+</div>
+<button class="bg-nature-orange text-white px-10 py-3 font-bold uppercase tracking-widest text-sm btn-shadow hover:brightness-110 w-full md:w-auto">
+          Rechercher
+        </button>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: FilterSection -->
+<section class="max-w-7xl mx-auto px-8 mb-12">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3">
+<span class="text-sm font-bold text-nature-dark-green mr-2">Filtrer par :</span>
+<button class="px-5 py-2 border-2 border-nature-orange bg-[#E8CBA9]/30 text-nature-dark-green font-bold text-xs uppercase flex items-center gap-2">
+<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Tous
+          </button>
+<button class="px-5 py-2 border border-nature-dark-green/30 bg-white text-nature-dark-green font-bold text-xs uppercase flex items-center gap-2 hover:border-nature-orange transition">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            Randonnée
+          </button>
+<button class="px-5 py-2 border border-nature-dark-green/30 bg-white text-nature-dark-green font-bold text-xs uppercase flex items-center gap-2 hover:border-nature-orange transition">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            Bivouac
+          </button>
+<button class="px-5 py-2 border border-nature-dark-green/30 bg-white text-nature-dark-green font-bold text-xs uppercase flex items-center gap-2 hover:border-nature-orange transition">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            Expédition
+          </button>
+</div>
+<button class="px-5 py-2 border border-nature-dark-green/30 bg-white text-nature-dark-green font-bold text-xs uppercase flex items-center gap-2">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Plus de filtres
+        </button>
+</div>
+</section>
+<!-- END: FilterSection -->
+<!-- BEGIN: ExpeditionsGrid -->
+<section class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+<!-- Card 1: Trek Tassili -->
+<article class="bg-white border border-nature-green/10 flex flex-col group overflow-hidden card-shadow">
+<div class="relative h-64">
+<img alt="Trek Tassili" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMKavewIZbjpyiAzXfa5nVUsF6BCpv0Fbc6KaEPnKiGg7jflvdj6NMemI6DTPUI9mle_1KrzG2QRuCFFkUmmZ5VbponDp78wrF9Odd7VGQuMg0_8do_5Pa_v6Omd2-eRRNtJ_0677yxuHkJ8ExeF9uyQG0c7FIoxE4x-EJngzVjYzbEZv8q3TehGDhA_q7X9SuGX_n3O1FBiLlC_Pqp3-afu60Pn-SNGBkLt6zQAh0403E11v0nCxDPjIAX4iC51R2Lqk4H43ABsk"/>
+<div class="absolute top-4 left-4 bg-nature-orange text-white text-[10px] font-bold px-3 py-1 uppercase">7 Jours</div>
+<div class="absolute bottom-4 right-4 bg-nature-orange/90 text-white text-xs font-bold px-3 py-1">65.000 DA</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex gap-2 mb-3">
+<span class="text-[9px] font-bold uppercase tracking-tighter border border-nature-green/30 px-2 py-0.5 text-nature-green">Expédition</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter border border-nature-green/30 px-2 py-0.5 text-nature-green">Difficile</span>
+</div>
+<h3 class="text-xl font-extrabold text-nature-dark-green mb-3">Trek Tassili n'Ajjer - Tadrat</h3>
+<p class="text-sm text-gray-600 mb-6 flex-1">Explorez le plus beau désert du monde. Une immersion totale entre dunes rouges et paysages lunaires.</p>
+<div class="flex justify-between items-center pt-4 border-t border-gray-100">
+<span class="text-[10px] font-bold text-gray-400 flex items-center gap-2 uppercase">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              15 OCT 2024
+            </span>
+<a class="text-[10px] font-extrabold text-nature-orange uppercase flex items-center gap-1 hover:gap-2 transition-all" href="#">
+              Voir détails <span class="text-lg">→</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 2: Weekend Tikjda (Higher Profile Style) -->
+<article class="bg-white border border-nature-green/10 flex flex-col group overflow-hidden card-shadow transform md:-translate-y-4">
+<div class="relative h-72">
+<img alt="Weekend Tikjda" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoNiNyrNHq8PTrt-M3pcPTLBAwEUR1GSVHJI-ty0Kegq9l207XBClbvUCAsCM6U0wWqhQYMRcDUEmnrBNz_DzzqBiTTNZfz0KSKMS0gzKmJc8d4YDDjf1_VcZV0PFNWgFgHpWUgwS2GP1NqP-fl_-PlUNjkVSd7CpuTnOas5eAXTyJ13e0Bi9chQq5obprpC5Vot8QWP1CLUsPxFw-msFrMebLl_yB9I3o6vc8hrqEvL97bTWhEZzb4qhlIBvLmnfqKHRiJETcy0k"/>
+<div class="absolute top-4 left-4 bg-nature-orange text-white text-[10px] font-bold px-3 py-1 uppercase">2 Jours</div>
+<div class="absolute bottom-4 right-4 bg-nature-orange/90 text-white text-xs font-bold px-3 py-1">4.500 DA</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex gap-2 mb-3">
+<span class="text-[9px] font-bold uppercase tracking-tighter border border-green-700/30 px-2 py-0.5 text-green-700">Bivouac</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter border border-green-700/30 px-2 py-0.5 text-green-700">Modéré</span>
+</div>
+<h3 class="text-xl font-extrabold text-nature-dark-green mb-3">Weekend Tikjda - Kabylie</h3>
+<p class="text-sm text-gray-600 mb-6 flex-1">Un bivouac entre les cèdres millénaires. Admirez le coucher du soleil depuis le sommet du Djurdjura.</p>
+<div class="flex justify-between items-center pt-4 border-t border-gray-100">
+<span class="text-[10px] font-bold text-gray-400 flex items-center gap-2 uppercase">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              12 JUIL 2024
+            </span>
+<a class="text-[10px] font-extrabold text-nature-orange uppercase flex items-center gap-1 hover:gap-2 transition-all" href="#">
+              Voir détails <span class="text-lg">→</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 3: Sahara -->
+<article class="bg-white border border-nature-green/10 flex flex-col group overflow-hidden card-shadow">
+<div class="relative h-64">
+<img alt="Sahara Tadrat" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-trsUYpxIr08SfpMR95tnqqURrr_7Ue-rdkwUkZONXoe_RDMMeQp0vuKm8KmCNqO5cpzcSJy7wNNFPxTD3rMddH-QjfseUoyQlPMfyvFwOAkE0WhWje8GMXggRE1V0RmmWdvQO7tuUSkEytwc8oew_0Qenmkbx-GaypLATMMCgStXA-eboiDj1mEloSxONaosUnLYXuAN5wJdiG0DYCSbw0e1YrqQ6XREIkBEiIN4EQ07fSKsq_Ok7QJXxinqWjV9zQK-OL3stT0"/>
+<div class="absolute top-4 left-4 bg-nature-orange text-white text-[10px] font-bold px-3 py-1 uppercase">5 Jours</div>
+<div class="absolute bottom-4 right-4 bg-nature-orange/90 text-white text-xs font-bold px-3 py-1">52.000 DA</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex gap-2 mb-3">
+<span class="text-[9px] font-bold uppercase tracking-tighter border border-nature-green/30 px-2 py-0.5 text-nature-green">Expédition</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter border border-nature-green/30 px-2 py-0.5 text-nature-green">Difficile</span>
+</div>
+<h3 class="text-xl font-extrabold text-nature-dark-green mb-3">Sahara - Tadrat Rouge</h3>
+<p class="text-sm text-gray-600 mb-6 flex-1">Le silence absolu. Parcourez les plus hautes dunes de sable rouge du monde sous un ciel étoilé unique.</p>
+<div class="flex justify-between items-center pt-4 border-t border-gray-100">
+<span class="text-[10px] font-bold text-gray-400 flex items-center gap-2 uppercase">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              20 NOV 2024
+            </span>
+<a class="text-[10px] font-extrabold text-nature-orange uppercase flex items-center gap-1 hover:gap-2 transition-all" href="#">
+              Voir détails <span class="text-lg">→</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- END: ExpeditionsGrid -->
+<!-- BEGIN: ServicesSection -->
+<section class="bg-nature-green text-white py-24 relative overflow-hidden">
+<!-- Decorative tree icon background -->
+<div class="absolute right-0 bottom-0 opacity-10">
+<svg fill="currentColor" height="400" viewbox="0 0 100 100" width="400">
+<path d="M50 10 L85 70 L65 70 L80 90 L20 90 L35 70 L15 70 Z"></path>
+</svg>
+</div>
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<!-- Image with offset border/shadow effect -->
+<div class="absolute inset-0 border-2 border-white/20 translate-x-4 -translate-y-4"></div>
+<img alt="Immersion Nature" class="relative z-10 w-full aspect-[4/3] object-cover shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCibTEd5I-KSowPb_fIJWZlWnlJXjLghZ8qQXew7MDT-qcsm6nDL9QSgvhpHksML5q-Arw-wbFDFV0KQ75ch89xC7qhHK0BQOI6nkDkBVB-bNB5P2mjJKnim2YlCjWFMydVTjfayiSTthzEV81NSBb-U6IZ7s_091_31tewrune4_2KVs344VpZTTSuWeTHJJ1v1p2RmocCYPmD09PUe5Q3ypPwyR2qbAaws_3YDG7C6VrwA9YdKyT85GlK6eeBLGI13S20EFfk2qc"/>
+</div>
+<div class="z-10">
+<h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-8 uppercase">
+            Plus qu'une simple sortie, une immersion.
+          </h2>
+<p class="text-lg text-white/80 mb-10 leading-relaxed">
+            Project Nature n'organise pas de simples tours touristiques. Nous concevons des expéditions qui testent vos limites et révèlent la splendeur brute de l'Algérie. Chaque itinéraire est testé par nos guides experts pour garantir une expérience sécurisée et authentique.
+          </p>
+<ul class="space-y-4 font-bold uppercase text-sm tracking-wide">
+<li class="flex items-center gap-4">
+<svg class="w-5 h-5 text-nature-orange" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              Guides certifiés et locaux
+            </li>
+<li class="flex items-center gap-4">
+<svg class="w-5 h-5 text-nature-orange" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              Équipement de sécurité haut de gamme
+            </li>
+<li class="flex items-center gap-4">
+<svg class="w-5 h-5 text-nature-orange" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              Respect total de l'environnement
+            </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- END: ServicesSection -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-nature-dark-green text-white pt-20 pb-10">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<!-- Brand & About -->
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<svg class="w-6 h-6 text-white" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L1 21h22L12 2zm0 4.8L19.2 19H4.8L12 6.8z"></path>
+</svg>
+<span class="text-3xl font-extrabold tracking-tight">Project Nature</span>
+</div>
+<p class="text-sm text-white/60 leading-relaxed mb-6">
+            Explorez les confins de l'Algérie avec une communauté passionnée. Rejoignez l'aventure.
+          </p>
+<p class="text-xs text-white/40">© 2024 Project Nature. dji wla ndjibouk !</p>
+</div>
+<!-- Explorer Links -->
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest mb-6">Explorer</h4>
+<ul class="space-y-4 text-sm text-white/70">
+<li><a class="hover:text-white transition" href="#">Kherjat</a></li>
+<li><a class="hover:text-white transition" href="#">Expéditions</a></li>
+<li><a class="hover:text-white transition" href="#">Matériel</a></li>
+</ul>
+</div>
+<!-- Network Links -->
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest mb-6">Réseaux</h4>
+<ul class="space-y-4 text-sm text-white/70">
+<li><a class="hover:text-white transition" href="#">Instagram</a></li>
+<li><a class="hover:text-white transition" href="#">Facebook</a></li>
+<li><a class="hover:text-white transition" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div class="bg-white/5 p-6 rounded-sm border border-white/10">
+<h4 class="text-xs font-bold uppercase tracking-widest mb-6">Newsletter Sauvage</h4>
+<div class="flex">
+<input class="w-full bg-white text-nature-dark-green px-4 py-2 border-none focus:ring-0 text-sm" placeholder="Email" type="email"/>
+<button class="bg-nature-orange text-white px-4 py-2 font-bold uppercase text-xs">OK</button>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>

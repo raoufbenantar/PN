@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vérifiez votre Email - Project Nature</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Space+Grotesk:wght@600&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#fcdeb0",
+                    "surface-variant": "#e2e3e1",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1a1c1b",
+                    "outline-variant": "#c3c8c0",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e8e8e6",
+                    "on-secondary-container": "#6b2500",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1b",
+                    "surface-container-low": "#f4f4f2",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b3cdb6",
+                    "on-error": "#ffffff",
+                    "secondary": "#a23f0a",
+                    "primary-fixed-dim": "#b3cdb6",
+                    "on-tertiary-fixed": "#271900",
+                    "surface-container-highest": "#e2e3e1",
+                    "secondary-fixed-dim": "#ffb597",
+                    "outline": "#737972",
+                    "secondary-fixed": "#ffdbcd",
+                    "tertiary": "#352505",
+                    "surface-dim": "#dadad8",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#434842",
+                    "background": "#f9f9f7",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#cfe9d1",
+                    "on-primary-container": "#95ae98",
+                    "surface-tint": "#4d6451",
+                    "tertiary-container": "#4d3a19",
+                    "tertiary-fixed-dim": "#dfc296",
+                    "surface-container": "#eeeeec",
+                    "on-primary-fixed-variant": "#364c3a",
+                    "on-secondary-fixed-variant": "#7e2c00",
+                    "surface-bright": "#f9f9f7",
+                    "on-secondary-fixed": "#360f00",
+                    "surface": "#f9f9f7",
+                    "on-tertiary-container": "#bfa47a",
+                    "error-container": "#ffdad6",
+                    "primary": "#162c1c",
+                    "secondary-container": "#fe844d",
+                    "primary-container": "#2c4231",
+                    "on-tertiary-fixed-variant": "#574421",
+                    "on-primary-fixed": "#0a2011"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "overlap-sm": "-16px",
+                    "base": "8px",
+                    "overlap-md": "-40px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": [
+                            "Epilogue"
+                    ],
+                    "body-md": [
+                            "Work Sans"
+                    ],
+                    "label-caps": [
+                            "Space Grotesk"
+                    ],
+                    "display-lg": [
+                            "Epilogue"
+                    ],
+                    "headline-lg-mobile": [
+                            "Epilogue"
+                    ],
+                    "body-lg": [
+                            "Work Sans"
+                    ],
+                    "headline-lg": [
+                            "Epilogue"
+                    ]
+            },
+            "fontSize": {
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "80px",
+                            {
+                                    "lineHeight": "90px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col md:hidden selection:bg-secondary selection:text-on-secondary">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim w-full top-0 sticky border-b-2 border-primary dark:border-outline shadow-[4px_4px_0px_0px_rgba(22,44,28,1)] z-50">
+<div class="flex items-center justify-between px-margin-mobile py-4 w-full">
+<button class="text-primary dark:text-primary-fixed hover:bg-primary-container/10 transition-colors active:translate-y-1 active:shadow-none transition-all p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed uppercase tracking-tight text-center flex-1 pr-10">Project Nature</h1>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col px-margin-mobile py-8 justify-center relative overflow-hidden">
+<!-- Decorative Background Element -->
+<div class="absolute -right-10 -top-10 text-surface-variant/30 rotate-12 pointer-events-none select-none z-0">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="relative z-10 w-full max-w-sm mx-auto flex flex-col gap-6">
+<div class="text-center space-y-4 mb-4 relative">
+<!-- Highlight block behind title -->
+<div class="absolute inset-0 bg-tertiary-fixed -z-10 translate-x-2 translate-y-2 border-2 border-primary"></div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary bg-surface border-2 border-primary p-4 shadow-[4px_4px_0px_0px_rgba(22,44,28,1)]">
+                    VÉRIFIEZ VOTRE EMAIL
+                </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4 px-2">
+                    Nous avons envoyé un code de sécurité à 6 chiffres à votre adresse email. Veuillez le saisir ci-dessous pour continuer.
+                </p>
+</div>
+<form class="flex flex-col gap-8 w-full">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-primary uppercase">Code de Sécurité</label>
+<div class="flex justify-between gap-2 w-full">
+<input class="w-12 h-14 bg-surface border-2 border-primary text-center font-headline-md text-headline-md text-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] transition-colors" inputmode="numeric" maxlength="1" placeholder="•" type="text"/>
+<input class="w-12 h-14 bg-surface border-2 border-primary text-center font-headline-md text-headline-md text-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] transition-colors" inputmode="numeric" maxlength="1" placeholder="•" type="text"/>
+<input class="w-12 h-14 bg-surface border-2 border-primary text-center font-headline-md text-headline-md text-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] transition-colors" inputmode="numeric" maxlength="1" placeholder="•" type="text"/>
+<input class="w-12 h-14 bg-surface border-2 border-primary text-center font-headline-md text-headline-md text-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] transition-colors" inputmode="numeric" maxlength="1" placeholder="•" type="text"/>
+<input class="w-12 h-14 bg-surface border-2 border-primary text-center font-headline-md text-headline-md text-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] transition-colors" inputmode="numeric" maxlength="1" placeholder="•" type="text"/>
+<input class="w-12 h-14 bg-surface border-2 border-primary text-center font-headline-md text-headline-md text-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] transition-colors" inputmode="numeric" maxlength="1" placeholder="•" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-4 mt-4">
+<button class="w-full bg-secondary text-on-secondary font-label-caps text-label-caps py-4 border-2 border-primary shadow-[4px_4px_0px_0px_rgba(22,44,28,1)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all uppercase flex items-center justify-center gap-2" type="button">
+<span>Vérifier le code</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="w-full bg-transparent text-primary font-label-caps text-label-caps py-4 border-2 border-primary hover:bg-surface-variant/50 active:bg-surface-variant transition-colors uppercase" type="button">
+                        Renvoyer le code
+                    </button>
+</div>
+</form>
+<div class="mt-8 text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">info</span>
+<p class="font-body-md text-sm text-outline">
+                    Vous n'avez rien reçu ? Vérifiez vos courriers indésirables.
+                </p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Suppressed as per Semantic Shell Mandate (Linear/Transactional page) -->
+<script>
+        // Simple auto-advance for inputs
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === this.maxLength) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                }
+            });
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0) {
+                    if (index > 0) {
+                        inputs[index - 1].focus();
+                        inputs[index - 1].value = '';
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

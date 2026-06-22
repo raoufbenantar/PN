@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin - Trips Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800&amp;family=Space+Grotesk:wght@600&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#ffb597",
+                        "on-tertiary-container": "#bfa47a",
+                        "on-secondary-fixed-variant": "#7e2c00",
+                        "tertiary": "#352505",
+                        "surface-bright": "#f9f9f7",
+                        "inverse-primary": "#b3cdb6",
+                        "surface-variant": "#e2e3e1",
+                        "surface-container-low": "#f4f4f2",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#6b2500",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#2c4231",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "outline-variant": "#c3c8c0",
+                        "surface-container-high": "#e8e8e6",
+                        "inverse-on-surface": "#f1f1ef",
+                        "error": "#ba1a1a",
+                        "primary": "#162c1c",
+                        "on-primary-container": "#95ae98",
+                        "primary-fixed-dim": "#b3cdb6",
+                        "tertiary-container": "#4d3a19",
+                        "surface-tint": "#4d6451",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#a23f0a",
+                        "on-surface-variant": "#434842",
+                        "outline": "#737972",
+                        "on-surface": "#1a1c1b",
+                        "background": "#f9f9f7",
+                        "secondary-fixed": "#ffdbcd",
+                        "surface-container-highest": "#e2e3e1",
+                        "primary-fixed": "#cfe9d1",
+                        "on-tertiary-fixed": "#271900",
+                        "on-secondary-fixed": "#360f00",
+                        "on-tertiary-fixed-variant": "#574421",
+                        "tertiary-fixed-dim": "#dfc296",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#fe844d",
+                        "on-primary-fixed-variant": "#364c3a",
+                        "inverse-surface": "#2f3130",
+                        "surface-container": "#eeeeec",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dadad8",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#0a2011",
+                        "tertiary-fixed": "#fcdeb0",
+                        "on-background": "#1a1c1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "overlap-sm": "-16px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "overlap-md": "-40px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Epilogue"],
+                        "display-lg": ["Epilogue"],
+                        "body-lg": ["Work Sans"],
+                        "headline-lg-mobile": ["Epilogue"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-lg": ["Epilogue"],
+                        "body-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg": ["80px", { "lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "label-caps": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- NavigationDrawer -->
+<nav class="hidden md:flex flex-col h-screen sticky left-0 top-0 w-64 border-r-2 border-primary dark:border-outline bg-surface dark:bg-surface-container shadow-[4px_0px_0px_#162c1c]">
+<div class="p-4 border-b-2 border-primary">
+<h1 class="font-display-lg text-headline-md text-primary tracking-tighter uppercase">FIELD JOURNAL</h1>
+</div>
+<div class="p-4 flex items-center space-x-3 mb-4">
+<div class="w-12 h-12 rounded-full border-2 border-primary overflow-hidden">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="A small, stylized profile avatar of an outdoorsy person with a backpack, minimalist flat vector art style, earthy greens and browns, clear background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm0lDX8hmb6dlkE_HpAAdoq0SGy5E4JSEEPisGY9JBFOYGcmf0KQiCPP_I6lZKtxgp2uyBKA4uMNmS3XXWe6GrgN7KlUzdTAVO1OMF-VETDL2KXqU1DHH8qmoZaHcUxvZHoR8rZ113_XsIkRJplK7cZBILGiYjB8ZCngdyV0_S4w5iDMroenKNUShpwDhnCSHs6KqXrynJFMXKB6Af_Thx3ecZ9BL7HcSm7S0DoqC72IVedX3-5ChOJroYij1NsEyuo631nn44jXs"/>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-primary">Chief Explorer</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">Agency Admin</div>
+</div>
+</div>
+<ul class="flex flex-col flex-1 py-2 font-label-caps text-label-caps">
+<li>
+<a class="flex items-center px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest mx-2 hover:translate-x-1 transition-transform cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                    Overview
+                </a>
+</li>
+<li>
+<a class="flex items-center px-4 py-3 bg-primary text-on-primary dark:bg-primary-fixed dark:text-on-primary-fixed rounded-lg mx-2 cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined mr-3">explore</span>
+                    Trips
+                </a>
+</li>
+<li>
+<a class="flex items-center px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest mx-2 hover:translate-x-1 transition-transform cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined mr-3">assignment_ind</span>
+                    Registrations
+                </a>
+</li>
+<li class="mt-auto mb-4">
+<a class="flex items-center px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest mx-2 hover:translate-x-1 transition-transform cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 p-margin-desktop bg-surface-container-low min-h-screen relative overflow-x-hidden">
+<!-- Header -->
+<div class="flex justify-between items-end mb-12 pb-4 border-b-2 border-primary relative z-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Gérer les Expéditions</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Manage upcoming trips, monitor capacity, and curate the wilderness experience.</p>
+</div>
+<button class="bg-secondary text-on-secondary font-label-caps text-label-caps px-6 py-3 border-2 border-primary shadow-[4px_4px_0px_#162c1c] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all flex items-center">
+<span class="material-symbols-outlined mr-2">add</span>
+                Nouvelle Expédition
+            </button>
+</div>
+<!-- Trips Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter relative z-10">
+<!-- Trip Card 1 -->
+<article class="bg-surface-container-lowest border-2 border-primary shadow-[6px_6px_0px_#162c1c] flex flex-col relative transform hover:-translate-y-1 hover:shadow-[8px_8px_0px_#162c1c] transition-all duration-300">
+<div class="h-64 border-b-2 border-primary relative overflow-hidden bg-primary-container p-2 pb-6" style="transform: rotate(-1deg) scale(1.02); margin-top: -8px;">
+<img class="w-full h-full object-cover border-2 border-primary shadow-[2px_2px_0px_#162c1c]" data-alt="A breathtaking view of Mont Blanc at sunrise, rugged snow-capped peaks against a crisp, pale blue sky. The lighting is dramatic and natural, casting long shadows. High-quality outdoor photography style, earthy tones with brilliant white snow, conveying a sense of raw adventure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6twO_Y5ubYEXkifnbs50rbQbSX6ME09q0ZL_tqE6TDMcjKcMQ06cWs4wz3xpZI1mLvocNljoBvDedjPdxTzhVBaKHBgAocfZ33CHGl_RNsC68ycYapVu3NAOYWhGbmUWLTF_7dyN1plNc7MZiYQtaJjHAK56Q1HAVBqDs-seYumotfrk6XFYVeEi6QVgBrL9AIjNPDE5xcuaCJ9W1JB9N0ZYnXMbILNZ0IDzpOZdxanZ-tPVmJmpKGzyw9pzpaBgFIqiNdR3SX_M"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 font-label-caps text-[12px] border-2 border-primary shadow-[2px_2px_0px_#162c1c] rotate-2">
+                        8 Jours
+                    </div>
+</div>
+<div class="p-6 flex-1 flex flex-col bg-surface z-10">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-md text-headline-md text-primary">Ascension Mont Blanc</h3>
+<div class="bg-surface-variant text-on-surface-variant px-3 py-1 font-label-caps text-[12px] rounded-DEFAULT border border-outline">
+                            12/15 Places
+                        </div>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-6 flex items-center">
+<span class="material-symbols-outlined mr-2 text-[18px]">calendar_today</span>
+                        14 Juil - 22 Juil 2024
+                    </div>
+<div class="mt-auto flex gap-4 pt-4 border-t border-outline-variant">
+<button class="flex-1 bg-surface-container border-2 border-primary px-4 py-2 font-label-caps text-[12px] text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined mr-2 text-[18px]">check_circle</span>
+                            Marquer Complet
+                        </button>
+<button class="px-4 py-2 text-error border-2 border-transparent hover:border-error hover:bg-error-container transition-colors font-label-caps text-[12px] flex items-center justify-center">
+<span class="material-symbols-outlined mr-2 text-[18px]">delete</span>
+                            Supprimer
+                        </button>
+</div>
+</div>
+</article>
+<!-- Trip Card 2 -->
+<article class="bg-surface-container-lowest border-2 border-primary shadow-[6px_6px_0px_#162c1c] flex flex-col relative transform hover:-translate-y-1 hover:shadow-[8px_8px_0px_#162c1c] transition-all duration-300">
+<div class="h-64 border-b-2 border-primary relative overflow-hidden bg-secondary-fixed p-2 pb-6" style="transform: rotate(1.5deg) scale(0.98); margin-top: 4px;">
+<img class="w-full h-full object-cover border-2 border-primary shadow-[2px_2px_0px_#162c1c]" data-alt="A vast, sprawling desert landscape at dusk, with sweeping orange sand dunes and a subtle caravan of camels in the distance. Warm, golden hour lighting creating high contrast shadows. The style is cinematic and adventurous, emphasizing the vastness of nature." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEUX-y7BdrLjy-zuMY4TvI0xZagu80zS8hSx5csmrJOSAMpGkdAER7fiFDpQrTfDhz9nT_XLHTfq2W9BWW0dFc4o3BmgImplamZjx8igVMl2vkaNZD497ZVD2r2_K4CpaOJfcovXJk3UseW-1zq0IDSNpNTRmy-jlbMPTsHRszZGbyKlaZFEGRprMX07buBc2qcB4lKt-SNNzaNQalDGg_2itJFPrjDYuUpBPdriKxMyn9n9MIrD5VmwHLScF2MAuc3RnWvM7GFSI"/>
+<div class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 font-label-caps text-[12px] border-2 border-primary shadow-[2px_2px_0px_#162c1c] -rotate-2">
+                        14 Jours
+                    </div>
+</div>
+<div class="p-6 flex-1 flex flex-col bg-surface z-10">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-md text-headline-md text-primary">Traversée du Désert</h3>
+<div class="bg-error-container text-on-error-container px-3 py-1 font-label-caps text-[12px] border border-error rounded-DEFAULT">
+                            Complet (10/10)
+                        </div>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-6 flex items-center">
+<span class="material-symbols-outlined mr-2 text-[18px]">calendar_today</span>
+                        05 Nov - 19 Nov 2024
+                    </div>
+<div class="mt-auto flex gap-4 pt-4 border-t border-outline-variant">
+<button class="flex-1 bg-surface-container border-2 border-outline px-4 py-2 font-label-caps text-[12px] text-outline-variant flex items-center justify-center cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined mr-2 text-[18px]">check_circle</span>
+                            Complet
+                        </button>
+<button class="px-4 py-2 text-error border-2 border-transparent hover:border-error hover:bg-error-container transition-colors font-label-caps text-[12px] flex items-center justify-center">
+<span class="material-symbols-outlined mr-2 text-[18px]">delete</span>
+                            Supprimer
+                        </button>
+</div>
+</div>
+</article>
+<!-- Trip Card 3 -->
+<article class="bg-surface-container-lowest border-2 border-primary shadow-[6px_6px_0px_#162c1c] flex flex-col relative transform hover:-translate-y-1 hover:shadow-[8px_8px_0px_#162c1c] transition-all duration-300 xl:col-span-2">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-1/3 h-48 md:h-auto border-b-2 md:border-b-0 md:border-r-2 border-primary relative overflow-hidden bg-primary-fixed-dim p-2" style="transform: scale(0.99);">
+<img class="w-full h-full object-cover border-2 border-primary" data-alt="Dense, misty pine forest viewed from above, deep green canopy with streaks of fog rolling through the trees. Moody, atmospheric lighting emphasizing the wilderness aesthetic. High resolution, tactile and raw nature photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdhb7RZWFqus9mrSdfg-wT5gG-EoHnEgGuAiwqBRMXVay82voBmvURROTx3OSQ-jAIYWplI2zi9-InvVHqnnq0Hbhrho1ZwbuDFtqq44gobx3CCgJCw0PhMIk7-r8-IsYWwtSJbQL7EO9XdxC-GEkPH-Ylj9n-Sc4o-nqAt6Es2TkSFXaXzBtw4T4nFTCdgFkBAjz_Egcar8ayR3WBUrFH4zHvsZLuhuqZkuRmDDTzvQ6vuriRd_OCahSC5gHBWMKjr6l99domeHQ"/>
+</div>
+<div class="p-6 flex-1 flex flex-col bg-surface">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-primary">Forêt Noire Survie</h3>
+<div class="bg-surface-variant text-on-surface-variant px-3 py-1 font-label-caps text-[12px] rounded-DEFAULT border border-outline">
+                                4/8 Places
+                            </div>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-4 flex items-center">
+<span class="material-symbols-outlined mr-2 text-[18px]">calendar_today</span>
+                            12 Oct - 15 Oct 2024
+                        </div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">A demanding weekend survival course focusing on foraging, shelter building, and navigation without modern tools in dense woodland.</p>
+<div class="mt-auto flex gap-4 pt-4 border-t border-outline-variant justify-end">
+<button class="bg-surface-container border-2 border-primary px-4 py-2 font-label-caps text-[12px] text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined mr-2 text-[18px]">check_circle</span>
+                                Marquer Complet
+                            </button>
+<button class="px-4 py-2 text-error border-2 border-transparent hover:border-error hover:bg-error-container transition-colors font-label-caps text-[12px] flex items-center justify-center">
+<span class="material-symbols-outlined mr-2 text-[18px]">delete</span>
+                                Supprimer
+                            </button>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute right-0 bottom-0 pointer-events-none opacity-5 w-96 h-96 bg-primary rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+</main>
+</body></html>

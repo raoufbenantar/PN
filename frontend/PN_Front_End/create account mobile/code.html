@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registration - Project Nature</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800&amp;family=Space+Grotesk:wght@600&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f1f1ef",
+                        "primary": "#162c1c",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-fixed": "#ffdbcd",
+                        "tertiary-container": "#4d3a19",
+                        "on-primary-container": "#95ae98",
+                        "surface-container": "#eeeeec",
+                        "error-container": "#ffdad6",
+                        "background": "#f9f9f7",
+                        "on-tertiary-fixed": "#271900",
+                        "surface-tint": "#4d6451",
+                        "surface-container-low": "#f4f4f2",
+                        "on-surface-variant": "#434842",
+                        "on-secondary-fixed": "#360f00",
+                        "on-primary-fixed": "#0a2011",
+                        "surface": "#f9f9f7",
+                        "primary-fixed": "#cfe9d1",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dadad8",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "secondary": "#a23f0a",
+                        "on-tertiary-container": "#bfa47a",
+                        "tertiary": "#352505",
+                        "outline": "#737972",
+                        "surface-container-high": "#e8e8e6",
+                        "secondary-container": "#fe844d",
+                        "on-primary-fixed-variant": "#364c3a",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#6b2500",
+                        "inverse-primary": "#b3cdb6",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#574421",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e2e3e1",
+                        "primary-fixed-dim": "#b3cdb6",
+                        "outline-variant": "#c3c8c0",
+                        "on-surface": "#1a1c1b",
+                        "tertiary-fixed-dim": "#dfc296",
+                        "on-secondary-fixed-variant": "#7e2c00",
+                        "inverse-surface": "#2f3130",
+                        "tertiary-fixed": "#fcdeb0",
+                        "surface-container-highest": "#e2e3e1",
+                        "primary-container": "#2c4231",
+                        "secondary-fixed-dim": "#ffb597"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "overlap-md": "-40px",
+                        "overlap-sm": "-16px",
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Space Grotesk"],
+                        "headline-lg": ["Epilogue"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Epilogue"],
+                        "headline-lg-mobile": ["Epilogue"],
+                        "body-lg": ["Work Sans"],
+                        "display-lg": ["Epilogue"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["80px", { "lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar (Suppressed navigation actions for transactional page, keeping brand anchor) -->
+<header class="w-full top-0 sticky bg-surface border-b-2 border-primary shadow-[4px_4px_0px_0px_rgba(22,44,28,1)] flex items-center justify-between px-margin-mobile py-4 z-40">
+<div class="flex items-center gap-4">
+<button aria-label="Go back" class="text-primary hover:bg-primary-container/10 p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<span class="font-headline-md text-headline-md text-primary uppercase tracking-tight">Project Nature</span>
+</div>
+</header>
+<main class="flex-grow flex flex-col px-margin-mobile py-8 pb-32 max-w-md mx-auto w-full relative z-10">
+<!-- Hero/Header Section -->
+<div class="mb-10 relative">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary uppercase mb-4 relative inline-block z-10">
+                REJOIGNEZ L'AVENTURE
+            </h1>
+<!-- Abstract background shape mimicking a map contour or leaf -->
+<div class="absolute -top-4 -left-4 w-24 h-24 bg-secondary-fixed rounded-full opacity-50 blur-xl -z-10 mix-blend-multiply"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm">
+                Créez votre profil d'explorateur pour réserver vos prochaines expéditions.
+            </p>
+</div>
+<!-- Registration Form -->
+<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-primary uppercase" for="fullName">Nom Complet</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">person</span>
+<input class="w-full bg-surface-bright border-2 border-primary text-on-surface font-body-md pl-10 pr-4 py-3 focus:outline-none focus:ring-0 focus:border-secondary transition-colors shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] placeholder:text-on-surface-variant/50" id="fullName" name="fullName" placeholder="Ex: Amine Khali" required="" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-primary uppercase" for="email">Adresse Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">mail</span>
+<input class="w-full bg-surface-bright border-2 border-primary text-on-surface font-body-md pl-10 pr-4 py-3 focus:outline-none focus:ring-0 focus:border-secondary transition-colors shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] placeholder:text-on-surface-variant/50" id="email" name="email" placeholder="amine@exemple.com" required="" type="email"/>
+</div>
+</div>
+<!-- Phone Number -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-primary uppercase" for="phone">Numéro de téléphone</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">call</span>
+<input class="w-full bg-surface-bright border-2 border-primary text-on-surface font-body-md pl-10 pr-4 py-3 focus:outline-none focus:ring-0 focus:border-secondary transition-colors shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] placeholder:text-on-surface-variant/50" id="phone" name="phone" placeholder="0555 00 00 00" required="" type="tel"/>
+</div>
+</div>
+<!-- Password -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-primary uppercase" for="password">Mot de passe</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">lock</span>
+<input class="w-full bg-surface-bright border-2 border-primary text-on-surface font-body-md pl-10 pr-12 py-3 focus:outline-none focus:ring-0 focus:border-secondary transition-colors shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] placeholder:text-on-surface-variant/50" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary focus:outline-none" onclick="togglePassword('password', 'toggleIcon1')" type="button">
+<span class="material-symbols-outlined" data-icon="visibility" id="toggleIcon1">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-primary uppercase" for="confirmPassword">Confirmer le mot de passe</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">lock_clock</span>
+<input class="w-full bg-surface-bright border-2 border-primary text-on-surface font-body-md pl-10 pr-12 py-3 focus:outline-none focus:ring-0 focus:border-secondary transition-colors shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] placeholder:text-on-surface-variant/50" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary focus:outline-none" onclick="togglePassword('confirmPassword', 'toggleIcon2')" type="button">
+<span class="material-symbols-outlined" data-icon="visibility" id="toggleIcon2">visibility</span>
+</button>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="mt-4">
+<button class="w-full flex items-center justify-center gap-2 bg-secondary text-on-secondary font-label-caps text-label-caps uppercase py-4 px-6 border-2 border-primary shadow-[4px_4px_0px_0px_rgba(22,44,28,1)] hover:bg-secondary/90 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(22,44,28,1)] active:translate-y-1 active:shadow-none transition-all" type="submit">
+<span>CRÉER UN COMPTE</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Terms Checkbox (Optional but good practice for reg forms) -->
+<div class="flex items-start gap-3 mt-2">
+<div class="relative flex items-center justify-center pt-1">
+<input class="peer appearance-none w-5 h-5 border-2 border-primary bg-surface-bright checked:bg-primary transition-colors cursor-pointer shrink-0" id="terms" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-on-primary text-[16px] opacity-0 peer-checked:opacity-100 pointer-events-none" data-icon="check">check</span>
+</div>
+<label class="font-body-md text-sm text-on-surface-variant cursor-pointer" for="terms">
+                    J'accepte les conditions d'utilisation et la politique de confidentialité de Project Nature.
+                </label>
+</div>
+</form>
+<!-- Secondary Action -->
+<div class="mt-12 text-center">
+<a class="inline-flex items-center gap-2 text-primary font-label-caps text-label-caps uppercase hover:text-secondary transition-colors group relative" href="#">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform" data-icon="login">login</span>
+<span>Déjà un aventurier ? Se connecter</span>
+<span class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+</a>
+</div>
+</main>
+<!-- Background illustrative elements (Brutalist nature motifs) -->
+<div class="fixed bottom-0 right-0 pointer-events-none opacity-5 -z-10">
+<svg class="text-primary translate-x-1/4 translate-y-1/4" fill="currentColor" height="200" viewbox="0 0 100 100" width="200">
+<path d="M50 0 C60 30 90 40 100 50 C90 60 60 70 50 100 C40 70 10 60 0 50 C10 40 40 30 50 0 Z"></path>
+</svg>
+</div>
+<script>
+        function togglePassword(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+    </script>
+</body></html>

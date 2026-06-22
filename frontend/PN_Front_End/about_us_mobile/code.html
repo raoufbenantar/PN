@@ -1,0 +1,345 @@
+<!DOCTYPE html><html class="light" lang="fr" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>À Propos - Project Nature</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Syne:wght@700;800&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hard-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(44, 66, 49, 0.2);
+        }
+        .hard-shadow-sm {
+            box-shadow: 4px 4px 0px 0px rgba(44, 66, 49, 0.2);
+        }
+        .wavy-divider {
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48H1440V12.5C1340 42.5 1240 42.5 1140 12.5C1040 -17.5 940 -17.5 840 12.5C740 42.5 640 42.5 540 12.5C440 -17.5 340 -17.5 240 12.5C140 42.5 40 42.5 0 12.5V48Z" fill="black"/></svg>');
+            mask-repeat: no-repeat;
+            mask-size: cover;
+        }
+        .wavy-bottom {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 95% 92%, 90% 90%, 85% 92%, 80% 90%, 75% 92%, 70% 90%, 65% 92%, 60% 90%, 55% 92%, 50% 90%, 45% 92%, 40% 90%, 35% 92%, 30% 90%, 25% 92%, 20% 90%, 15% 92%, 10% 90%, 5% 92%, 0% 90%);
+        }
+        .active-press:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px rgba(44, 66, 49, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2d3135",
+                    "surface-variant": "#e0e3e8",
+                    "inverse-primary": "#b4cdb6",
+                    "on-tertiary-fixed-variant": "#4c4634",
+                    "primary-fixed": "#d0e9d1",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#cfc6ae",
+                    "surface-container-high": "#e5e8ee",
+                    "surface": "#f7f9ff",
+                    "on-secondary": "#ffffff",
+                    "background": "#f7f9ff",
+                    "surface-dim": "#d7dadf",
+                    "surface-container": "#ebeef3",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ece2c9",
+                    "on-tertiary-fixed": "#201b0c",
+                    "on-secondary-fixed": "#360f00",
+                    "secondary": "#9f410f",
+                    "outline": "#737972",
+                    "secondary-container": "#fe8852",
+                    "primary-container": "#435947",
+                    "tertiary-container": "#595340",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb596",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#2c4231",
+                    "surface-tint": "#4d6451",
+                    "surface-container-low": "#f1f4f9",
+                    "primary-fixed-dim": "#b4cdb6",
+                    "on-surface": "#181c20",
+                    "surface-container-highest": "#e0e3e8",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#6e2700",
+                    "inverse-on-surface": "#eef1f6",
+                    "outline-variant": "#c3c8c0",
+                    "on-secondary-fixed-variant": "#7d2d00",
+                    "on-primary-container": "#b6cfb8",
+                    "secondary-fixed": "#ffdbcd",
+                    "on-surface-variant": "#434842",
+                    "on-error-container": "#93000a",
+                    "on-background": "#181c20",
+                    "tertiary": "#423c2b",
+                    "surface-bright": "#f7f9ff",
+                    "on-tertiary-container": "#d0c7af",
+                    "on-primary-fixed-variant": "#364c3a",
+                    "on-primary-fixed": "#0b2011"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Syne"],
+                    "headline-lg": ["Syne"],
+                    "body-md": ["Manrope"],
+                    "title-md": ["Manrope"],
+                    "display-xl": ["Syne"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary selection:text-white">
+<!-- Top Navigation Anchor -->
+<header class="bg-surface dark:bg-inverse-surface border-b-2 border-primary dark:border-primary-fixed flex justify-between items-center w-full px-margin-mobile h-16 sticky top-0 z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" style="font-variation-settings: 'FILL' 1;">landscape</span>
+<span class="font-headline-lg-mobile text-[24px] font-bold text-secondary dark:text-secondary-fixed-dim">Project Nature</span>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-surface-variant">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-surface-variant">menu</button>
+</div>
+</header>
+<main class="overflow-x-hidden">
+<!-- Hero Section: Notre Histoire -->
+<section class="px-margin-mobile py-12 bg-surface">
+<div class="space-y-4 mb-8">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest block border-l-4 border-secondary pl-3">L'Esprit Sauvage</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Notre Histoire</h1>
+<p class="text-on-surface-variant leading-relaxed">
+                    Project Nature n’est pas une simple agence de voyage. C’est le fruit d’une ambition brute : reconnecter l’âme humaine aux reliefs indomptés. Fondée en 2024, notre aventure a débuté par une simple promesse : transformer chaque sortie en un chapitre épique de votre vie.
+                </p>
+</div>
+<!-- Staggered Image / Stats -->
+<div class="relative mb-12">
+<div class="relative z-10 border-2 border-primary p-2 bg-white hard-shadow transform -rotate-2">
+<img alt="High peaks" class="w-full grayscale h-80 object-cover" data-alt="A cinematic black and white photograph of dramatic mountain ridges shrouded in morning mist. The lighting is moody and high-contrast, emphasizing the rugged textures of the stone. The style is classic and evokes a sense of timeless adventure in the high wilderness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFLmjYuhmzAd1yodG4TCFMLiAWEF78ExEjGdHbZXI2HATiO2QpypisN48kz7nT7cO7YiIw5caeZnO4Qb42ROGAlLPpQrgOOYwN5k6TQv7OVutL6HBgCXMXHpACDDtD9oVFBVlRfqsLrwoMjnTzJZuGTIlQmu19cZJnUncPHfoRwxswA5sWr1tbDkq28_bX6belAb-eWggoOcyDiy2-kIH3_v0ZMrAB6Y1JIQbnrlXdAkeLVd3u02WIa2uiVGPNxbOcJm1KkrHmDEo">
+<div class="absolute bottom-4 left-4 bg-secondary text-white font-label-sm px-3 py-1 -rotate-3 hard-shadow-sm">
+                        EST. 2024
+                    </div>
+</div>
+<!-- Abstract Shape Decoration -->
+<div class="absolute -top-4 -right-4 w-32 h-32 border-2 border-primary/10 rounded-full border-dashed -z-0"></div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-tertiary-fixed border-2 border-primary p-4 hard-shadow-sm flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">landscape</span>
+<div>
+<div class="font-bold text-primary">150+</div>
+<div class="text-[10px] uppercase font-label-sm">Sommets</div>
+</div>
+</div>
+<div class="bg-primary-fixed border-2 border-primary p-4 hard-shadow-sm flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">group</span>
+<div>
+<div class="font-bold text-primary">5k</div>
+<div class="text-[10px] uppercase font-label-sm">Explorateurs</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Values Section (Wavy Divider) -->
+<div class="h-12 bg-primary-container wavy-divider transform rotate-180"></div>
+<section class="bg-primary-container px-margin-mobile py-16">
+<div class="grid gap-8">
+<!-- Engagement card -->
+<div class="border border-on-primary-container/30 p-6 rounded-lg bg-primary/20">
+<span class="material-symbols-outlined text-on-primary-container mb-4 block" style="font-size: 32px;">handshake</span>
+<h3 class="font-title-md text-title-md text-on-primary-container mb-2">Engagement Local</h3>
+<p class="text-on-primary-container/80 text-sm">
+                        Nous collaborons exclusivement avec des guides locaux pour préserver l'authenticité et soutenir les communautés de nos montagnes.
+                    </p>
+</div>
+<!-- Impact card -->
+<div class="border border-on-primary-container/30 p-6 rounded-lg bg-primary/20">
+<span class="material-symbols-outlined text-on-primary-container mb-4 block" style="font-size: 32px;">energy_savings_leaf</span>
+<h3 class="font-title-md text-title-md text-on-primary-container mb-2">Impact Zéro</h3>
+<p class="text-on-primary-container/80 text-sm">
+                        Notre devise est simple : n'emporter que des photos, ne laisser que des empreintes de pas. La nature est notre sanctuaire.
+                    </p>
+</div>
+<!-- Securité card -->
+<div class="border border-on-primary-container/30 p-6 rounded-lg bg-primary/20">
+<span class="material-symbols-outlined text-on-primary-container mb-4 block" style="font-size: 32px;">verified_user</span>
+<h3 class="font-title-md text-title-md text-on-primary-container mb-2">Sécurité d’Élite</h3>
+<p class="text-on-primary-container/80 text-sm">
+                        Une aventure brute ne signifie pas un risque inconsidéré. Notre équipe est formée aux premiers secours en milieu hostile.
+                    </p>
+</div>
+</div>
+</section>
+<div class="h-12 bg-primary-container wavy-divider"></div>
+<!-- Team Section -->
+<section class="px-margin-mobile py-20 bg-surface">
+<div class="text-center mb-12">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">L'équipe Project Nature</h2>
+<p class="text-on-surface-variant font-body-md text-sm italic max-w-xs mx-auto">
+                    Derrière chaque ascension, il y a des passionnés qui vivent et respirent le plein air.
+                </p>
+</div>
+<div class="grid grid-cols-1 gap-12">
+<!-- Team Member: Haithem -->
+<div class="group relative">
+<div class="aspect-[4/5] overflow-hidden rounded-xl border-2 border-primary hard-shadow">
+<img alt="Haithem" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A rugged portrait of a male mountaineer named Haithem, with short dark hair and a beard, wearing a high-performance forest green parka. He stands against a blurred background of snowy peaks under a bright, clear sky. The lighting is natural and crisp, highlighting his focused expression and the technical details of his gear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQn-bPutr6nco8v-4kfcdZ8tu1_p1SyMQx6CjJZa9OqXStqns-zIVlHBhz6ekQnkrMn6TBzy63jGR1VkbKa_gB4THehaV5cFEnk99Ma-zM3SZLFhhYMzTMlUPWn7aBhnG2uixwAVEvEZ81y4UgxHlwipNWphz_tMtI__ZunvTwLagunUdqQA0z8axpdxyQP4cUPDBSnioS5hGdmxOsZbE-AxboiCB79BrxiWE-oM4JKX-vDscB_YYAFYJ7x_BHj3qFDuxHjVRiV8k">
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary/90 to-transparent">
+<h4 class="font-title-md text-white text-xl">Haithem</h4>
+<p class="font-label-sm text-xs text-secondary-fixed-dim uppercase tracking-wider">Fondateur &amp; Guide Chef</p>
+</div>
+</div>
+</div>
+<!-- Team Member: Rahim -->
+<div class="group relative">
+<div class="aspect-[4/5] overflow-hidden rounded-xl border-2 border-primary hard-shadow-sm transform translate-x-4">
+<img alt="Rahim" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A portrait of Rahim, a young man with a warm smile wearing outdoor trekking apparel. He is positioned in front of a misty mountain range during golden hour. The soft, warm light illuminates his face, creating an inviting and authentic mood. The style is adventurous and genuine, matching the brand's earthy aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5oyfwLqb3cjWkO5MN5KrAsTglegMkkZy0BXdVm-al9lL5scfY1NDgkRbUrJgh0Eo5Wz64s5gnSycjxthvo7DwClYQBCoLXn7fxtvPhID3dtX-MpOfeR34bsRRxXly6XLQmjd35m1t_i2iPNhPtQ-JEkJu18iih7XCi2c00J8EQB4nbuOzO8qdNqcWLU0bAVtFhMjhOrnksu-jPuOMXMXfhNzc-qner7v7FK9NpkbeIQzlxguqN9ncnyM2nkhfMA_o204qcbw_eUQ">
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary-container/90 to-transparent">
+<h4 class="font-title-md text-white text-xl">Rahim</h4>
+<p class="font-label-sm text-xs text-primary-fixed uppercase tracking-wider">Co-fondateur &amp; Logistique</p>
+</div>
+</div>
+</div>
+<!-- Team Member: Amine -->
+<div class="group relative">
+<div class="aspect-[4/5] overflow-hidden rounded-xl border-2 border-primary hard-shadow transform -rotate-1">
+<img alt="Amine" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="An older, seasoned male guide named Amine with grey hair and weather-worn features, wearing a traditional explorer hat. He is looking off-camera with a contemplative expression. Behind him are rocky outcrops under a high-altitude sun. The lighting is harsh and direct, emphasizing his years of experience in the wild." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDndouJ9Dnh2FqNmBhtO80W46qhKEoY_W60EbMTIqpdsZJ8QWQIYP4ktpvWZh8i4LUNNEe55uyjg2PMIG74LPDdaK14pSB-9TBQe635-M4SR75YloKoePEslHua3TPZYGO9TyDbcpbULykKUaR8U-HjmxvEkxPulYuFPPLVpfwY1gNRN0KXemng0EWvqT9Z5d7pbyYJ375B7oABKgDmeN5bB6Uyb3UmQQX9G220mlTfX5VmBIKWRR5aTF8R8HVAkknTotaAdLsXlPQ">
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-tertiary-container/90 to-transparent">
+<h4 class="font-title-md text-white text-xl">Amine</h4>
+<p class="font-label-sm text-xs text-tertiary-fixed uppercase tracking-wider">Guide Senior Alpinisme</p>
+</div>
+</div>
+</div>
+<!-- Team Member: Sarah -->
+<div class="group relative">
+<div class="aspect-[4/5] overflow-hidden rounded-xl border-2 border-primary hard-shadow transform -translate-x-4">
+<img alt="Sarah" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A female expedition photographer named Sarah, with long hair, holding a professional camera. She is standing on a high cliff overlooking a winding valley at sunrise. The lighting is vibrant and dramatic, casting a warm orange glow over the landscape. Her attire is practical yet stylish, fitting the adventurous consultant vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA23rY79hsGvBCa4TaqeCdNPmUT97uRG4P3jswPToLcLynV9gp7aBNfCToDTvbhepXV29f054kqF743254EkRdO9BsM0uZgYLB4OvhhhnizW-eyUuNj3GTDEIW6Q3yIS1jxIoPzt1RFRnynMsqy18aMJM6xFzWLYqEoeRrXehDWGK8vMcRZ0PAd4gMWUstH7KdNl-Ayz8GDyX6j9VvxAZt7dj0UuufLKnpCwtkFiBdtQVkDqQD2chA7_FiireqQPxUMJYGqtB44lqA">
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-secondary/90 to-transparent">
+<h4 class="font-title-md text-white text-xl">Sarah</h4>
+<p class="font-label-sm text-xs text-secondary-fixed uppercase tracking-wider">Photographe Expédition</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-margin-mobile bg-secondary text-white text-center relative overflow-hidden">
+<!-- Background Texture Layer -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" width="100%">
+<path d="M0 50 Q 25 30, 50 50 T 100 50" fill="transparent" stroke="white" stroke-width="0.5"></path>
+<path d="M0 60 Q 25 40, 50 60 T 100 60" fill="transparent" stroke="white" stroke-width="0.5"></path>
+<path d="M0 40 Q 25 20, 50 40 T 100 40" fill="transparent" stroke="white" stroke-width="0.5"></path>
+</svg>
+</div>
+<div class="relative z-10 space-y-6">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile leading-tight">Prêt à écrire votre propre histoire ?</h2>
+<p class="text-secondary-fixed font-body-md opacity-90">
+                    Rejoignez notre prochaine expédition et découvrez l'Algérie comme vous ne l'avez jamais vue.
+                </p>
+<div class="flex flex-col gap-4 pt-4">
+<button class="bg-tertiary-fixed text-primary px-8 py-4 font-bold hard-shadow-sm border-2 border-primary active-press">
+                        Voir les Expéditions
+                    </button>
+<button class="bg-secondary text-white border-2 border-white px-8 py-4 font-bold active-press">
+                        Nous Contacter
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-white py-12 px-margin-mobile">
+<div class="flex flex-col gap-10">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary-fixed">landscape</span>
+<span class="font-headline-lg-mobile text-2xl font-bold">Project Nature</span>
+</div>
+<p class="text-sm opacity-60 max-w-xs leading-relaxed">
+                    L'aventure brute au cœur de l'Algérie. Rejoignez la communauté des explorateurs modernes.
+                </p>
+<div class="flex gap-4 mt-6">
+<a class="w-10 h-10 border border-white/20 flex items-center justify-center rounded-full hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</a>
+<a class="w-10 h-10 border border-white/20 flex items-center justify-center rounded-full hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<h5 class="font-label-sm text-xs uppercase text-secondary-fixed tracking-widest mb-4">L'Agence</h5>
+<ul class="space-y-2 text-sm opacity-80">
+<li class=""><a href="#" class="">Destinations</a></li>
+<li class=""><a href="#" class="">Nos Engagements</a></li>
+<li class=""><a href="#" class="">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-sm text-xs uppercase text-secondary-fixed tracking-widest mb-4">Légal</h5>
+<ul class="space-y-2 text-sm opacity-80">
+<li class=""><a href="#" class="">Privacy Policy</a></li>
+<li class=""><a href="#" class="">Conditions Générales</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 flex justify-between items-center text-[10px] opacity-40 uppercase tracking-widest">
+<span class="">© 2024 Project Nature.</span>
+<div class="flex gap-4">
+<a href="#" class="">Instagram</a>
+<a href="#" class="">Facebook</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bottom Nav Anchor (Shared Component) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-surface dark:bg-inverse-surface border-t-2 border-primary dark:border-primary-fixed shadow-[0_-4px_0_0_rgba(44,66,49,0.1)] md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 hover:text-primary active:scale-95 transition-all duration-100" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Kherjat</span>
+</a>
+
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 hover:text-primary active:scale-95 transition-all duration-100" href="#">
+<span class="material-symbols-outlined">photo_library</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Souvenirs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold active:scale-95 transition-all duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">À Propos</span>
+</a>
+</nav>
+<!-- Spacer for bottom nav on mobile -->
+<div class="h-20 md:hidden"></div>
+
+
+</body></html>

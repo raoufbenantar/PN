@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registrations | Project Nature Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Manrope:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#2c4231",
+                        "on-secondary-fixed-variant": "#7d2d00",
+                        "on-primary-fixed-variant": "#364c3a",
+                        "secondary-fixed": "#ffdbcd",
+                        "inverse-surface": "#2d3135",
+                        "surface-container-high": "#e5e8ee",
+                        "on-surface-variant": "#434842",
+                        "outline": "#737972",
+                        "inverse-on-surface": "#eef1f6",
+                        "on-tertiary-fixed": "#201b0c",
+                        "on-surface": "#181c20",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#d0c7af",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#360f00",
+                        "tertiary-fixed-dim": "#cfc6ae",
+                        "surface-dim": "#d7dadf",
+                        "primary-fixed": "#d0e9d1",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f1f4f9",
+                        "primary-fixed-dim": "#b4cdb6",
+                        "outline-variant": "#c3c8c0",
+                        "on-secondary-container": "#6e2700",
+                        "surface-container-highest": "#e0e3e8",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f7f9ff",
+                        "surface-variant": "#e0e3e8",
+                        "on-primary-fixed": "#0b2011",
+                        "secondary": "#9f410f",
+                        "tertiary": "#423c2b",
+                        "on-primary-container": "#b6cfb8",
+                        "tertiary-fixed": "#ece2c9",
+                        "on-tertiary-fixed-variant": "#4c4634",
+                        "inverse-primary": "#b4cdb6",
+                        "surface-tint": "#4d6451",
+                        "background": "#f7f9ff",
+                        "surface-bright": "#f7f9ff",
+                        "primary-container": "#435947",
+                        "secondary-fixed-dim": "#ffb596",
+                        "surface-container": "#ebeef3",
+                        "tertiary-container": "#595340",
+                        "error-container": "#ffdad6",
+                        "on-background": "#181c20",
+                        "secondary-container": "#fe8852"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Syne"],
+                        "display-xl": ["Syne"],
+                        "title-md": ["Manrope"],
+                        "headline-lg-mobile": ["Syne"],
+                        "body-md": ["Manrope"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(44, 66, 49, 0.2);
+        }
+        .card-border {
+            border: 2px solid #2c4231;
+        }
+        .btn-active:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full sticky top-0 z-40 bg-surface dark:bg-inverse-surface border-b-2 border-primary dark:border-primary-fixed h-16">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Project Nature</h1>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity cursor-pointer">account_circle</span>
+</div>
+</header>
+<main class="px-margin-mobile pt-8 max-w-md mx-auto">
+<!-- Header Section -->
+<div class="mb-10">
+<span class="font-label-sm text-label-sm uppercase text-secondary tracking-widest mb-2 block">Administration</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Registrations</h2>
+<p class="font-body-md text-on-surface-variant mt-2">Gérez les inscriptions en attente pour les prochaines expéditions.</p>
+</div>
+<!-- Filters (Mini) -->
+<div class="flex gap-2 overflow-x-auto pb-6 scrollbar-hide">
+<button class="whitespace-nowrap px-4 py-2 bg-primary text-on-primary rounded-lg font-label-sm text-label-sm hard-shadow border-2 border-primary">TOUT (12)</button>
+<button class="whitespace-nowrap px-4 py-2 bg-tertiary-fixed text-primary rounded-lg font-label-sm text-label-sm border-2 border-primary">TREK (4)</button>
+<button class="whitespace-nowrap px-4 py-2 bg-tertiary-fixed text-primary rounded-lg font-label-sm text-label-sm border-2 border-primary">BIVOUAC (8)</button>
+</div>
+<!-- Registration Cards List -->
+<section class="space-y-8 pb-12">
+<!-- User Card 1 -->
+<div class="bg-surface border-2 border-primary rounded-xl overflow-hidden hard-shadow relative group">
+<div class="h-32 w-full relative overflow-hidden bg-primary-container">
+<img alt="Destination Background" class="w-full h-full object-cover opacity-80" data-alt="A rugged landscape of the Tassili n'Ajjer mountains in Algeria at dusk, with deep orange sandstone formations and a solitary hiker figure in the distance. The lighting is dramatic and warm, reflecting a professional nature photography style with high contrast and earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7-sJP3EsApf9hzDMNNZUp2vVueOOzQALhqOzjlyDJfbHchiwOFcqlJe44C2qQs9fp7_0YuZNcLC-ZJrwOOOE5OlQBF0lxW1kfs7ZSj2VC_eRHfDOCDrB2_qwJqsYucEUcZz3hgJ-KKlpPSZ6omYZnG15JPnPp_NWpuObfH5gb1EEhIgUjKxt6hJ8x1nr0YmK_YzytBt8cYAZQvxEkAFt-ufjVnzogJuwuan-2foIu2J-O09vI9HMhQN4p80D3tHIkWLJBQG6TmrlY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-3 left-4">
+<span class="font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-1 rounded">15 OCT 2024</span>
+</div>
+</div>
+<div class="p-6 bg-tertiary-fixed/30">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Candidat</p>
+<h3 class="font-title-md text-title-md text-primary">Amine Benali</h3>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-primary overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a middle aged man with a weathered face, wearing an outdoor hat and a green flannel shirt. The lighting is natural and bright, captured in an authentic field-guide style against a blurred forest background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuTji-7Gi-Plk7KVselm_o0pAMadROGpJIU6bgQu-tBe7bdEKdnzZH5nsjg4n6EX9JXexTop50wlPwXVH7czd8d-bTHNgL-6lUAYLyPaWYgBfepBFgNKkuYN99_ysLwdoO6Nh6PrvJ6OUwzF5knoxYB9_HQCsBTqRQuN32wWiUJDBcWIIjQiAD2wNrz9OAyKNmcIT2f4Ud1xJ_FeC5_UOc6xjbFA_nBIxleZkWUHVNqdap25ZSnXyQGWKKl46kZCRys-OkFYfKQJvB"/>
+</div>
+</div>
+<div class="mb-6">
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Expédition</p>
+<p class="font-body-md font-bold text-primary">Trek Tassili n'Ajjer - Tadrat</p>
+</div>
+<!-- Status Badge -->
+<div class="flex items-center gap-2 mb-8">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">En Attente de Confirmation</span>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 bg-primary text-on-primary font-bold uppercase tracking-widest hard-shadow border-2 border-primary btn-active transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Confirmer
+                        </button>
+<button class="w-full py-4 bg-white text-primary font-bold uppercase tracking-widest border-2 border-primary btn-active transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+                            Refuser / Suspendre
+                        </button>
+</div>
+</div>
+</div>
+<!-- User Card 2 -->
+<div class="bg-surface border-2 border-primary rounded-xl overflow-hidden hard-shadow relative group">
+<div class="h-32 w-full relative overflow-hidden bg-primary-container">
+<img alt="Destination Background" class="w-full h-full object-cover opacity-80" data-alt="Dense cedar forest in the Tikjda mountains, Algeria. The morning mist clings to the ancient trees, creating a moody, atmospheric green scene. The composition is vertical and immersive, highlighting the wild, untouched beauty of the Kabylie region." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBamhuT36K-VtmT82WmZ3K9m7rmHhvO__rpEO84yS8I50sKSKGD4UB1j2YgkS6qMg4vBelfDLtKrSAHvKUJWhvJ5JTisdi6mpAHWrw8UYEq9tD5xQl8mhml6Lv5tZsVBMESOaZxbuozf-iVmLvjkF0M8JAArYhfc1USfC_XCPgfvYP9K3VLRPtNHqBBSU9sTy1ngAxSzQouXTfQX9hFhq2ukl35lt_kMP-TxwvsBgrHKRyUHvRC2GHwC7O2qd0Ec3YO0oPqi5D38d98"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-3 left-4">
+<span class="font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-1 rounded">12 JUIL 2024</span>
+</div>
+</div>
+<div class="p-6 bg-tertiary-fixed/30">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Candidat</p>
+<h3 class="font-title-md text-title-md text-primary">Sarah Mansouri</h3>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-primary overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Portrait of a young professional woman with an adventurous spirit, wearing a mustard-colored beanie and a heavy canvas jacket. She is smiling warmly towards the camera with a rugged mountain landscape in the blurred background. Natural sunlight creates a glowing rim light effect." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH2pIQfHevO1o8L5Ew46roEcAJcul1MuLOQ_9mKLemKUyDDM-X3fHf08Ng3wC_mWKQOudI8YcLZSvY35dX1x9z4pHeFYAmE4_tcDV7IDbBcUINK6W3XqUFKWnMBlNosp5NhGUwS4mMCQG48jqroZAs1riEAD9tEGT8ed-5HwtJUp5xK5c4tAOxxJItPdcVMYHS3ljd_A1mYUawtq134ltxdYj-2EcjOnwuA9T_BiGnh18DdL7LFOM_I4nd343CUJx2A376KX_vEuLY"/>
+</div>
+</div>
+<div class="mb-6">
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Expédition</p>
+<p class="font-body-md font-bold text-primary">Weekend Tikjda - Kabylie</p>
+</div>
+<!-- Status Badge -->
+<div class="flex items-center gap-2 mb-8">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Nouveau Profil</span>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 bg-primary text-on-primary font-bold uppercase tracking-widest hard-shadow border-2 border-primary btn-active transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Confirmer
+                        </button>
+<button class="w-full py-4 bg-white text-primary font-bold uppercase tracking-widest border-2 border-primary btn-active transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+                            Refuser / Suspendre
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden bg-surface dark:bg-inverse-surface border-t-2 border-primary rounded-t-xl shadow-[0px_-4px_10px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Overview</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm mt-1">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl p-2 scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment_ind</span>
+<span class="font-label-sm text-label-sm mt-1">Regs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('.btn-active').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'translate(2px, 2px)';
+                button.classList.remove('hard-shadow');
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'translate(0px, 0px)';
+                button.classList.add('hard-shadow');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translate(0px, 0px)';
+                button.classList.add('hard-shadow');
+            });
+        });
+    </script>
+</body></html>

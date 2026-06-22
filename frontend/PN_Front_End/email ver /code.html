@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Nature - Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Space+Grotesk:wght@600&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#fcdeb0",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "outline-variant": "#c3c8c0",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e8e8e6",
+                        "on-secondary-container": "#6b2500",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1b",
+                        "surface-container-low": "#f4f4f2",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b3cdb6",
+                        "on-error": "#ffffff",
+                        "secondary": "#a23f0a",
+                        "primary-fixed-dim": "#b3cdb6",
+                        "on-tertiary-fixed": "#271900",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary-fixed-dim": "#ffb597",
+                        "outline": "#737972",
+                        "secondary-fixed": "#ffdbcd",
+                        "tertiary": "#352505",
+                        "surface-dim": "#dadad8",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#434842",
+                        "background": "#f9f9f7",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#cfe9d1",
+                        "on-primary-container": "#95ae98",
+                        "surface-tint": "#4d6451",
+                        "tertiary-container": "#4d3a19",
+                        "tertiary-fixed-dim": "#dfc296",
+                        "surface-container": "#eeeeec",
+                        "on-primary-fixed-variant": "#364c3a",
+                        "on-secondary-fixed-variant": "#7e2c00",
+                        "surface-bright": "#f9f9f7",
+                        "on-secondary-fixed": "#360f00",
+                        "surface": "#f9f9f7",
+                        "on-tertiary-container": "#bfa47a",
+                        "error-container": "#ffdad6",
+                        "primary": "#162c1c",
+                        "secondary-container": "#fe844d",
+                        "primary-container": "#2c4231",
+                        "on-tertiary-fixed-variant": "#574421",
+                        "on-primary-fixed": "#0a2011"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "overlap-sm": "-16px",
+                        "base": "8px",
+                        "overlap-md": "-40px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Epilogue"],
+                        "body-md": ["Work Sans"],
+                        "label-caps": ["Space Grotesk"],
+                        "display-lg": ["Epilogue"],
+                        "headline-lg-mobile": ["Epilogue"],
+                        "body-lg": ["Work Sans"],
+                        "headline-lg": ["Epilogue"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col md:flex-row font-body-md selection:bg-secondary selection:text-on-secondary">
+<div class="w-full md:w-1/2 h-64 md:h-screen relative md:border-r-4 md:border-primary overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A striking, high-contrast photograph of a rugged wilderness landscape under overcast skies. Deep, dark greens of ancient pine trees contrast with stark, pale grey jagged rocks. The composition is slightly asymmetric, emphasizing raw natural power. The style evokes an editorial, organic adventurous feel with a brutalist edge, using a muted but intense color palette primarily consisting of dark olive greens, off-whites, and deep shadows. Tactile minimalism." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBb-hpUpyNI6nRz67I6qm1DYP7nx6BI5RbZNXtHdtywKFZ7UXdJcKyYzcxIl9pdq1aZeu_8-z80oeEUkgvLIYsNqdU648pRPCD9vUWDzecbwYY6ZvBsG6v5DEffHhkalMcrWYmEzOzUQRlgi_uG2e3hY9FMHHRuwtrk2R1MC5QNfaJxEbd4b0iYY5JlfiaPFeXRNwWyNkmnjW9gKYDR6xkOOLXx4TSZua-MsMzVNywPs2dWgULhNOYU')"></div>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+<div class="absolute top-margin-mobile left-margin-mobile md:top-margin-desktop md:left-margin-desktop bg-surface-container-lowest px-4 py-2 border-2 border-primary shadow-[4px_4px_0px_0px_#162c1c] rotate-[-2deg]">
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">PROJECT NATURE</span>
+</div>
+</div>
+<div class="w-full md:w-1/2 min-h-[calc(100vh-16rem)] md:min-h-screen flex items-center justify-center p-margin-mobile md:p-margin-desktop bg-surface">
+<div class="w-full max-w-md relative">
+<div class="absolute -top-12 -left-8 w-24 h-24 bg-tertiary-fixed-dim rounded-full mix-blend-multiply opacity-50 pointer-events-none"></div>
+<form class="relative z-10 bg-surface-container-low p-8 md:p-12 border-2 border-primary shadow-[8px_8px_0px_0px_#162c1c]">
+<div class="mb-8 border-b-2 border-primary pb-6">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined text-[32px]">mail</span>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase">VÉRIFIEZ VOTRE EMAIL</h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Nous avons envoyé un code de confirmation à votre adresse email. Veuillez l'entrer ci-dessous pour continuer.</p>
+</div>
+<div class="mb-10">
+<label class="block font-label-caps text-label-caps text-primary mb-4 uppercase">Code de Sécurité</label>
+<div class="flex justify-between gap-2 md:gap-4">
+<input class="otp-input w-12 h-16 md:w-16 md:h-20 text-center font-headline-md text-headline-md text-primary bg-surface-container-lowest border-2 border-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_#162c1c] transition-all focus:-translate-y-1 focus:shadow-[4px_4px_0px_0px_#a23f0a]" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-16 md:w-16 md:h-20 text-center font-headline-md text-headline-md text-primary bg-surface-container-lowest border-2 border-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_#162c1c] transition-all focus:-translate-y-1 focus:shadow-[4px_4px_0px_0px_#a23f0a]" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-16 md:w-16 md:h-20 text-center font-headline-md text-headline-md text-primary bg-surface-container-lowest border-2 border-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_#162c1c] transition-all focus:-translate-y-1 focus:shadow-[4px_4px_0px_0px_#a23f0a]" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-16 md:w-16 md:h-20 text-center font-headline-md text-headline-md text-primary bg-surface-container-lowest border-2 border-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_#162c1c] transition-all focus:-translate-y-1 focus:shadow-[4px_4px_0px_0px_#a23f0a]" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-16 md:w-16 md:h-20 text-center font-headline-md text-headline-md text-primary bg-surface-container-lowest border-2 border-primary focus:outline-none focus:ring-0 focus:border-secondary shadow-[2px_2px_0px_0px_#162c1c] transition-all focus:-translate-y-1 focus:shadow-[4px_4px_0px_0px_#a23f0a]" maxlength="1" type="text"/>
+</div>
+</div>
+<button class="w-full py-4 bg-secondary text-on-secondary font-label-caps text-label-caps border-2 border-primary shadow-[4px_4px_0px_0px_#162c1c] active:translate-y-1 active:translate-x-1 active:shadow-none hover:bg-[#8f3607] transition-all cursor-pointer flex justify-center items-center gap-2 uppercase" type="button">
+                    VÉRIFIER LE CODE
+                    <span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+<div class="mt-8 text-center border-t-2 border-outline-variant pt-6">
+<p class="font-body-md text-body-md text-on-surface-variant mb-2">Vous n'avez pas reçu le code ?</p>
+<a class="inline-block font-label-caps text-label-caps text-primary border-b-2 border-primary hover:text-secondary hover:border-secondary transition-colors pb-1 uppercase" href="#">Renvoyer le code</a>
+</div>
+</form>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.otp-input');
+            
+            if(inputs.length > 0) {
+                inputs[0].focus();
+            }
+
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    if (e.target.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+                
+                input.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, inputs.length);
+                    
+                    if (pastedData) {
+                        for (let i = 0; i < pastedData.length; i++) {
+                            if (inputs[i]) {
+                                inputs[i].value = pastedData[i];
+                                if (i < inputs.length - 1) {
+                                    inputs[i + 1].focus();
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

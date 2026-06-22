@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Expedition | Project Nature</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Manrope:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#2c4231",
+                    "on-secondary-fixed-variant": "#7d2d00",
+                    "on-primary-fixed-variant": "#364c3a",
+                    "secondary-fixed": "#ffdbcd",
+                    "inverse-surface": "#2d3135",
+                    "surface-container-high": "#e5e8ee",
+                    "on-surface-variant": "#434842",
+                    "outline": "#737972",
+                    "inverse-on-surface": "#eef1f6",
+                    "on-tertiary-fixed": "#201b0c",
+                    "on-surface": "#181c20",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#d0c7af",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#360f00",
+                    "tertiary-fixed-dim": "#cfc6ae",
+                    "surface-dim": "#d7dadf",
+                    "primary-fixed": "#d0e9d1",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f1f4f9",
+                    "primary-fixed-dim": "#b4cdb6",
+                    "outline-variant": "#c3c8c0",
+                    "on-secondary-container": "#6e2700",
+                    "surface-container-highest": "#e0e3e8",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f7f9ff",
+                    "surface-variant": "#e0e3e8",
+                    "on-primary-fixed": "#0b2011",
+                    "secondary": "#9f410f",
+                    "tertiary": "#423c2b",
+                    "on-primary-container": "#b6cfb8",
+                    "tertiary-fixed": "#ece2c9",
+                    "on-tertiary-fixed-variant": "#4c4634",
+                    "inverse-primary": "#b4cdb6",
+                    "surface-tint": "#4d6451",
+                    "background": "#f7f9ff",
+                    "surface-bright": "#f7f9ff",
+                    "primary-container": "#435947",
+                    "secondary-fixed-dim": "#ffb596",
+                    "surface-container": "#ebeef3",
+                    "tertiary-container": "#595340",
+                    "error-container": "#ffdad6",
+                    "on-background": "#181c20",
+                    "secondary-container": "#fe8852"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Syne"],
+                    "display-xl": ["Syne"],
+                    "title-md": ["Manrope"],
+                    "headline-lg-mobile": ["Syne"],
+                    "body-md": ["Manrope"],
+                    "label-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(67, 89, 71, 0.2);
+        }
+        .btn-shadow:hover {
+            box-shadow: 0px 0px 0px 0px rgba(67, 89, 71, 0.2);
+            transform: translate(2px, 2px);
+        }
+        .card-offset {
+            box-shadow: 8px 8px 0px 0px rgba(44, 66, 49, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar - JSON Execution -->
+<aside class="hidden md:flex flex-col h-screen sticky top-0 bg-surface dark:bg-inverse-surface h-full w-64 border-r-2 border-primary dark:border-primary-fixed shadow-[4px_4px_0px_0px_rgba(44,66,49,0.2)]">
+<div class="p-8">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed">Project Nature</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2 uppercase">Adventure Admin</p>
+</div>
+<nav class="mt-8 flex-1">
+<a class="flex items-center px-8 py-4 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-tertiary-fixed dark:hover:bg-tertiary-container transition-all" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-title-md text-title-md">Overview</span>
+</a>
+<a class="flex items-center px-8 py-4 text-primary dark:text-primary-fixed font-bold border-l-4 border-secondary hover:bg-tertiary-fixed transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3">explore</span>
+<span class="font-title-md text-title-md">Trips</span>
+</a>
+<a class="flex items-center px-8 py-4 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-tertiary-fixed dark:hover:bg-tertiary-container transition-all" href="#">
+<span class="material-symbols-outlined mr-3">assignment_ind</span>
+<span class="font-title-md text-title-md">Registrations</span>
+</a>
+<a class="flex items-center px-8 py-4 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-tertiary-fixed dark:hover:bg-tertiary-container transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-title-md text-title-md">Settings</span>
+</a>
+</nav>
+<div class="p-8 border-t border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-title-md text-sm">Admin User</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant">LOG OUT</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-margin-mobile md:p-margin-desktop bg-surface">
+<!-- Header Section -->
+<header class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase">New Expedition</h2>
+<p class="text-on-surface-variant max-w-xl mt-4">Draft a new path for the adventurous. Ensure all technical details are accurate to maintain our standards of safety and authenticity.</p>
+</div>
+<div class="hidden md:block">
+<span class="font-label-sm text-label-sm border-2 border-primary px-4 py-2 text-primary">DRAFT SAVED: 10:42 AM</span>
+</div>
+</header>
+<!-- Form Section -->
+<form class="max-w-4xl space-y-12" id="expedition-form">
+<!-- Section 1: Core Identity -->
+<section class="bg-tertiary-fixed/30 p-8 border-2 border-primary card-offset">
+<h3 class="font-label-sm text-label-sm text-primary mb-8 border-b-2 border-primary pb-2 inline-block">01. TRIP IDENTITY</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="col-span-2">
+<label class="block font-label-sm text-label-sm text-primary mb-2 uppercase">Trip Title</label>
+<input class="w-full bg-tertiary-fixed border-2 border-primary px-4 py-3 focus:ring-0 focus:border-secondary outline-none" placeholder="e.g. Crossing the Tassili Ridge" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-primary mb-2 uppercase">Start Date</label>
+<div class="relative">
+<input class="w-full bg-tertiary-fixed border-2 border-primary px-4 py-3 focus:ring-0 focus:border-secondary outline-none" type="date"/>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-primary mb-2 uppercase">End Date</label>
+<div class="relative">
+<input class="w-full bg-tertiary-fixed border-2 border-primary px-4 py-3 focus:ring-0 focus:border-secondary outline-none" type="date"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Narrative & Logistics -->
+<section class="bg-surface-container border-2 border-primary card-offset p-8">
+<h3 class="font-label-sm text-label-sm text-primary mb-8 border-b-2 border-primary pb-2 inline-block">02. NARRATIVE &amp; LOGISTICS</h3>
+<div class="space-y-8">
+<div>
+<label class="block font-label-sm text-label-sm text-primary mb-2 uppercase">Expedition Description</label>
+<textarea class="w-full bg-tertiary-fixed border-2 border-primary px-4 py-3 focus:ring-0 focus:border-secondary outline-none" placeholder="Describe the terrain, the biological diversity, and the sensory experience..." rows="6"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<label class="block font-label-sm text-label-sm text-primary mb-2 uppercase">Pick-up Locations</label>
+<div class="flex flex-wrap gap-2 mb-3" id="tag-container">
+<span class="bg-primary text-on-primary px-3 py-1 font-label-sm text-xs flex items-center gap-2">Algiers Central <span class="material-symbols-outlined text-xs cursor-pointer">close</span></span>
+<span class="bg-primary text-on-primary px-3 py-1 font-label-sm text-xs flex items-center gap-2">Bejaia Station <span class="material-symbols-outlined text-xs cursor-pointer">close</span></span>
+</div>
+<input class="w-full bg-tertiary-fixed border-2 border-primary px-4 py-3 focus:ring-0 focus:border-secondary outline-none" placeholder="Add location and press Enter" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-primary mb-2 uppercase">Difficulty Level</label>
+<select class="w-full bg-tertiary-fixed border-2 border-primary px-4 py-3 focus:ring-0 focus:border-secondary outline-none appearance-none">
+<option value="easy">Easy — Guided Strolls</option>
+<option selected="" value="moderate">Moderate — Steady Ascent</option>
+<option value="difficult">Difficult — Technical Terrain</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Visual Assets -->
+<section class="bg-tertiary-fixed/30 p-8 border-2 border-primary card-offset">
+<h3 class="font-label-sm text-label-sm text-primary mb-8 border-b-2 border-primary pb-2 inline-block">03. VISUAL ASSETS</h3>
+<div class="border-2 border-dashed border-primary p-12 text-center hover:bg-tertiary-fixed transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary text-5xl mb-4 group-hover:scale-110 transition-transform">cloud_upload</span>
+<p class="font-title-md text-primary">Drag &amp; Drop Expedition Hero Images</p>
+<p class="font-label-sm text-on-surface-variant mt-2">MINIMUM 2400x1600px | JPG OR WEBP</p>
+<input class="hidden" id="file-upload" type="file"/>
+<button class="mt-6 border-2 border-primary px-6 py-2 font-label-sm text-label-sm hover:bg-primary hover:text-white transition-all" onclick="document.getElementById('file-upload').click()" type="button">SELECT FILES</button>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-8">
+<div class="relative aspect-video border-2 border-primary bg-primary-container overflow-hidden group">
+<img alt="Mountain placeholder" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500" data-alt="A rugged mountain range in the Algerian highlands during golden hour. The peaks are sharp and textured, catching the warm orange light of a setting sun. The valley below is filled with deep shadows and soft mist, creating a sense of ancient mystery and silent grandeur. Minimalist and tactile aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_SuULeGhuJqubBlgtoFz6pqmqb8dqIzXBnkqf3mVPK8d0KCs50BFY-Zfq8CQccc9PILzZhCLtQYBs-Ddkcsj-X2x7CQ0izDNVk1jscMj7qe4kLUF8VoDEMyQ7Tf6o0PDGadjOapswV5rDKmJqJryJ7Wf3H8n75LDbexq0fa6V9aiqKF_5n2nVKEeFGoXSQtJjM3N0iO5-SCP-hxQ14SP-a8EIxkGVWR58E5NwGa0boRS0Kk7l7y5NddDq8Fi8OAoNZXofFfGEeDHE"/>
+<button class="absolute top-2 right-2 bg-error text-white p-1 hidden group-hover:block"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+<div class="border-2 border-primary bg-tertiary-fixed flex items-center justify-center">
+<span class="font-label-sm text-on-surface-variant text-[10px]">PREVIEW 02</span>
+</div>
+<div class="border-2 border-primary bg-tertiary-fixed flex items-center justify-center">
+<span class="font-label-sm text-on-surface-variant text-[10px]">PREVIEW 03</span>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<footer class="flex flex-col md:flex-row items-center gap-6 pt-12 pb-24">
+<button class="bg-secondary text-white font-title-md text-lg px-12 py-5 btn-shadow uppercase tracking-widest transition-all w-full md:w-auto" type="submit">
+                        Create Expedition
+                    </button>
+<button class="font-label-sm text-label-sm text-primary hover:underline uppercase tracking-widest" type="button">
+                        Discard Draft
+                    </button>
+</footer>
+</form>
+</main>
+</div>
+<!-- Mobile Navigation Shell (Suppressed on large screens by SideNav) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden bg-surface dark:bg-inverse-surface rounded-t-xl border-t-2 border-primary shadow-[0px_-4px_10px_rgba(0,0,0,0.1)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Overview</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl p-2 scale-90">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm">Trips</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">assignment_ind</span>
+<span class="font-label-sm text-label-sm">Regs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for form inputs
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.style.transform = 'translate(-2px, -2px)';
+                input.parentElement.style.transition = 'transform 0.2s ease-out';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Prevention of default form submission for demo
+        document.getElementById('expedition-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Expedition Draft Validated & Syncing...');
+        });
+
+        // Quick active state toggle for mobile nav
+        const mobileNavItems = document.querySelectorAll('nav div');
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileNavItems.forEach(nav => {
+                    nav.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'rounded-xl');
+                    nav.classList.add('text-on-surface-variant');
+                });
+                item.classList.add('bg-secondary-container', 'text-on-secondary-container', 'rounded-xl');
+                item.classList.remove('text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

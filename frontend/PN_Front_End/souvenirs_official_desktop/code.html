@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nos Souvenirs - Project Nature</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Space+Grotesk:wght@600&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#574421",
+                        "primary-fixed": "#cfe9d1",
+                        "surface-container-low": "#f4f4f2",
+                        "on-secondary-fixed-variant": "#7e2c00",
+                        "on-primary-fixed": "#0a2011",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#4d3a19",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f1f1ef",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "outline": "#737972",
+                        "secondary-container": "#fe844d",
+                        "inverse-surface": "#2f3130",
+                        "surface": "#f9f9f7",
+                        "surface-container": "#eeeeec",
+                        "on-secondary-fixed": "#360f00",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#271900",
+                        "on-secondary-container": "#6b2500",
+                        "tertiary-fixed": "#fcdeb0",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface-variant": "#434842",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-dim": "#dadad8",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#ffdbcd",
+                        "primary": "#162c1c",
+                        "on-primary-container": "#95ae98",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b3cdb6",
+                        "tertiary-fixed-dim": "#dfc296",
+                        "on-primary-fixed-variant": "#364c3a",
+                        "background": "#f9f9f7",
+                        "secondary": "#a23f0a",
+                        "outline-variant": "#c3c8c0",
+                        "on-background": "#1a1c1b",
+                        "secondary-fixed-dim": "#ffb597",
+                        "surface-bright": "#f9f9f7",
+                        "surface-tint": "#4d6451",
+                        "on-tertiary-container": "#bfa47a",
+                        "inverse-primary": "#b3cdb6",
+                        "primary-container": "#2c4231",
+                        "on-surface": "#1a1c1b",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#352505"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "overlap-md": "-40px",
+                        "overlap-sm": "-16px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Epilogue"],
+                        "headline-lg": ["Epilogue"],
+                        "headline-lg-mobile": ["Epilogue"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Epilogue"],
+                        "body-lg": ["Work Sans"],
+                        "label-caps": ["Space Grotesk"]
+                    },
+                    fontSize: {
+                        "display-lg": ["80px", { "lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hard-shadow { box-shadow: 4px 4px 0px #162c1c; }
+        .hard-shadow-hover:hover { box-shadow: 6px 6px 0px #162c1c; transform: translate(-2px, -2px); }
+        .polaroid { background: white; padding: 12px 12px 40px 12px; border: 1px solid #162c1c; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-background font-body-md text-body-md sticky top-0 w-full border-b-2 border-primary dark:border-primary-container z-50 transition-all" style="box-shadow: 4px 4px 0px #162c1c;">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-full mx-auto">
+<div class="font-display-lg text-headline-md text-primary dark:text-primary-fixed tracking-tight">Project Nature</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-primary hover:bg-surface-container dark:hover:bg-primary-container transition-all duration-200 px-3 py-2 rounded" href="#">Kherjat</a>
+<a class="text-secondary dark:text-secondary-fixed-dim border-b-2 border-secondary font-bold px-3 py-2" href="#">Souvenirs</a>
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-primary hover:bg-surface-container dark:hover:bg-primary-container transition-all duration-200 px-3 py-2 rounded" href="#">À Propos</a>
+</nav>
+<button class="hidden md:flex bg-secondary text-on-secondary px-6 py-2 border-2 border-primary hard-shadow active:translate-x-1 active:translate-y-1 active:shadow-none transition-all font-label-caps text-label-caps">
+                Rejoignez-nous
+            </button>
+</div>
+</header>
+<main class="w-full max-w-7xl mx-auto px-margin-desktop py-20 relative">
+<!-- Background decorative elements -->
+<div class="absolute top-40 right-20 w-64 h-64 bg-tertiary-fixed-dim opacity-20 rounded-full blur-3xl -z-10"></div>
+<div class="absolute bottom-40 left-10 w-96 h-96 bg-primary-fixed-dim opacity-20 rounded-full blur-3xl -z-10"></div>
+<!-- Hero Section -->
+<section class="mb-24 relative z-10">
+<h1 class="font-display-lg text-display-lg text-primary mb-6 leading-tight max-w-4xl relative">
+                Nos <br/>
+<span class="text-secondary italic">Souvenirs</span>
+<!-- Decorative underline -->
+<svg class="absolute bottom-4 left-0 w-64 h-4 text-tertiary-fixed-dim -z-10" preserveaspectratio="none" viewbox="0 0 100 10">
+<path d="M0,5 Q50,0 100,5" fill="none" stroke="currentColor" stroke-width="4"></path>
+</svg>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl border-l-4 border-secondary pl-6">
+                Des moments de partage, de dépassement et de pure liberté. Plongez dans notre carnet de bord visuel, un recueil des instants capturés lors de nos expéditions à travers les paysages bruts de la nature.
+            </p>
+</section>
+<!-- Masonry Gallery -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-32 relative">
+<!-- Column 1: Main Image & Testimonial -->
+<div class="md:col-span-7 flex flex-col gap-12 relative z-10">
+<!-- Large Image: L'appel de la crête -->
+<div class="relative group">
+<div class="absolute inset-0 bg-primary translate-x-3 translate-y-3"></div>
+<img alt="Expedition view" class="w-full h-[600px] object-cover border-2 border-primary relative z-10 filter grayscale-0 hover:grayscale-[20%] transition-all duration-500" data-alt="A breathtaking, expansive view of a rugged mountain ridge under a clear, bright sky. The scene is shot from a high vantage point, emphasizing the vastness of the natural landscape. The lighting is crisp and natural, highlighting the textures of the rock and sparse vegetation, perfectly aligning with an organic, adventurous aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNJ6MthZV3LUC_FRUFQB1hYBzRZyykaGAHG0YydAG4-u6g88t1RZ6VOfsvsC5-iFzBx1yycxzjhU0il7NRjeoJ9kAiugENxsSjpLq51WQMg4O-A95-N4plyun3GEhALoC6xNTvZ_GmYxi0YwLxxkzhNlmRH3KLF8fiyP1Xdsec2oFQrZkDhji138zdU7W2AumJNXbZUUjqn7jDGqaQDn8KF5K-3hV_wpCxRTyUIBlZGyfEEamMxEU2iy0ymjtF2DRargDsMXap9Cw"/>
+<div class="absolute bottom-8 left-8 bg-surface px-6 py-4 border-2 border-primary hard-shadow z-20">
+<span class="font-label-caps text-label-caps text-secondary block mb-1">Moyen Atlas</span>
+<h3 class="font-headline-md text-headline-md text-primary">L'appel de la crête</h3>
+</div>
+</div>
+<!-- Testimonial Block -->
+<div class="bg-tertiary-fixed p-10 border-2 border-primary hard-shadow relative mt-10 md:mr-10">
+<span class="material-symbols-outlined absolute -top-6 -left-6 text-6xl text-primary bg-surface rounded-full p-2 border-2 border-primary">format_quote</span>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary leading-snug italic mb-6">
+                        "L'aventure n'est pas dans l'ascension, mais dans ce qu'on découvre en chemin."
+                    </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-1 h-px bg-primary"></div>
+<span class="font-label-caps text-label-caps text-on-tertiary-fixed-variant uppercase tracking-widest">— Mehdi, 2023</span>
+</div>
+</div>
+</div>
+<!-- Column 2: Video & Polaroids -->
+<div class="md:col-span-5 flex flex-col gap-12 mt-20 md:mt-0 relative z-20">
+<!-- Video Player Component -->
+<div class="relative bg-surface p-4 border-2 border-primary hard-shadow rotate-[1deg] hover:rotate-0 transition-transform duration-300">
+<div class="relative aspect-video border-2 border-primary overflow-hidden">
+<img alt="Hikers moving" class="w-full h-full object-cover" data-alt="A dynamic shot of a group of hikers trekking up a steep, rocky trail in a rugged mountain environment. The lighting suggests early morning or late afternoon, casting long shadows that add depth to the scene. The overall mood is energetic and determined, fitting the theme of outdoor exploration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyNf55M1qfo_5nfXnDnIx4D5-2kRtOCWdaIAev2J0WYY6CELnwtB5qQHrNprkJYTccl06UBYmIQJb48pXiMNEuZ4j_9d__YOecvFGd0H9w2Ci9I3vNNlkId4Qudhxa7Ic7UTGullXCtitnCTHivigtRSBrGiV6NHnTYLXMi8FgS_R6a-K2WRefUsxKhaWEECFY2ruAmvpvLjhmOfi_kKEGKm6FUIBlLGdkIt0mLGuvKgoOveJLIvcFeVJzdVBeIRiHRyq1G8Jzbo0"/>
+<!-- Play Button Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm group cursor-pointer">
+<div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center border-2 border-primary hard-shadow group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary text-4xl ml-2" data-weight="fill">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="mt-4 flex justify-between items-center px-2">
+<span class="font-label-caps text-label-caps text-primary tracking-widest">EN MOUVEMENT</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">02:14</span>
+</div>
+</div>
+<!-- Smiling Explorer Polaroid -->
+<div class="polaroid hard-shadow -rotate-[2deg] hover:rotate-0 transition-transform duration-300 md:-ml-12 self-end w-4/5 z-30">
+<img alt="Smiling explorer" class="w-full h-64 object-cover border-2 border-primary filter sepia-[0.1]" data-alt="A close-up portrait of a smiling female explorer wearing outdoor gear, looking off-camera with a sense of wonder. She is framed against a blurred natural background of trees and mountains. The lighting is warm and natural, highlighting her joyful expression and embodying the authentic, adventurous spirit of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOohTC0kfJuk7rKUMapilcSMUt5vq5KbAGUO4gGUk56YTjJkLyQKaAM06nHdg83ueAHrY56sACofIU83fIzxRIDzBpDbP-ootq5pGZnTNX4Gt8Oc5cV93bo22Zp4ZgNEQ9myGfhTsEk94zarXDCc_dFCLwb-TqG63xVrhIyGsPL3MohkZEsgvFMZtE8J1CWpeEEGNkWSIPoyT6HM9K7PKipaJGCBAunrsth3B29LvryZ0zm1fzQrkdzpOe8N6QUY8FUWKWtBrV9Ls"/>
+<div class="mt-6 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-primary">Sourires d'altitude</span>
+<span class="material-symbols-outlined text-secondary">favorite</span>
+</div>
+</div>
+<!-- Soirée Bivouac -->
+<div class="relative group mt-8">
+<div class="absolute inset-0 bg-secondary translate-x-2 translate-y-2"></div>
+<img alt="Campfire at night" class="w-full h-[300px] object-cover border-2 border-primary relative z-10" data-alt="A warm, inviting shot of a campfire crackling at night, surrounded by silhouettes of people gathered around. The scene is illuminated primarily by the firelight, creating deep shadows and a cozy, intimate atmosphere. The visual aesthetic reflects a sense of community and the raw, tactile experience of a wilderness bivouac." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa17PPlXhB7xwgOKujX8dE3KJcIpGOvtBSfZLSc1VvztLeuy3t4aQUg4fqftLsDGKwiVwFmor6yFkmMNb5g7BuwoSaKBXCYDOKVb0mzWZgB7oyaSNG2lXeqRTWPVtithlkm9ki2unqNa8v-X_puuMxdjE5OXLKL4S0aSdMT1e_kunebs3MOww_XXwImlVEohD6_-up6g5C_-VEHxD6FbKvbBrmIts2oImVsHrN_eky7yhjtLefaVNt9qKU3ndl_JXUY2M1kpQCgAk"/>
+<div class="absolute -bottom-6 -left-6 bg-surface px-4 py-2 border-2 border-primary z-20 rotate-[-3deg]">
+<span class="font-label-caps text-label-caps text-primary">Soirée Bivouac</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Call to Action Section -->
+<section class="bg-primary-container p-16 md:p-24 border-2 border-primary hard-shadow relative overflow-hidden mb-20">
+<!-- Decorative leaf/nature pattern -->
+<div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+<svg height="400" viewbox="0 0 200 200" width="400" xmlns="http://www.w3.org/2000/svg">
+<path d="M45.7,-76.1C58.9,-69.3,68.8,-55.4,76.5,-41.1C84.2,-26.8,89.7,-12.1,87.6,1.8C85.5,15.7,75.8,28.8,65.8,40.4C55.8,52,45.5,62.1,32.6,69.5C19.7,76.9,4.2,81.6,-10.8,80.1C-25.8,78.6,-40.3,70.9,-52.3,60.6C-64.3,50.3,-73.8,37.4,-79.8,22.7C-85.8,8,-88.3,-8.5,-83.4,-23.4C-78.5,-38.3,-66.2,-51.6,-51.8,-58.5C-37.4,-65.4,-20.9,-65.9,-4.6,-59.5C11.7,-53.1,28.2,-50,45.7,-76.1Z" fill="#cfe9d1" transform="translate(100 100)"></path>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-on-primary-container mb-6">Envie de créer vos propres souvenirs ?</h2>
+<p class="font-body-lg text-body-lg text-surface-container-high mb-10">
+                    Rejoignez notre prochaine expédition et écrivez votre propre chapitre dans la nature brute.
+                </p>
+<button class="bg-secondary text-on-secondary px-8 py-4 border-2 border-primary hard-shadow-hover transition-all duration-200 font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-3">
+                    Voir les Prochaines Sorties
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-primary-container text-primary dark:text-primary-fixed font-body-md text-body-md w-full mt-overlap-md border-t-2 border-primary dark:border-primary-fixed scale-105 transition-transform z-0 relative">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<div class="font-display-lg text-headline-md text-primary mb-4">Project Nature</div>
+<p class="text-on-surface-variant dark:text-on-primary-container mb-4">© 2024 Project Nature. Tous droits réservés.</p>
+</div>
+<div class="md:col-span-3 flex flex-wrap gap-8 justify-end">
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Politique de Confidentialité</a>
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Conditions d'Utilisation</a>
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Contact</a>
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">FAQ</a>
+</div>
+</div>
+</footer>
+</body></html>

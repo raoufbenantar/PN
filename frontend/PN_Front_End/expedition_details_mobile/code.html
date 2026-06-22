@@ -1,0 +1,365 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trek Tassili n'Ajjer - Tadrat | Project Nature</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Manrope:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#364c3a",
+                        "on-secondary-fixed-variant": "#7d2d00",
+                        "tertiary-container": "#595340",
+                        "surface-tint": "#4d6451",
+                        "surface-container-highest": "#e0e3e8",
+                        "on-surface": "#181c20",
+                        "primary-container": "#435947",
+                        "on-secondary-fixed": "#360f00",
+                        "secondary-fixed": "#ffdbcd",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#423c2b",
+                        "outline-variant": "#c3c8c0",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d7dadf",
+                        "on-tertiary-fixed": "#201b0c",
+                        "on-surface-variant": "#434842",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eef1f6",
+                        "tertiary-fixed-dim": "#cfc6ae",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#4c4634",
+                        "on-tertiary-container": "#d0c7af",
+                        "surface-container-low": "#f1f4f9",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#ebeef3",
+                        "background": "#f7f9ff",
+                        "surface-container-high": "#e5e8ee",
+                        "primary": "#2c4231",
+                        "on-primary-container": "#b6cfb8",
+                        "primary-fixed-dim": "#b4cdb6",
+                        "surface-bright": "#f7f9ff",
+                        "on-secondary-container": "#6e2700",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-background": "#181c20",
+                        "tertiary-fixed": "#ece2c9",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#0b2011",
+                        "outline": "#737972",
+                        "inverse-surface": "#2d3135",
+                        "surface-variant": "#e0e3e8",
+                        "secondary": "#9f410f",
+                        "inverse-primary": "#b4cdb6",
+                        "surface": "#f7f9ff",
+                        "secondary-fixed-dim": "#ffb596",
+                        "secondary-container": "#fe8852",
+                        "primary-fixed": "#d0e9d1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Syne"],
+                        "display-xl": ["Syne"],
+                        "headline-lg": ["Syne"],
+                        "body-md": ["Manrope"],
+                        "label-sm": ["JetBrains Mono"],
+                        "title-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(44, 66, 49, 0.2);
+        }
+        .hard-shadow-hover:hover {
+            box-shadow: 0px 0px 0px 0px rgba(44, 66, 49, 0.2);
+            transform: translate(2px, 2px);
+        }
+        .btn-shadow {
+            box-shadow: 8px 8px 0px 0px #2c4231;
+        }
+        .btn-shadow:hover {
+            box-shadow: 0px 0px 0px 0px #2c4231;
+            transform: translate(4px, 4px);
+        }
+        .staggered-item:nth-child(even) {
+            margin-top: 32px;
+        }
+        body {
+            background-color: #f7f9ff;
+            font-family: 'Manrope', sans-serif;
+            color: #181c20;
+        }
+    </style>
+</head>
+<body class="antialiased">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full sticky top-0 z-40 bg-surface h-16 border-b-2 border-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">landscape</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Project Nature</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">Kherjat</a>
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">Souvenirs</a>
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-colors border-b-2 border-secondary" href="#">À Propos</a>
+</nav>
+<button class="bg-secondary text-white font-title-md px-6 py-2 rounded-lg btn-shadow transition-all hidden md:block">
+            Rejoignez-nous
+        </button>
+</header>
+<main class="pb-32">
+<!-- Hero Section -->
+<section class="relative h-[70vh] w-full overflow-hidden transition-all duration-700 opacity-100">
+<img alt="Tassili n'Ajjer Desert" class="w-full h-full object-cover" data-alt="A wide, sweeping cinematic view of the Tassili n'Ajjer desert in Algeria, showcasing towering red sandstone formations and rolling orange sand dunes under a clear, intense blue sky. The lighting is golden hour, casting long, deep shadows that highlight the rugged, ancient texture of the rocks. The atmosphere is quiet, majestic, and pristine, capturing the raw essence of the Saharan wilderness in a high-contrast, professional travel photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIfRJMinMy1FO3dDx_yZC_fspVRdOr049aZDZ4vB2Vm8DxnzERce5hqSiuzz0jJMr6GmGnYjhQZDHAU59diMLRQ2tueij9NrSQkCCDlXjTEkqd7J-aVswBCelh0CVH_u1LWe7GkM81kgVTwvenQirn1olqqZQGIp4Au6eccjRTcJoubE74Y3JA22XmtDByUakGu79gYHzntp-UrD0wxpdpRg2oIO_c7ququ3InYlAyOOD6MZDWH5EFQdO5M5brI6dV9ppomLff0bc">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-margin-mobile md:p-margin-desktop flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+<div class="max-w-3xl">
+<span class="bg-primary text-white font-label-sm text-label-sm px-4 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">EXPÉDITION</span>
+<h1 class="font-headline-lg text-headline-lg md:text-display-xl text-white leading-tight">Trek Tassili n'Ajjer - Tadrat</h1>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-white font-label-sm text-label-sm uppercase opacity-70">À partir de</span>
+<span class="text-secondary-container font-headline-lg text-headline-lg leading-none">65.000 DA</span>
+</div>
+</div>
+</section>
+<!-- Quick Stats & Description -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 transition-all duration-700 opacity-100">
+<!-- Content Left -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Stat Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-tertiary-fixed p-6 border-2 border-primary hard-shadow rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2 block">schedule</span>
+<span class="font-label-sm text-label-sm uppercase text-on-tertiary-fixed-variant block mb-1">Durée</span>
+<span class="font-title-md text-title-md text-primary">7 Jours</span>
+</div>
+<div class="bg-tertiary-fixed p-6 border-2 border-primary hard-shadow rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2 block">trending_up</span>
+<span class="font-label-sm text-label-sm uppercase text-on-tertiary-fixed-variant block mb-1">Difficulté</span>
+<span class="font-title-md text-title-md text-primary">Difficile</span>
+</div>
+<div class="bg-tertiary-fixed p-6 border-2 border-primary hard-shadow rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2 block">location_on</span>
+<span class="font-label-sm text-label-sm uppercase text-on-tertiary-fixed-variant block mb-1">Lieu</span>
+<span class="font-title-md text-title-md text-primary">Djanet</span>
+</div>
+<div class="bg-tertiary-fixed p-6 border-2 border-primary hard-shadow rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2 block">group</span>
+<span class="font-label-sm text-label-sm uppercase text-on-tertiary-fixed-variant block mb-1">Groupe</span>
+<span class="font-title-md text-title-md text-primary">12 Max</span>
+</div>
+</div>
+<div class="space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-primary">Une immersion totale au cœur du Tadrat</h2>
+
+
+</div>
+<!-- Itinerary -->
+<div class="space-y-8">
+<h3 class="font-headline-lg text-headline-lg text-primary flex items-center gap-4">
+<span class="w-12 h-1 bg-secondary inline-block"></span>
+                        Itinéraire
+                    </h3>
+<div class="space-y-6 border-l-2 border-primary/20 ml-4 pl-8">
+<!-- Day 1 -->
+<div class="relative"><div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-surface"></div><h4 class="font-title-md text-title-md text-primary mb-2">Jour 1 : Arrivée &amp; Oasis</h4><p class="font-body-md text-body-md text-on-surface-variant">Accueil à l'aéroport et transfert vers l'oasis.</p></div>
+<!-- Day 2 -->
+<div class="relative"><div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-surface"></div><h4 class="font-title-md text-title-md text-primary mb-2">Jour 2 : Dunes de Moul Naga</h4><p class="font-body-md text-body-md text-on-surface-variant">Trek en 4x4 et bivouac au coucher du soleil.</p></div>
+<!-- Day 3 -->
+<div class="relative"><div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-surface"></div><h4 class="font-title-md text-title-md text-primary mb-2">Jour 3 : Cathédrales de Pierre</h4><p class="font-body-md text-body-md text-on-surface-variant">Marche au cœur des formations rocheuses érodées.</p></div>
+<!-- Day 4-7 -->
+<div class="relative"><div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-secondary border-4 border-surface"></div><h4 class="font-title-md text-title-md text-primary mb-2">Jour 4-7 : Grottes &amp; Retour</h4><p class="font-body-md text-body-md text-on-surface-variant">Peintures rupestres et retour progressif vers Djanet.</p></div>
+</div>
+</div>
+</div>
+<!-- Sidebar Info -->
+<aside class="lg:col-span-4 space-y-8">
+<div class="bg-surface-container border-2 border-primary hard-shadow p-8 sticky top-24 space-y-8">
+<div>
+<h4 class="font-label-sm text-label-sm uppercase text-primary mb-4 tracking-wider">Logistique</h4>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">flight_takeoff</span>
+<div>
+<span class="font-title-md text-title-md block text-sm">Point de départ</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Alger ou Djanet (Direct)</span>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">hiking</span>
+<div>
+<span class="font-title-md text-title-md block text-sm">Niveau Physique</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Exigeant (5-7h de marche/jour)</span>
+</div>
+</li>
+</ul>
+</div>
+<div class="border-t border-primary/10 pt-8">
+<h4 class="font-label-sm text-label-sm uppercase text-primary mb-4 tracking-wider">Ce qui est inclus</h4>
+<ul class="space-y-3">
+<li class="flex items-center gap-2 font-body-md text-body-md">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Guides certifiés et équipe locale
+                            </li>
+<li class="flex items-center gap-2 font-body-md text-body-md">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Équipement de bivouac haut de gamme
+                            </li>
+<li class="flex items-center gap-2 font-body-md text-body-md">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Pension complète (Cuisine saharienne)
+                            </li>
+<li class="flex items-center gap-2 font-body-md text-body-md">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Assurance voyage et rapatriement
+                            </li>
+</ul>
+</div>
+<div class="bg-secondary-container/20 p-4 rounded-lg border border-secondary/20">
+<p class="font-label-sm text-label-sm text-on-secondary-container">Note : Un certificat médical de non-contre-indication à la pratique de la randonnée en altitude/chaleur est obligatoire pour cette expédition.</p>
+</div>
+</div>
+</aside>
+</section>
+<!-- Gallery Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-24 transition-all duration-700 opacity-100">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-12">Instants Capturés</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="aspect-square border-2 border-primary hard-shadow overflow-hidden group">
+<img alt="Caravan in desert" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="A mesmerizing black and white photography of a camel caravan silhouetted against the morning sun in the Algerian Sahara. The high-contrast image focuses on the elegant forms of the camels and their handlers walking across a pristine sand ridge. Long shadows stretch out on the textured sand, creating a dramatic, timeless composition that evokes the spirit of ancient trans-Saharan trade routes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsxiDBoW7XDwk_v1ON24YbyqZXgQw1J_yq0bwpyVpo8TxzdApUBSJLCzkzYuZAh5BxCCm6JX5XM1jh-Fv4lQRca6fTtD1gACEag1XCbJ6NGdF4qQ2Ws5SBk_w86nHez3fCk0g720QXUlRjxJJrd07w8cO9qUNXk6_esZAIkzz1EfQ9yDx_MF9s6GovG7mNrL7frd6gqiX4kZeQohbQvOgYK1zolOa_042ENKsi437c5htRTQArMIs2jCrbyo1qgGE_xtcwTpzlGgE">
+</div>
+<div class="aspect-square border-2 border-primary hard-shadow overflow-hidden group md:mt-12">
+<img alt="Desert Rock Formations" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="A detailed shot of jagged desert rock formations with unique erosion patterns, set against a backdrop of soft sand. The lighting is warm and directional, emphasizing the rough, tactile surface of the ancient stones. The composition uses a minimalist aesthetic, focusing on the interplay between the organic textures of stone and the smoothness of wind-blown sand, with a professional travel-consultancy feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCluUTHwN2fdd1uoi-dA9WKdISLg_RSXVJ3vKceqVSKpjOnp655YGzwSGZhSLiJw2pvwufoLb6OY_ih5pxBI_mHIqQMA2_RP9BONYv10gnNanLyhxXdrXNCKV1F3fL0eYQmAHF2yH29P9jADoqVNQHcsKMmp0zRYW9lGsJTxndKmbTpw5fZtuQwJbU2kteCH3OknnPXkiOi9v7yrTaTEIU_rM-Vc2YTFm_in3dOZnUK-_VANDrV-CTausIX3C1-NunjcU5aV_hhr_s">
+</div>
+<div class="aspect-square border-2 border-primary hard-shadow overflow-hidden group">
+<img alt="Campfire under stars" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="A warm, intimate nighttime scene of a desert campfire glowing brightly against the backdrop of a vast, starry Saharan sky. The orange light of the fire illuminates a small campsite with canvas tents, creating a cozy and adventurous atmosphere. The deep blue of the night sky is filled with a dense field of stars and the Milky Way galaxy, emphasizing the profound silence and isolation of the deep desert." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4-UXM8oFkAQeyy5rg9puZRUsMWptaHTof8hu80KThbntUl_S_zGG-CqQPCW7s9w6gvmIb04dXCffSRs_rIdHc_uwIALe434VbT1j3EODMjMk47hZ9eX-Mh3VMFyspw03hGlB2jCBLYPKL7YeGrbq-doFZA7AfkmBwk_HqxZXrrDMhOwNlFcfRAP1TKOwK-3ofDWZ3mUUzXd6eD78q0s9Ea2xaZqWpcCxFjdD9jXONv7BJTXNyv-5oTx2KzGpZykB_9er5blz49Zk">
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 w-full bg-surface border-t-2 border-primary p-4 z-50 md:py-6">
+<div class="max-w-container-max mx-auto flex items-center justify-between gap-4">
+<div class="hidden md:block">
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant">Trek Tassili n'Ajjer</p>
+<p class="font-title-md text-title-md text-primary">Prochain départ : 15 Oct 2024</p>
+</div>
+<div class="flex-1 md:flex-none flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Total</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-secondary">65.000 DA</span>
+</div>
+<button class="flex-1 md:flex-none bg-secondary text-white font-headline-lg-mobile text-lg px-8 py-4 rounded-xl btn-shadow transition-all whitespace-nowrap">
+                    S'inscrire à l'expédition
+                </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-primary text-on-primary py-16">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2 space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-3xl">landscape</span>
+<span class="font-headline-lg text-headline-lg font-bold text-white">Project Nature</span>
+</div>
+<p class="font-body-md text-body-md text-on-primary-container max-w-md">
+                    Explorez les confins de l'Algérie avec une communauté passionnée. Nous créons des expériences authentiques pour les âmes aventureuses.
+                </p>
+<div class="flex gap-4">
+<button class="w-10 h-10 border border-on-primary-container flex items-center justify-center rounded-lg hover:bg-on-primary-container hover:text-primary transition-all">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+<button class="w-10 h-10 border border-on-primary-container flex items-center justify-center rounded-lg hover:bg-on-primary-container hover:text-primary transition-all">
+<span class="material-symbols-outlined text-sm">mail</span>
+</button>
+</div>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-sm text-label-sm uppercase tracking-widest text-on-primary-container">L'Agence</h5>
+<ul class="space-y-2 font-body-md text-body-md">
+<li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Destinations</a></li>
+<li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Nos Engagements</a></li>
+<li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-sm text-label-sm uppercase tracking-widest text-on-primary-container">Légal</h5>
+<ul class="space-y-2 font-body-md text-body-md">
+<li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Confidentialité</a></li>
+<li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Conditions Générales</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-16 pt-8 border-t border-on-primary-fixed-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm text-on-primary-container">© 2024 Project Nature. dji wla ndjibouk !</p>
+<div class="flex gap-8 font-label-sm text-label-sm text-on-primary-container">
+<a class="hover:text-white uppercase" href="#">Instagram</a>
+<a class="hover:text-white uppercase" href="#">Facebook</a>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth appearance for sections on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // Simple button interaction
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.98)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = '';
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gérer les Expéditions - Field Journal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Space+Grotesk:wght@600&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#4d6451",
+                        "surface": "#f9f9f7",
+                        "primary-fixed-dim": "#b3cdb6",
+                        "on-tertiary-container": "#bfa47a",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-tertiary-fixed-variant": "#574421",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-fixed": "#ffdbcd",
+                        "surface-container-high": "#e8e8e6",
+                        "on-primary-fixed": "#0a2011",
+                        "background": "#f9f9f7",
+                        "on-surface": "#1a1c1b",
+                        "tertiary": "#352505",
+                        "secondary-fixed-dim": "#ffb597",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#dfc296",
+                        "surface-container-low": "#f4f4f2",
+                        "tertiary-fixed": "#fcdeb0",
+                        "secondary": "#a23f0a",
+                        "outline": "#737972",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "on-background": "#1a1c1b",
+                        "on-secondary-fixed-variant": "#7e2c00",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eeeeec",
+                        "primary": "#162c1c",
+                        "on-surface-variant": "#434842",
+                        "secondary-container": "#fe844d",
+                        "on-secondary-fixed": "#360f00",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#4d3a19",
+                        "on-primary-container": "#95ae98",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary-fixed-variant": "#364c3a",
+                        "on-tertiary-fixed": "#271900",
+                        "primary-container": "#2c4231",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dadad8",
+                        "outline-variant": "#c3c8c0",
+                        "on-secondary-container": "#6b2500",
+                        "inverse-primary": "#b3cdb6",
+                        "primary-fixed": "#cfe9d1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "overlap-sm": "-16px",
+                        "overlap-md": "-40px",
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Epilogue"],
+                        "headline-lg": ["Epilogue"],
+                        "headline-md": ["Epilogue"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Epilogue"],
+                        "body-md": ["Work Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "label-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .brutalist-shadow {
+            box-shadow: 4px 4px 0px #162c1c;
+        }
+        .brutalist-button-shadow {
+            box-shadow: 2px 2px 0px #162c1c;
+            transition: all 0.1s ease-in-out;
+        }
+        .brutalist-button-shadow:active {
+            box-shadow: 0px 0px 0px #162c1c;
+            transform: translate(2px, 2px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-[100px] selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky border-b-2 border-primary bg-surface shadow-[4px_4px_0px_#162c1c] z-40 flex items-center justify-between px-margin-mobile py-4">
+<button aria-label="Menu" class="text-primary hover:bg-primary-container hover:text-on-primary-container transition-colors p-2 rounded-DEFAULT active:translate-y-0.5 active:translate-x-0.5">
+<span class="material-symbols-outlined block" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-display-lg text-headline-md tracking-tighter text-primary uppercase">FIELD JOURNAL</h1>
+<button aria-label="Notifications" class="text-primary hover:bg-primary-container hover:text-on-primary-container transition-colors p-2 rounded-DEFAULT active:translate-y-0.5 active:translate-x-0.5">
+<span class="material-symbols-outlined block" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</header>
+<!-- Main Canvas -->
+<main class="w-full max-w-3xl mx-auto px-margin-mobile pt-8 flex flex-col gap-8">
+<!-- Header Section -->
+<section class="flex flex-col gap-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary uppercase leading-tight">Gérer les Expéditions</h2>
+<button class="w-full flex items-center justify-center gap-2 bg-secondary text-on-secondary font-label-caps text-label-caps uppercase border-2 border-primary py-3 px-4 brutalist-button-shadow mt-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add</span>
+                Nouvelle Expédition
+            </button>
+</section>
+<!-- Trips List -->
+<section class="flex flex-col gap-8 pb-12">
+<!-- Trip Card 1 -->
+<article class="bg-surface border-2 border-primary brutalist-shadow flex flex-col relative overflow-hidden group">
+<!-- Image Header -->
+<div class="h-40 w-full relative border-b-2 border-primary">
+<img class="w-full h-full object-cover filter contrast-125 saturate-50" data-alt="A breathtaking view of a rugged alpine mountain peak covered in snow and ice, shot in bright daylight. The sky is clear and blue. The aesthetic is raw and adventurous, reflecting an organic, tactile outdoor journal style with high contrast and natural colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zV29IFxsuCIKhIEmNDevu9MCVxKadpvo2QH8us_pSMzSaz-4_nfcHksLLidVWU3bLDx1RP30YjbQxVRldLq71cVxjvo64uO5VSbxNwEs40_i7oqbdBwXK_yMxPKRMshrwTaH7vzi6EqhPXBXbyxnFZYX2vtkLnpbcahoOoV8ETWmnor9TJDubymtbOPN3oXG-mpuh1azK2buD_VjNKwecLw5JjF40F3cjEXdMtfebKonm-fK3VRQZoJUcHXdG65jl__LxtjJhAg"/>
+<!-- Metadata Bar Overlay -->
+<div class="absolute top-4 left-0 bg-surface-container-highest border-y-2 border-r-2 border-primary px-3 py-1 font-label-caps text-[12px] uppercase tracking-widest text-primary flex items-center gap-1 shadow-[2px_2px_0px_#162c1c]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+                        12-20 Août 2024
+                    </div>
+</div>
+<!-- Content Body -->
+<div class="p-5 flex flex-col gap-4">
+<div class="flex justify-between items-start gap-4">
+<h3 class="font-headline-md text-headline-md text-primary leading-none uppercase">Ascension Mont Blanc</h3>
+<div class="flex flex-col items-end">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant tracking-widest">Capacité</span>
+<span class="font-label-caps text-label-caps text-primary bg-primary-fixed-dim px-2 py-0.5 border border-primary mt-1">12/15</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 mt-2 border-t-2 border-outline-variant border-dashed pt-4">
+<button class="w-full flex items-center justify-center gap-2 bg-transparent text-primary font-label-caps text-[12px] uppercase border-2 border-primary py-2.5 px-4 brutalist-button-shadow hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Marquer comme Complet
+                        </button>
+<button class="w-full flex items-center justify-center gap-2 bg-error-container text-on-error-container font-label-caps text-[12px] uppercase border-2 border-primary py-2.5 px-4 brutalist-button-shadow hover:bg-[#ffb4ab] transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            Supprimer
+                        </button>
+</div>
+</div>
+</article>
+<!-- Trip Card 2 -->
+<article class="bg-surface border-2 border-primary brutalist-shadow flex flex-col relative overflow-hidden group">
+<!-- Image Header -->
+<div class="h-40 w-full relative border-b-2 border-primary">
+<img class="w-full h-full object-cover filter contrast-125 saturate-50" data-alt="A vast, arid desert landscape with towering sandstone formations and rolling dunes under a harsh, glaring sun. Deep shadows highlight the ridges. The visual style is highly textured and brutalist, evoking a harsh wilderness environment suited for a gritty expedition journal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATatbbC32BlBXIOfASIlqK_YjMkM5v7HIPPJY0etF2TqoPIOaThGI2-AlQ0zJlB9y47sSfgkWRriDQ9f8LLMP5FboEL_dZNuFqeOHDL5kfD4V6nFGqbpObnfzA8wW-BGy1NjAGaOXWKqdzkqnjpjtCuk0SRTHf2LOkBABzglSvXYe2qtke0z4Z592PtfvB_VmJWTmztF6c1mLEdTY0G4KQ_t-mKXScdr-ACyb7Y3FESQWVqyLp2Kb0_rWr7v5bZhoQ_Be2BSqMeyg"/>
+<!-- Metadata Bar Overlay -->
+<div class="absolute top-4 left-0 bg-surface-container-highest border-y-2 border-r-2 border-primary px-3 py-1 font-label-caps text-[12px] uppercase tracking-widest text-primary flex items-center gap-1 shadow-[2px_2px_0px_#162c1c]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+                        05-18 Sept 2024
+                    </div>
+</div>
+<!-- Content Body -->
+<div class="p-5 flex flex-col gap-4">
+<div class="flex justify-between items-start gap-4">
+<h3 class="font-headline-md text-headline-md text-primary leading-none uppercase">Traversée du Désert</h3>
+<div class="flex flex-col items-end">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant tracking-widest">Capacité</span>
+<span class="font-label-caps text-label-caps text-on-error bg-error px-2 py-0.5 border border-primary mt-1">15/15</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 mt-2 border-t-2 border-outline-variant border-dashed pt-4">
+<button class="w-full flex items-center justify-center gap-2 bg-surface-dim text-on-surface-variant font-label-caps text-[12px] uppercase border-2 border-primary py-2.5 px-4 opacity-50 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Déjà Complet
+                        </button>
+<button class="w-full flex items-center justify-center gap-2 bg-error-container text-on-error-container font-label-caps text-[12px] uppercase border-2 border-primary py-2.5 px-4 brutalist-button-shadow hover:bg-[#ffb4ab] transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            Supprimer
+                        </button>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface z-50 rounded-t-full border-t-2 border-primary shadow-[0px_-4px_0px_#162c1c]">
+<!-- Tab: Overview -->
+<a aria-label="Overview" class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/20 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-caps text-[10px] uppercase">Overview</span>
+</a>
+<!-- Tab: Trips (ACTIVE) -->
+<a aria-label="Trips" class="flex flex-col items-center justify-center bg-primary text-on-primary p-2 rounded-xl active:scale-95 transition-transform shadow-[2px_2px_0px_#4d6451]" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-caps text-[10px] uppercase">Trips</span>
+</a>
+<!-- Tab: Regs -->
+<a aria-label="Regs" class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/20 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">assignment_ind</span>
+<span class="font-label-caps text-[10px] uppercase">Regs</span>
+</a>
+<!-- Tab: Settings -->
+<a aria-label="Settings" class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/20 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-caps text-[10px] uppercase">Settings</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html><html class="light" lang="fr" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Souvenirs | Project Nature</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Manrope:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2d3135",
+                    "surface-variant": "#e0e3e8",
+                    "inverse-primary": "#b4cdb6",
+                    "on-tertiary-fixed-variant": "#4c4634",
+                    "primary-fixed": "#d0e9d1",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#cfc6ae",
+                    "surface-container-high": "#e5e8ee",
+                    "surface": "#f7f9ff",
+                    "on-secondary": "#ffffff",
+                    "background": "#f7f9ff",
+                    "surface-dim": "#d7dadf",
+                    "surface-container": "#ebeef3",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ece2c9",
+                    "on-tertiary-fixed": "#201b0c",
+                    "on-secondary-fixed": "#360f00",
+                    "secondary": "#9f410f",
+                    "outline": "#737972",
+                    "secondary-container": "#fe8852",
+                    "primary-container": "#435947",
+                    "tertiary-container": "#595340",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb596",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#2c4231",
+                    "surface-tint": "#4d6451",
+                    "surface-container-low": "#f1f4f9",
+                    "primary-fixed-dim": "#b4cdb6",
+                    "on-surface": "#181c20",
+                    "surface-container-highest": "#e0e3e8",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#6e2700",
+                    "inverse-on-surface": "#eef1f6",
+                    "outline-variant": "#c3c8c0",
+                    "on-secondary-fixed-variant": "#7d2d00",
+                    "on-primary-container": "#b6cfb8",
+                    "secondary-fixed": "#ffdbcd",
+                    "on-surface-variant": "#434842",
+                    "on-error-container": "#93000a",
+                    "on-background": "#181c20",
+                    "tertiary": "#423c2b",
+                    "surface-bright": "#f7f9ff",
+                    "on-tertiary-container": "#d0c7af",
+                    "on-primary-fixed-variant": "#364c3a",
+                    "on-primary-fixed": "#0b2011"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Syne"],
+                    "headline-lg": ["Syne"],
+                    "body-md": ["Manrope"],
+                    "title-md": ["Manrope"],
+                    "display-xl": ["Syne"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(44, 66, 49, 0.2);
+        }
+        .hard-shadow-active {
+            box-shadow: 0px 0px 0px 0px rgba(44, 66, 49, 0.2);
+            transform: translate(2px, 2px);
+        }
+        .scrapbook-rotate-left { transform: rotate(-2deg); }
+        .scrapbook-rotate-right { transform: rotate(3deg); }
+        .scrapbook-rotate-slight { transform: rotate(1deg); }
+        
+        body {
+            background-color: #f7f9ff;
+            color: #181c20;
+            overflow-x: hidden;
+        }
+
+        .masonry-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md mb-20">
+<!-- Top Navigation Bar -->
+<header class="bg-surface sticky top-0 z-50 border-b-2 border-primary flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">landscape</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-secondary">Project Nature</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant p-2 rounded-full transition-colors">notifications</button>
+</div>
+</header>
+<main class="max-w-md mx-auto relative">
+<!-- Hero Section -->
+<section class="px-6 pt-12 pb-8 text-center relative overflow-hidden">
+<div class="absolute -top-10 -left-10 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[180px]">eco</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-secondary mb-4 leading-tight">Nos Souvenirs</h2>
+<p class="text-on-surface-variant font-body-md max-w-xs mx-auto">
+                Chaque sentier parcouru est une page de notre journal de bord. Revivez les moments forts de la communauté Project Nature.
+            </p>
+</section>
+<!-- Scrapbook Grid -->
+<section class="px-4 pb-12 relative">
+<div class="grid grid-cols-2 gap-y-12 gap-x-4">
+<!-- Item 1: Large Scenic (Landscape) - Spans 2 cols -->
+<div class="col-span-2 relative scrapbook-rotate-left bg-tertiary-fixed p-2 border-2 border-primary hard-shadow" style="opacity: 1; transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); transform: translateY(0px);">
+<div class="relative aspect-video overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A cinematic low angle shot of mountain peaks covered in snow with a bright sunburst flare. The atmosphere is crisp and cold, capturing the rugged tactile minimalism of high-altitude exploration. Deep forest green and burnt orange tones are subtly reflected in the icy surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTyp1xhaloDHNbt1qkeqv-clOrjKsQpFDinAp8RZkMahOWXIDXocRS1QQ2DygO88W9JxY1PXShj4k5S96J6h1N5FUBysLHhtv4BUGTErsiGETzyEthoVBhwS4pDZnXisfl_ZXgyaUtULd6-obpoAZv0cGE41ibluEjclYi6RjbzmlAAyhbSHkcw5tPJRCyQV1Rr_JB9HXB_16S0suV_zR3aV4EyzYAGMHQ47joFZ4Ym5SlTAopvn5Z77wRD5wG6erwKO0-_3cuVqQ">
+<div class="absolute bottom-0 left-0 bg-primary text-on-primary px-3 py-1 font-label-sm text-label-sm uppercase">
+                            Atlas, 2023
+                        </div>
+</div>
+</div>
+<!-- Item 2: L'appel de la crete -->
+<div class="col-span-2 relative scrapbook-rotate-right bg-white p-2 border-2 border-primary hard-shadow mt-4" style="opacity: 1; transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); transform: translateY(0px);">
+<div class="relative aspect-square overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A lush green valley at sunrise seen from a high ridge. Golden light spills over the peaks, highlighting the organic textures of the trees and jagged rocks. The aesthetic is tactile and adventurous, grounded in deep earthy greens and warm sand-toned highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIvJwnL7-ZdPWm4p_FNUk49JhhRcoLjVJhLESWGgLwB8wr_MhOnm-dD7dT8jVmX2m7aj2vO2-BwXbKsOD4Gni5NJ6gwc3IO__K6U-vx7yGy98G7RbsfHQCNscbQeQfhs9ekzQRsRu9sJhKf_B2ITu7c8DszwBxz1tC4IcrAj3Gw7sz4wPl_gP4Xayf1Ll9EeYDu1awH13jrkiBpc5nzlodiG6ZAk2W8y6MsfOzse1hKD5HDcxsnRuMDyvt7NhEx57dgsozjitLK4g">
+<div class="absolute top-4 left-4">
+<h3 class="font-headline-lg-mobile text-2xl text-white drop-shadow-lg">L'appel de la crête</h3>
+</div>
+</div>
+</div>
+<!-- Item 3: Portrait Profile -->
+<div class="relative scrapbook-rotate-left -mt-8 ml-2" style="opacity: 1; transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); transform: translateY(0px);">
+<div class="w-40 h-40 rounded-full border-4 border-secondary overflow-hidden hard-shadow relative">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a smiling female hiker wearing a dark forest green wool beanie and a matching jacket. She is outdoors with soft natural pine branch textures in the blurred background. The style is rugged and authentic, capturing the spirit of a professional explorer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk5bbeABWA3ENXXrKiIDTQ_elKADJ0YIv5xRp4FDBZ47BHPLaNMoVonz-Mj6POXjjNkweX-se74kll9UgmEm8Ot_gaWsAG7TEHv59Tf7NtHjT5CGAHep8Vix-C0wbJArs3D7nzLWLi1pmlVzOr9A30iuc_pHVyHDUvA1sfZ09aM6-_wIanVYVhxQB8nw5digA6B4ydZk2aqUJY5ExU08f6AjF6hQZgsu0WqAlm31jNvypmPhihXYpymBecoMVrD05quGxyQFfrXz4">
+</div>
+</div>
+<!-- Item 4: Forest Scene -->
+<div class="relative scrapbook-rotate-slight -mt-16 bg-tertiary-fixed p-2 border-2 border-primary hard-shadow" style="opacity: 1; transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); transform: translateY(0px);">
+<img class="aspect-[3/4] object-cover w-full" data-alt="An ethereal view into a dense ancient forest where shafts of morning sunlight pierce through the thick canopy and morning mist. Rich mossy greens and deep bark browns create a layered, organic atmosphere. The image is framed with a sturdy slate border effect." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmXzASnzDnoE-RYTCPNs13Z3dyj0ooOOWEh29Kf8K-BDQJTJ6yAB8y7BapjREz3bST2OnpQ_Oc3VJE2k0BtDv-09M363OnVjXlh8WRDUhM1B7eI_XkGv0_YWMZJFPmUgjQN-VdGS6MGL4YsDDD9rrUt9yJAkP5zgJaVwUqMS9_8DkHnV3jobzsNCM4rx-rPo6bLsSP3dHEj6MMGipo9Lk6eazmf6f3DC9v6FCtyu3r3MbfFbgjRiO5nmZPo5mhTH6-gckgx3hFt48">
+</div>
+<!-- Item 5: Polaroids Style - Soirée Bivouac -->
+<div class="col-span-2 flex justify-center py-8 relative">
+<div class="absolute -top-4 -right-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">filter_hdr</span>
+</div>
+<div class="bg-white p-4 pt-4 pb-12 shadow-xl border border-surface-variant scrapbook-rotate-left w-64 transform transition-transform hover:scale-105" style="opacity: 1; transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); transform: translateY(0px);">
+<div class="aspect-square overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="A group of explorers gathered around a glowing orange campfire at dusk in a clearing of pine trees. The night sky is deep navy, and the warm firelight creates strong silhouettes. The mood is intimate, cozy, and deeply grounded in the physical experience of nature." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAocSeWJu-zwZlY3KRJMH1JMRTX9LVL1fhMzuj_iOHc6zTbeS1ofsMmah87dSkuztuU11bQDFO1URsWf9HYYv_nwjQHIjj5sZ9H13pGvHuE_8DxY3xogqVl2aS_gDg5QlVpTFQ9sg-VvPLv8H50-uxvzXH25bbK8Ts6fJtDpUtj7qGrZQTrzv-VpflBVSLN4l_uVqDOVQq6q0IyLgXI8orZZwPWWvENaln70qtV7cOPeni81Pu4BPbyT-LUF5W3tY7ZWK0UKWIr6TU">
+</div>
+<p class="font-label-sm text-label-sm text-center text-primary-container">Soirée Bivouac</p>
+</div>
+</div>
+<!-- Item 6: Video Clip -->
+<div class="col-span-2 bg-inverse-surface p-2 border-2 border-primary hard-shadow">
+<div class="relative aspect-[9/16] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A first-person perspective shot from the legs down, showing a hiker wearing rugged brown leather boots walking on a rocky mountain path at sunset. The lighting is warm and dramatic, highlighting the texture of the trail. The aesthetic matches the travel consultancy feel with high contrast and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyzfgW7PPXWAXobGOhhSZKzTur6C8sevdVV8Ba2tRRTTNCP7Oo1BEZVN6iWUkx07AjoNb4zHJ7EDHiGiInDYFktPzxaB5ZmsbccZVK1RqiucvyOsxXcuvz2T7y3sHUTVB4XF-chvZvxy_B1HkiC6c0K9ywnUheEME5I5PW44t1rfJljZA51vyWNYvjMYXJaQlB-qKzmbwp0xnioF-D7TTNCkGSx-oVA3XpgjzU6F_TdS7xD_2XQH5owrhPgepXFNM-vAmRG01TeBc">
+<div class="absolute inset-0 flex items-center justify-center bg-black/20">
+<div class="w-16 h-16 bg-secondary flex items-center justify-center rounded-lg border-2 border-primary hard-shadow cursor-pointer hover:scale-95 transition-all">
+<span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 flex items-center justify-between w-[calc(100%-32px)]">
+<span class="font-label-sm text-label-sm text-white uppercase tracking-widest">En mouvement</span>
+<span class="font-label-sm text-label-sm text-white">0:45</span>
+</div>
+</div>
+</div>
+<!-- Item 7: Quote Card -->
+<div class="col-span-2 mt-8">
+<div class="bg-tertiary-fixed p-6 border-2 border-secondary border-r-[6px] border-b-[6px] rounded-lg">
+<span class="material-symbols-outlined text-secondary text-4xl mb-2">format_quote</span>
+<p class="font-title-md text-title-md text-primary mb-4 italic leading-relaxed">
+                            "L'aventure n'est pas dans l'ascension, mais dans la rencontre."
+                        </p>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">
+                            — Mehdi, membre depuis 2021
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-primary-container text-on-primary-container px-6 py-20 text-center relative">
+<div class="absolute inset-0 opacity-5">
+<div class="w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary mb-6">Envie de créer vos propres souvenirs ?</h3>
+<p class="text-primary-fixed mb-10">Nos prochaines kherjat sont déjà en ligne. Rejoignez la communauté et explorez le monde avec nous.</p>
+<button class="bg-secondary text-on-secondary px-8 py-4 font-title-md rounded-lg border-2 border-primary hard-shadow active:translate-y-0.5 transition-transform">
+                Voir les Prochaines Sorties
+            </button>
+</section>
+<!-- Footer-ish info section -->
+<footer class="bg-primary-container p-10 pb-32 text-on-primary-container border-t-2 border-primary">
+<div class="mb-8">
+<h4 class="font-headline-lg-mobile text-2xl text-on-primary mb-4">Project Nature</h4>
+<address class="not-italic font-label-sm text-label-sm space-y-2 opacity-80">
+<p class="">École des Hautes Études Commerciales (EHEC), Kolea, Algeria</p>
+<p class="">support@dinimaaktrip.com</p>
+<p class="">+213551056300</p>
+</address>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-8">
+<div>
+<h5 class="font-label-sm text-label-sm text-on-primary uppercase mb-4">Navigation</h5>
+<ul class="space-y-2 font-body-md text-sm opacity-80">
+<li class="">Accueil</li>
+<li class="">Voyages</li>
+<li class="font-bold text-secondary-fixed">Souvenirs</li>
+<li class="">Se connecter</li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm text-on-primary uppercase mb-4">Suivez-nous</h5>
+<div class="flex gap-4">
+<div class="w-10 h-10 border border-on-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">share</span>
+</div>
+<div class="w-10 h-10 border border-on-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</div>
+<div class="w-10 h-10 border border-on-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-[10px] font-label-sm opacity-50 mt-12">© 2024 Project Nature. dji wla ndjibouh !</p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-surface dark:bg-inverse-surface border-t-2 border-primary dark:border-primary-fixed shadow-[0_-4px_0_0_rgba(44,66,49,0.1)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 hover:text-primary transition-all duration-100 cursor-pointer">
+<span class="material-symbols-outlined text-2xl">explore</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Kherjat</span>
+</div>
+
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold transition-all duration-100 cursor-pointer scale-95">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Souvenirs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 hover:text-primary transition-all duration-100 cursor-pointer">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">À Propos</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('hard-shadow-active'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('hard-shadow-active'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('hard-shadow-active'));
+        });
+
+        // Simple reveal animation on scroll for scrapbook items
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = entry.target.style.transform.replace("translateY(20px)", "translateY(0)");
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scrapbook-rotate-left, .scrapbook-rotate-right, .scrapbook-rotate-slight').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transition = "all 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
+            el.style.transform += " translateY(20px)";
+            observer.observe(el);
+        });
+    </script>
+
+
+</body></html>
