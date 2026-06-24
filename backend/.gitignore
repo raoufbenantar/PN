@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Virtualenv
+venv/
+.venv/
+env/
+
+# Environment (SECRETS — never commit)
+.env
+.env.*
+!.env.example
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+logs/*.log
+!logs/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# OpenCode
+.opencode/
+
+# Node
+node_modules/
+
+# Build
+dist/
+build/
+
+# Railway
+railway.json

@@ -1,0 +1,36 @@
+services:
+  web:
+    build: .
+    container_name: project_nature_web
+    ports:
+      - "8000:8000"
+    volumes:
+      - media_data:/app/media
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER:-nature_user}:${POSTGRES_PASSWORD:-nature_pass}@db:5432/${POSTGRES_DB:-nature_db}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: project_nature_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nature_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nature_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-nature_db}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nature_user} -d ${POSTGRES_DB:-nature_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  media_data:

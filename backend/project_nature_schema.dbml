@@ -1,0 +1,87 @@
+// ==========================================
+// Project Nature — Database Schema
+// Last updated: 2026-06-22
+// ==========================================
+
+// ── 1. Django Auth User (built-in) ─────────
+// Managed by django.contrib.auth — not declared here.
+// Fields: id, username, email, first_name, last_name, password,
+//         is_staff, is_active, is_superuser, date_joined, last_login
+
+// ==========================================
+// 2. ACCOUNTS
+// ==========================================
+Table accounts_userprofile {
+  id integer [primary key]
+  user_id integer [ref: > auth.user(id), unique]
+  email_verified boolean [default: false]
+}
+
+Table accounts_emailverificationcode {
+  id integer [primary key]
+  email varchar
+  code varchar(6)
+  created_at timestamp
+  expires_at timestamp
+}
+
+Table accounts_passwordresettoken {
+  id integer [primary key]
+  email varchar
+  token varchar(100) [unique]
+  created_at timestamp
+  expires_at timestamp
+  used boolean [default: false]
+}
+
+Table accounts_newslettersubscription {
+  id integer [primary key]
+  email varchar [unique]
+  is_active boolean [default: true]
+  created_at timestamp
+}
+
+// ==========================================
+// 3. EXPEDITIONS
+// ==========================================
+Table expeditions_expedition {
+  id integer [primary key]
+  title varchar(200)
+  slug varchar(200) [unique]
+  description text
+  category varchar(20) [note: "ENUM: expedition, trekking, bivouac, camping, photography, wildlife, cultural"]
+  difficulty varchar(20) [note: "ENUM: easy, moderate, difficult, expert"]
+  duration_days integer
+  price_dzd decimal(10,2)
+  location varchar(255)
+  latitude decimal(9,6)
+  longitude decimal(9,6)
+  start_date date
+  cover_image varchar
+  is_published boolean [default: false]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table expeditions_expeditionimage {
+  id integer [primary key]
+  expedition_id integer [ref: > expeditions_expedition.id]
+  image varchar
+  caption varchar(255)
+  order integer [default: 0]
+}
+
+// ==========================================
+// 4. INQUIRIES
+// ==========================================
+Table inquiries_inquiry {
+  id integer [primary key]
+  expedition_id integer [ref: > expeditions_expedition.id]
+  name varchar(200)
+  phone varchar(20)
+  email varchar
+  message text
+  status varchar(20) [note: "ENUM: new, contacted, confirmed, cancelled"]
+  created_at timestamp
+  updated_at timestamp
+}
