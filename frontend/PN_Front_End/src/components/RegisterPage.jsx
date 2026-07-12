@@ -56,6 +56,7 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
         setCurrentPage('verify-email');
       }, 1500);
     } catch (err) {
+      console.error('[Register] Full error:', err);
       setError(err.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);

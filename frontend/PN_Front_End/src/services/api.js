@@ -56,6 +56,7 @@ async function request(url, options = {}) {
     } catch {
       detail = res.statusText;
     }
+    console.error(`[API] ${res.status} ${url}:`, detail);
     throw new Error(detail);
   }
 
