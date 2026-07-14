@@ -27,7 +27,7 @@ class InquirySerializer(serializers.ModelSerializer):
             'expedition', 'expedition_title', 'status',
             'created_at', 'updated_at',
         ]
-        read_only_fields = ['status', 'created_at', 'updated_at']
+        read_only_fields = ['created_at', 'updated_at']
 
     def validate_name(self, value):
         """Remove HTML, enforce minimum length."""
