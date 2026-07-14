@@ -53,7 +53,7 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
         });
       }
       setTimeout(() => {
-        setCurrentPage('verify-email');
+        setCurrentPage('landing');
       }, 1500);
     } catch (err) {
       console.error('[Register] Full error:', err);

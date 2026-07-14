@@ -95,72 +95,25 @@ class VerifyEmailView(APIView):
 
 
 class PasswordResetRequestView(APIView):
-    """Request a password reset email."""
+    """Request a password reset email — disabled (no SMTP)."""
     permission_classes = [AllowAny]
 
     def post(self, request):
-        email = request.data.get('email', '').strip()
-        if not email:
-            return Response(
-                {'detail': 'Email is required.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        # Always return success to avoid email enumeration
-        send_password_reset_email(email)
-        return Response({'detail': 'If an account exists with this email, a reset link has been sent.'})
+        return Response(
+            {'detail': 'Password reset is not available yet. Please contact support.'},
+            status=status.HTTP_501_NOT_IMPLEMENTED,
+        )
 
 
 class PasswordResetConfirmView(APIView):
-    """Reset password with a valid token."""
+    """Reset password with a valid token — disabled (no SMTP)."""
     permission_classes = [AllowAny]
 
     def post(self, request):
-        token = request.data.get('token', '').strip()
-        new_password = request.data.get('new_password', '')
-        confirm_password = request.data.get('confirm_password', '')
-
-        if not token or not new_password or not confirm_password:
-            return Response(
-                {'detail': 'Token, new password, and confirm password are required.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        if new_password != confirm_password:
-            return Response(
-                {'detail': 'Passwords do not match.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        reset_token = PasswordResetToken.objects.filter(token=token).first()
-        if not reset_token or not reset_token.is_valid():
-            return Response(
-                {'detail': 'Invalid or expired reset token.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        # Validate password strength
-        try:
-            user = User.objects.get(email=reset_token.email)
-            validate_password(new_password, user=user)
-        except User.DoesNotExist:
-            return Response(
-                {'detail': 'User not found.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-        except ValidationError as e:
-            return Response(
-                {'detail': ' '.join(e.messages)},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        user.set_password(new_password)
-        user.save()
-
-        reset_token.used = True
-        reset_token.save(update_fields=['used'])
-
-        return Response({'detail': 'Password has been reset successfully.'})
+        return Response(
+            {'detail': 'Password reset is not available yet. Please contact support.'},
+            status=status.HTTP_501_NOT_IMPLEMENTED,
+        )
 
 
 class ChangePasswordView(APIView):

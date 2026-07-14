@@ -68,7 +68,7 @@ class RegisterView(APIView):
                 first_name=first_name,
                 last_name=last_name,
             )
-            UserProfile.objects.get_or_create(user=user)
+            UserProfile.objects.get_or_create(user=user, defaults={'email_verified': True})
         except Exception as e:
             return Response(
                 {'detail': f'Registration failed: {str(e)}'},

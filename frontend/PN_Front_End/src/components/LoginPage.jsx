@@ -134,15 +134,7 @@ export default function LoginPage({ setCurrentPage, onLoginSuccess }) {
                       type="password"
                     />
                   </div>
-                  <div className="text-right mt-3">
-                    <button 
-                      type="button"
-                      className="font-space text-xs font-bold text-brand-orange hover:underline underline-offset-4 decoration-2"
-                      onClick={(e) => { e.preventDefault(); setCurrentPage('forgot-password'); }}
-                    >
-                      Forgot password?
-                    </button>
-                  </div>
+                  {/* Forgot password disabled — no SMTP configured */}
                 </div>
 
                 <div className="pt-4">
