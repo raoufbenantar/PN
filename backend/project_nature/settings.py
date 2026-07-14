@@ -36,6 +36,9 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
+# Tell Django to trust Railway's proxy header for HTTPS detection
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # ── Production security hardening ──────────────────────────────────
 # These are enforced only when DEBUG=False (production mode).
 
