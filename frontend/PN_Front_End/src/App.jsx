@@ -186,6 +186,15 @@ export default function App() {
       };
       setRegistrations(prev => [newReg, ...prev]);
       setBookingStatus('success');
+
+      // Re-fetch inquiries from backend to keep admin view in sync
+      try {
+        const data = await fetchInquiries();
+        const mapped = (data.results || data || []).map(mapInquiryToRegistration);
+        setRegistrations(mapped);
+      } catch {
+        // Keep the local registration if re-fetch fails
+      }
     } catch (err) {
       console.error('Booking submission failed:', err.message);
       setBookingError(err.message);
