@@ -4,6 +4,7 @@ import bleach
 from rest_framework import serializers
 
 from .models import Inquiry
+from .validators import MAX_SELFIE_SIZE
 
 # Allowed tags: none — we strip all HTML from text fields.
 BLEACH_TAGS = []
@@ -18,6 +19,8 @@ def sanitize_text(value: str) -> str:
 
 
 class InquirySerializer(serializers.ModelSerializer):
+    selfie = serializers.ImageField(required=False, allow_null=True)
+    selfie_url = serializers.SerializerMethodField()
     expedition_title = serializers.CharField(source='expedition.title', read_only=True)
 
     class Meta:
@@ -25,7 +28,7 @@ class InquirySerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'phone', 'email', 'message',
             'expedition', 'expedition_title', 'status',
-            'created_at', 'updated_at',
+            'created_at', 'updated_at', 'selfie', 'selfie_url',
         ]
         read_only_fields = ['created_at', 'updated_at']
 
@@ -92,3 +95,53 @@ class InquirySerializer(serializers.ModelSerializer):
             )
 
         return cleaned
+
+    def validate_selfie(self, value):
+        """Enforce image extension + size cap on the API (model validators are
+        not run automatically by DRF)."""
+        name = (value.name or '').lower()
+        ext = name.rsplit('.', 1)[-1] if '.' in name else ''
+        if ext not in ('jpg', 'jpeg', 'png', 'webp'):
+            raise serializers.ValidationError(
+                'Only JPG, JPEG, PNG, or WebP images are allowed.'
+            )
+        if value.size > MAX_SELFIE_SIZE:
+            raise serializers.ValidationError(
+                'Selfie is too large. Maximum size is 5 MB.'
+            )
+        return value
+
+    def get_fields(self):
+        fields = super().get_fields()
+        if self.instance is None:  # we are creating
+            fields['selfie'].required = True
+            fields['selfie'].allow_null = False
+        return fields
+
+    def get_selfie_url(self, obj):
+        if not obj.selfie:
+            return None
+        request = self.context.get('request')
+        url = obj.selfie.url
+        if request and url.startswith('/'):
+            return request.build_absolute_uri(url)
+        return url
+
+
+class InquiryTicketSerializer(serializers.ModelSerializer):
+    """Computed 'ticket' view over a confirmed Inquiry (no separate DB model)."""
+    expedition_title = serializers.CharField(source='expedition.title', read_only=True, default=None)
+    selfie_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Inquiry
+        fields = ['id', 'name', 'phone', 'expedition_title', 'selfie_url', 'status', 'created_at']
+
+    def get_selfie_url(self, obj):
+        if not obj.selfie:
+            return None
+        request = self.context.get('request')
+        url = obj.selfie.url
+        if request and url.startswith('/'):
+            return request.build_absolute_uri(url)
+        return url

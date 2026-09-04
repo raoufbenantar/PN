@@ -167,11 +167,45 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# ── Storage backends (static + media) ──────────────────────────────
+# Django 4.2+ uses the STORAGES dict. Static files are served by WhiteNoise.
+# Media defaults to the LOCAL filesystem so local development needs no bucket
+# credentials. Set USE_S3=true (plus the AWS_* vars below) to store media —
+# expedition images and inquiry selfies — in an S3-compatible bucket
+# (AWS S3 / Cloudflare R2 / Backblaze B2) instead of the ephemeral container disk.
+USE_S3 = env.bool('USE_S3', default=False)
+
+if USE_S3:
+    STORAGES = {
+        'default': {'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage'},
+        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
+    }
+
+    # ── S3-compatible credentials (AWS S3 / Cloudflare R2 / Backblaze B2) ──
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', default=None)
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default=None)
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', default=None)
+    # Endpoint override — REQUIRED for R2/B2 (they are S3-compatible, not AWS).
+    AWS_S3_ENDPOINT_URL = env('AWS_S3_ENDPOINT_URL', default=None)
+    AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME', default=None)
+    # Public/CDN hostname in front of the bucket (e.g. cdn.example.com).
+    AWS_S3_CUSTOM_DOMAIN = env('AWS_S3_CUSTOM_DOMAIN', default=None)
+    # None => private objects (default). 'public-read' => publicly reachable URLs.
+    # NOTE: selfies are personal data → we recommend None + signed/expiring URLs.
+    AWS_DEFAULT_ACL = env('AWS_DEFAULT_ACL', default=None)
+    # Signed/expiring URLs: True signs every media URL with a query string.
+    AWS_QUERYSTRING_AUTH = env.bool('AWS_QUERYSTRING_AUTH', default=True)
+    AWS_QUERYSTRING_EXPIRE = env('AWS_QUERYSTRING_EXPIRE', default=86400)  # 24h
+else:
+    STORAGES = {
+        'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
+        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
+    }
 
 # CORS — strict whitelist in production, permissive in development
 if DEBUG:
@@ -198,6 +232,7 @@ REST_FRAMEWORK = {
         'anon': '100/hour',
         'user': '1000/hour',
         'inquiry_create': '3/hour',
+        'order_create': '3/hour',
     },
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',

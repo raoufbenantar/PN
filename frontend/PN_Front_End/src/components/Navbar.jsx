@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Compass, Home } from 'lucide-react';
+import { Menu, X, Compass, Home, Ticket } from 'lucide-react';
 
 export default function Navbar({ currentPage, setCurrentPage, currentUser, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +78,13 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
                   Admin Panel
                 </button>
               )}
+              <button
+                onClick={() => setCurrentPage('my-ticket')}
+                className="px-4 py-2 bg-brand-orange hover:bg-brand-orangeDark text-white font-space font-black text-xs uppercase tracking-wider border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(22,44,28,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all rounded cursor-pointer inline-flex items-center gap-1.5"
+              >
+                <Ticket className="w-3.5 h-3.5" />
+                My Ticket
+              </button>
               <div className="bg-brand-sand/30 border-2 border-brand-forestDark px-4 py-2 shadow-brutalist-dark rounded">
                 <span className="font-space font-black text-sm text-brand-forestDark uppercase tracking-tight flex items-center gap-1.5 animate-fade-in">
                   <span className="inline-block w-2.5 h-2.5 bg-brand-orange rounded-full animate-pulse"></span>
@@ -144,6 +151,16 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
                   <p className="font-bold text-xs text-brand-dark truncate">{currentUser.name}</p>
                   <p className="text-[9px] text-gray-500 uppercase font-bold tracking-wider">{currentUser.role || 'Explorer'}</p>
                 </div>
+                <button
+                  onClick={() => {
+                    setShowMobileUserMenu(false);
+                    setCurrentPage('my-ticket');
+                  }}
+                  className="w-full text-left px-4 py-2 text-xs font-space font-bold hover:bg-brand-sand/20 text-brand-forest inline-flex items-center gap-2"
+                >
+                  <Ticket className="w-3.5 h-3.5 text-brand-orange" />
+                  My Ticket
+                </button>
                 {currentUser.role === 'admin' && (
                   <button 
                     onClick={() => {

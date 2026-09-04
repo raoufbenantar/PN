@@ -28,6 +28,22 @@ export function removeToken() {
   localStorage.removeItem(REFRESH_KEY);
 }
 
+// ─── My Ticket (selfie ticket) ──────────────────────────────────────
+
+const MY_TICKET_KEY = 'project_nature_my_inquiry_id';
+
+export function setMyInquiryId(id) {
+  localStorage.setItem(MY_TICKET_KEY, id);
+}
+
+export function getMyInquiryId() {
+  return localStorage.getItem(MY_TICKET_KEY);
+}
+
+export function clearMyInquiryId() {
+  localStorage.removeItem(MY_TICKET_KEY);
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────
 
 async function request(url, options = {}) {
@@ -59,7 +75,9 @@ async function request(url, options = {}) {
       detail = res.statusText;
     }
     console.error(`[API] ${res.status} ${url}:`, detail);
-    throw new Error(detail);
+    const err = new Error(detail);
+    err.status = res.status;
+    throw err;
   }
 
   if (res.status === 204) return null;
@@ -156,11 +174,36 @@ export async function createExpedition(formData) {
 
 // ─── Inquiries ────────────────────────────────────────────────────
 
-export async function createInquiry(data) {
-  return request(`${API_BASE}/inquiries/`, {
-    method: 'POST',
-    body: JSON.stringify(data),
+export async function createInquiry(data, selfieFile) {
+  const url = `${API_BASE}/inquiries/`;
+  const formData = new FormData();
+  Object.entries(data).forEach(([k, v]) => {
+    if (v !== undefined && v !== null) formData.append(k, String(v));
   });
+  if (selfieFile) {
+    formData.append('selfie', selfieFile, selfieFile.name || 'selfie.jpg');
+  }
+  const headers = {};
+  const token = getToken();
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  const res = await fetch(url, { method: 'POST', headers, body: formData });
+  if (!res.ok) {
+    if (res.status === 401) removeToken();
+    let detail;
+    try {
+      const body = await res.json();
+      detail = body.detail || JSON.stringify(body);
+    } catch {
+      detail = res.statusText;
+    }
+    throw new Error(detail);
+  }
+  return res.json();
+}
+
+export async function fetchInquiryTicket(id) {
+  return request(`${API_BASE}/inquiries/${id}/ticket/`);
 }
 
 export async function fetchInquiries() {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -15,12 +15,20 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 
 import ChangePasswordPage from './components/ChangePasswordPage';
-import { X, Calendar, User, Phone, Users, CheckCircle, AlertTriangle } from 'lucide-react';
+import { X, Calendar, User, Phone, Users, CheckCircle, AlertTriangle, Camera } from 'lucide-react';
 import AdminDashboard from './components/AdminDashboard';
 import AdminTrips from './components/AdminTrips';
 import AdminAddTrip from './components/AdminAddTrip';
 import AdminRegistrations from './components/AdminRegistrations';
-import { fetchExpeditions, createInquiry, fetchInquiries, updateInquiryStatus, mapExpeditionToTrip, fetchCurrentUser, removeToken } from './services/api';
+import { fetchExpeditions, createInquiry, fetchInquiries, updateInquiryStatus, mapExpeditionToTrip, fetchCurrentUser, removeToken, setMyInquiryId } from './services/api';
+import MyTicket from './components/MyTicket';
+
+// Friendly prompts that rotate while the client captures their selfie.
+const SELFIE_PROMPTS = [
+  'Show us your smile 😊',
+  'We wanna see you smiling!',
+  'Let us see you happy!',
+];
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -38,6 +46,22 @@ export default function App() {
   });
   const [trips, setTrips] = useState([]);
   const [registrations, setRegistrations] = useState([]);
+
+
+  // ── Selfie camera capture state ─────────────────────────────────
+  const [selfieFile, setSelfieFile] = useState(null);
+  const [selfiePreview, setSelfiePreview] = useState(null);
+  const [showCamera, setShowCamera] = useState(false);
+  const [cameraError, setCameraError] = useState(null);
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
+
+  const [selfiePromptIndex, setSelfiePromptIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setSelfiePromptIndex((i) => (i + 1) % 3), 4000);
+    return () => clearInterval(t);
+  }, []);
 
   const handleLogout = () => {
     removeToken();
@@ -60,6 +84,7 @@ export default function App() {
       level: 'Intermediate',
       phone: inq.phone,
       email: inq.email,
+      selfieUrl: inq.selfie_url || null,
       tripTitle: inq.expedition_title || 'General Inquiry',
       tripSubtitle: inq.message?.substring(0, 40) || '',
       date: created.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase(),
@@ -155,10 +180,72 @@ export default function App() {
     setCurrentPage(page);
   };
 
+  // ── Camera helpers (selfie capture) ──────────────────────────────
+  async function startCamera() {
+    setCameraError(null);
+    setShowCamera(true);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'user', width: 640, height: 640 },
+        audio: false,
+      });
+      streamRef.current = stream;
+      if (videoRef.current) videoRef.current.srcObject = stream;
+    } catch {
+      setCameraError('Unable to access camera. Please allow camera permission and try again.');
+      setShowCamera(false);
+    }
+  }
+
+  function stopCamera() {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((t) => t.stop());
+      streamRef.current = null;
+    }
+    setShowCamera(false);
+  }
+
+  function captureSelfie() {
+    const video = videoRef.current;
+    if (!video) return;
+    const canvas = document.createElement('canvas');
+    const size = 480;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    // Center-crop square from the video
+    const vw = video.videoWidth || 640;
+    const vh = video.videoHeight || 480;
+    const min = Math.min(vw, vh);
+    const sx = (vw - min) / 2;
+    const sy = (vh - min) / 2;
+    ctx.drawImage(video, sx, sy, min, min, 0, 0, size, size);
+    canvas.toBlob((blob) => {
+      if (!blob) return;
+      const file = new File([blob], 'selfie.jpg', { type: 'image/jpeg' });
+      setSelfieFile(file);
+      setSelfiePreview(URL.createObjectURL(file));
+      stopCamera();
+    }, 'image/jpeg', 0.9);
+  }
+
+  function resetSelfie() {
+    setSelfieFile(null);
+    if (selfiePreview) URL.revokeObjectURL(selfiePreview);
+    setSelfiePreview(null);
+    setCameraError(null);
+  }
+
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
     setBookingStatus('loading');
     setBookingError(null);
+
+    if (!selfieFile) {
+      setBookingError('Please add a selfie photo to complete your booking.');
+      setBookingStatus('error');
+      return;
+    }
 
     const inquiryPayload = {
       name: currentUser?.name || bookingDetails.name || 'Explorer User',
@@ -169,7 +256,7 @@ export default function App() {
     };
 
     try {
-      const inq = await createInquiry(inquiryPayload);
+      const inq = await createInquiry(inquiryPayload, selfieFile);
 
       const newReg = {
         id: inq.id || 'reg-' + Date.now(),
@@ -184,6 +271,10 @@ export default function App() {
       };
       setRegistrations(prev => [newReg, ...prev]);
       setBookingStatus('success');
+      setSelfieFile(null);
+      setSelfiePreview(null);
+
+      if (inq && inq.id) setMyInquiryId(inq.id);
 
       // Re-fetch inquiries from backend to keep admin view in sync
       try {
@@ -248,6 +339,16 @@ export default function App() {
     return <ChangePasswordPage setCurrentPage={handleSetPage} currentUser={currentUser} />;
   }
 
+  if (currentPage === 'my-ticket') {
+    return (
+      <MyTicket
+        setCurrentPage={handleSetPage}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+      />
+    );
+  }
+
   // ── Admin route guards: redirect non-staff users ────────────────
   const isAdmin = currentUser?.role === 'admin';
 
@@ -303,6 +404,7 @@ export default function App() {
       />
     );
   }
+
 
   return (
     <div className="bg-brand-bg text-brand-dark min-h-screen relative font-work selection:bg-brand-orange selection:text-white">
@@ -427,6 +529,58 @@ export default function App() {
                     </span>
                     <span className="font-work font-black text-brand-orange">1 Seat</span>
                   </div>
+                </div>
+
+                {/* ── Selfie capture step ── */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-space font-black text-[10px] text-brand-forestDark/65 uppercase tracking-widest flex items-center">
+                      <Camera className="w-3.5 h-3.5 mr-1 text-brand-orange" />
+                      Selfie Ticket
+                    </span>
+                    <span className="font-space font-black text-[9px] text-brand-orange uppercase tracking-wider">required</span>
+                  </div>
+                  <p className="text-sm font-work font-semibold text-brand-forestDark mb-3 text-center min-h-[20px]">
+                    {SELFIE_PROMPTS[selfiePromptIndex]}
+                  </p>
+                  {cameraError && (
+                    <p className="text-xs font-work font-medium text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2 mb-3">{cameraError}</p>
+                  )}
+                  {showCamera ? (
+                    <div className="bg-brand-forestDark rounded p-2">
+                      <video ref={videoRef} autoPlay playsInline muted className="w-full aspect-square object-cover rounded" />
+                      <div className="flex gap-2 mt-3">
+                        <button type="button" onClick={captureSelfie} className="flex-1 bg-brand-orange text-white py-2.5 font-space font-black text-xs uppercase tracking-wider rounded cursor-pointer">
+                          Capture
+                        </button>
+                        <button type="button" onClick={stopCamera} className="flex-1 bg-white text-brand-forestDark py-2.5 font-space font-black text-xs uppercase tracking-wider rounded cursor-pointer">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : selfiePreview ? (
+                    <div className="relative bg-white border-2 border-brand-forestDark rounded overflow-hidden">
+                      <img src={selfiePreview} alt="Your selfie" className="w-full aspect-square object-cover" />
+                      <div className="absolute bottom-2 right-2 flex gap-2">
+                        <button type="button" onClick={startCamera} className="bg-brand-forest text-white px-3 py-1.5 font-space font-black text-[10px] uppercase tracking-wider rounded cursor-pointer">
+                          Retake
+                        </button>
+                        <button type="button" onClick={resetSelfie} className="bg-red-600 text-white px-3 py-1.5 font-space font-black text-[10px] uppercase tracking-wider rounded cursor-pointer">
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <button type="button" onClick={startCamera} className="w-full border-2 border-dashed border-brand-forestDark/40 rounded p-6 bg-brand-sand/40 hover:bg-brand-sand/70 transition-colors cursor-pointer flex flex-col items-center gap-2">
+                      <Camera className="w-8 h-8 text-brand-orange" />
+                      <span className="font-space font-black text-xs text-brand-forestDark uppercase tracking-wider">Take your selfie</span>
+                      <span className="font-work font-medium text-[10px] text-brand-dark/60">Use your camera to capture a photo</span>
+                    </button>
+                  )}
+                  {selfiePreview && <p className="text-[10px] font-space font-bold text-brand-dark/50 mt-2 text-center">Swapped in on your ticket if confirmed</p>}
+                  <div className="mt-2 flex gap-1.5 justify-center">{[0,1,2,3].map(i => (
+                    <span key={i} className={`h-1 w-6 rounded-full ${i === selfiePromptIndex ? 'bg-brand-orange' : 'bg-brand-forest/20'}`} />
+                  ))}</div>
                 </div>
 
                 <form onSubmit={handleBookingSubmit}>

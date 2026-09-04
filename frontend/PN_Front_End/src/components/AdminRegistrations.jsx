@@ -97,6 +97,7 @@ export default function AdminRegistrations({
                 <thead>
                   <tr className="bg-amber-50/50 border-b-2 border-primary text-primary">
                     <th className="p-5 font-space font-black text-[10px] uppercase tracking-widest">Participant</th>
+                    <th className="p-5 font-space font-black text-[10px] uppercase tracking-widest">Selfie</th>
                     <th className="p-5 font-space font-black text-[10px] uppercase tracking-widest">Expedition</th>
                     <th className="p-5 font-space font-black text-[10px] uppercase tracking-widest">Contact Phone</th>
                     <th className="p-5 font-space font-black text-[10px] uppercase tracking-widest">Request Date</th>
@@ -117,6 +118,19 @@ export default function AdminRegistrations({
                             <p className="font-space text-[10px] text-on-surface-variant mt-0.5">Level: {reg.level || 'Intermediate'}</p>
                           </div>
                         </div>
+                      </td>
+                      <td className="p-5">
+                        {reg.selfieUrl ? (
+                          <img
+                            src={reg.selfieUrl}
+                            alt={reg.name}
+                            className="w-12 h-12 rounded object-cover border-2 border-primary"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded bg-slate-100 border-2 border-primary/20 flex items-center justify-center text-primary/40">
+                            <span className="material-symbols-outlined text-base">person</span>
+                          </div>
+                        )}
                       </td>
                       <td className="p-5">
                         <span className="font-syne font-bold text-sm text-primary block leading-tight">{reg.tripTitle}</span>
@@ -169,7 +183,7 @@ export default function AdminRegistrations({
                   ))}
                   {registrations.length === 0 && (
                     <tr>
-                      <td colSpan="6" className="p-10 text-center text-on-surface-variant font-medium">
+                      <td colSpan="7" className="p-10 text-center text-on-surface-variant font-medium">
                         No pending registrations.
                       </td>
                     </tr>

@@ -12,3 +12,5 @@ whitenoise
 django-filter
 django-cors-headers
 django-axes
+# S3-compatible media storage (AWS S3 / Cloudflare R2 / Backblaze B2)
+django-storages[s3]==1.14.6
