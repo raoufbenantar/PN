@@ -20,8 +20,14 @@ import AdminDashboard from './components/AdminDashboard';
 import AdminTrips from './components/AdminTrips';
 import AdminAddTrip from './components/AdminAddTrip';
 import AdminRegistrations from './components/AdminRegistrations';
-import { fetchExpeditions, createInquiry, fetchInquiries, updateInquiryStatus, mapExpeditionToTrip, fetchCurrentUser, removeToken, setMyInquiryId } from './services/api';
+import { fetchExpeditions, createInquiry, fetchInquiries, updateInquiryStatus, mapExpeditionToTrip, fetchCurrentUser, removeToken, setMyInquiryId, getCart, setCartStorage } from './services/api';
 import MyTicket from './components/MyTicket';
+import StorePage from './components/StorePage';
+import ProductDetailPage from './components/ProductDetailPage';
+import CartPage from './components/CartPage';
+import CheckoutPage from './components/CheckoutPage';
+import AdminStoreProducts from './components/AdminStoreProducts';
+import AdminStoreOrders from './components/AdminStoreOrders';
 
 // Friendly prompts that rotate while the client captures their selfie.
 const SELFIE_PROMPTS = [
@@ -47,6 +53,44 @@ export default function App() {
   const [trips, setTrips] = useState([]);
   const [registrations, setRegistrations] = useState([]);
 
+  // ── Store cart state (lifted, persisted) ─────────────────────────
+  const [cart, setCart] = useState(getCart() || []);
+  const [selectedProductSlug, setSelectedProductSlug] = useState(null);
+
+  function persistCart(next) {
+    setCart(next);
+    setCartStorage(next);
+  }
+
+  function addToCart(item) {
+    if (!item || !item.variantId) return;
+    const existing = cart.find((i) => i.variantId === item.variantId);
+    const next = existing
+      ? cart.map((i) => i.variantId === item.variantId ? { ...i, quantity: i.quantity + (item.quantity || 1) } : i)
+      : [...cart, { ...item, quantity: item.quantity || 1 }];
+    persistCart(next);
+  }
+
+  function updateCartQty(variantId, qty) {
+    const next = qty <= 0
+      ? cart.filter((i) => i.variantId !== variantId)
+      : cart.map((i) => (i.variantId === variantId ? { ...i, quantity: qty } : i));
+    persistCart(next);
+  }
+
+  function removeFromCart(variantId) {
+    persistCart(cart.filter((i) => i.variantId !== variantId));
+  }
+
+  function clearCart() {
+    persistCart([]);
+  }
+
+  function handleSelectProduct(slug) {
+    setSelectedProductSlug(slug);
+    setCurrentPage('product-detail');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   // ── Selfie camera capture state ─────────────────────────────────
   const [selfieFile, setSelfieFile] = useState(null);
@@ -405,6 +449,27 @@ export default function App() {
     );
   }
 
+  if (currentPage === 'admin-store-products' && isAdmin) {
+    return (
+      <AdminStoreProducts
+        currentPage={currentPage}
+        setCurrentPage={handleSetPage}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+      />
+    );
+  }
+
+  if (currentPage === 'admin-store-orders' && isAdmin) {
+    return (
+      <AdminStoreOrders
+        currentPage={currentPage}
+        setCurrentPage={handleSetPage}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+      />
+    );
+  }
 
   return (
     <div className="bg-brand-bg text-brand-dark min-h-screen relative font-work selection:bg-brand-orange selection:text-white">
@@ -431,6 +496,14 @@ export default function App() {
           <SouvenirsPage setCurrentPage={handleSetPage} />
         ) : currentPage === 'about' ? (
           <AboutPage setCurrentPage={handleSetPage} />
+        ) : currentPage === 'store' ? (
+          <StorePage setCurrentPage={handleSetPage} onSelectProduct={handleSelectProduct} cart={cart} />
+        ) : currentPage === 'product-detail' ? (
+          <ProductDetailPage selectedProductSlug={selectedProductSlug} setCurrentPage={handleSetPage} addToCart={addToCart} />
+        ) : currentPage === 'cart' ? (
+          <CartPage cart={cart} updateCartQty={updateCartQty} removeFromCart={removeFromCart} clearCart={clearCart} setCurrentPage={handleSetPage} />
+        ) : currentPage === 'checkout' ? (
+          <CheckoutPage cart={cart} clearCart={clearCart} setCurrentPage={handleSetPage} />
         ) : (
           selectedTripDetails && (
             <ExpeditionDetailsPage 

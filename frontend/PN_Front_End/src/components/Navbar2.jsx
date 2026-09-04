@@ -4,7 +4,9 @@ export default function Navbar2({ currentPage, setCurrentPage, currentUser, onLo
   const adminLinks = [
     { name: 'Overview', icon: 'dashboard', page: 'admin-dashboard' },
     { name: 'Trips', icon: 'explore', page: 'admin-trips' },
-    { name: 'Registrations', icon: 'assignment_ind', page: 'admin-registrations' }
+    { name: 'Registrations', icon: 'assignment_ind', page: 'admin-registrations' },
+    { name: 'Store Products', icon: 'inventory_2', page: 'admin-store-products' },
+    { name: 'Store Orders', icon: 'assignment', page: 'admin-store-orders' }
   ];
 
   return (

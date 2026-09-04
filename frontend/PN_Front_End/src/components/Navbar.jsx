@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Compass, Home, Ticket } from 'lucide-react';
+import { Menu, X, Compass, Home, Ticket, ShoppingBag } from 'lucide-react';
 
 export default function Navbar({ currentPage, setCurrentPage, currentUser, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +8,7 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
   const navLinks = [
     { name: 'Kherjat', href: '#expeditions' },
     { name: 'Souvenirs', href: '#souvenirs' },
+    { name: 'Store', href: '#store' },
     { name: 'About', href: '#about' }
   ];
 
@@ -21,6 +22,9 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (link.name === 'About') {
       setCurrentPage('about');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (link.name === 'Store') {
+      setCurrentPage('store');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -57,6 +61,7 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
                 className={`text-brand-dark hover:text-brand-orange relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-orange hover:after:w-full after:transition-all after:duration-300 transition-colors focus:outline-none bg-transparent border-none cursor-pointer ${
                   (link.name === 'Kherjat' && (currentPage === 'kherjat' || currentPage === 'details')) || 
                   (link.name === 'Souvenirs' && currentPage === 'souvenirs') ||
+                  (link.name === 'Store' && currentPage === 'store') ||
                   (link.name === 'About' && currentPage === 'about')
                     ? 'text-brand-orange border-b-2 border-brand-orange pb-0.5' 
                     : ''
@@ -235,6 +240,19 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
             <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
           </svg>
           <span className="text-[9px] font-bold font-space">Souvenirs</span>
+        </button>
+
+        <button 
+          onClick={() => {
+            setCurrentPage('store');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className={`flex flex-col items-center gap-1 focus:outline-none bg-transparent border-none cursor-pointer ${
+            currentPage === 'store' ? 'text-brand-orange' : 'text-gray-400'
+          }`}
+        >
+          <ShoppingBag className="w-5 h-5" />
+          <span className="text-[9px] font-bold font-space">Store</span>
         </button>
 
         <button 

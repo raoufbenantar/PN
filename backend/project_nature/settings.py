@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'expeditions',
     'inquiries',
     'accounts',
+    'store',
 ]
 
 MIDDLEWARE = [

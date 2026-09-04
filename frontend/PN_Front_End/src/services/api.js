@@ -270,3 +270,154 @@ export function mapExpeditionToTrip(exp) {
     location: exp.location,
   };
 }
+
+// ─── Store: cart persistence ───────────────────────────────────────
+
+const STORE_CART_KEY = 'project_nature_store_cart';
+
+export function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem(STORE_CART_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+export function setCartStorage(cart) {
+  localStorage.setItem(STORE_CART_KEY, JSON.stringify(cart));
+}
+
+export function clearCartStorage() {
+  localStorage.removeItem(STORE_CART_KEY);
+}
+
+// ─── Store: helper ─────────────────────────────────────────────────
+
+export function formatStorePrice(value) {
+  const num = parseFloat(value);
+  if (Number.isNaN(num)) return '—';
+  return num.toLocaleString('fr-DZ', { maximumFractionDigits: 0 }).replace(/\s/g, '.') + ' DA';
+}
+
+// ─── Store: multipart helper (bearer + no Content-Type) ────────────
+
+async function multipartRequest(url, method, formData) {
+  const headers = {};
+  const token = getToken();
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+  const res = await fetch(url, { method, headers, body: formData });
+  if (!res.ok) {
+    if (res.status === 401) removeToken();
+    let detail;
+    try {
+      const body = await res.json();
+      detail = body.detail || JSON.stringify(body);
+    } catch {
+      detail = res.statusText;
+    }
+    const err = new Error(detail);
+    err.status = res.status;
+    throw err;
+  }
+  if (res.status === 204) return null;
+  return res.json();
+}
+
+// ─── Store: products (public read) ─────────────────────────────────
+
+export async function fetchProducts(params = {}) {
+  const q = new URLSearchParams(params).toString();
+  return request(`${API_BASE}/store/products/${q ? '?' + q : ''}`);
+}
+
+export async function fetchProductBySlug(slug) {
+  return request(`${API_BASE}/store/products/${slug}/`);
+}
+
+// ─── Store: products (admin write) ─────────────────────────────────
+
+export async function createStoreProduct(data, coverFile) {
+  const fd = new FormData();
+  Object.entries(data).forEach(([k, v]) => {
+    if (v !== undefined && v !== null) fd.append(k, String(v));
+  });
+  if (coverFile) fd.append('cover_image', coverFile, coverFile.name || 'cover.jpg');
+  return multipartRequest(`${API_BASE}/store/products/`, 'POST', fd);
+}
+
+export async function updateStoreProduct(slug, data, coverFile) {
+  const fd = new FormData();
+  Object.entries(data).forEach(([k, v]) => {
+    if (v !== undefined && v !== null) fd.append(k, String(v));
+  });
+  if (coverFile) fd.append('cover_image', coverFile, coverFile.name || 'cover.jpg');
+  return multipartRequest(`${API_BASE}/store/products/${slug}/`, 'PATCH', fd);
+}
+
+export async function deleteStoreProduct(slug) {
+  return request(`${API_BASE}/store/products/${slug}/`, { method: 'DELETE' });
+}
+
+// ─── Store: product images (admin) ─────────────────────────────────
+
+export async function fetchProductImages(productId) {
+  return request(`${API_BASE}/store/product-images/?product=${productId}`);
+}
+
+export async function createProductImage(productId, imageFile, caption = '', order = 0) {
+  const fd = new FormData();
+  fd.append('product', String(productId));
+  fd.append('image', imageFile, imageFile.name || 'image.jpg');
+  fd.append('caption', caption);
+  fd.append('order', String(order));
+  return multipartRequest(`${API_BASE}/store/product-images/`, 'POST', fd);
+}
+
+export async function deleteProductImage(id) {
+  return request(`${API_BASE}/store/product-images/${id}/`, { method: 'DELETE' });
+}
+
+// ─── Store: product variants (admin) ───────────────────────────────
+
+export async function fetchProductVariants(productId) {
+  return request(`${API_BASE}/store/product-variants/?product=${productId}`);
+}
+
+export async function createProductVariant(data) {
+  return request(`${API_BASE}/store/product-variants/`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateProductVariant(id, data) {
+  return request(`${API_BASE}/store/product-variants/${id}/`, {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteProductVariant(id) {
+  return request(`${API_BASE}/store/product-variants/${id}/`, { method: 'DELETE' });
+}
+
+// ─── Store: orders ─────────────────────────────────────────────────
+
+export async function createOrder(data) {
+  return request(`${API_BASE}/store/orders/`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function fetchOrders(params = {}) {
+  const q = new URLSearchParams(params).toString();
+  return request(`${API_BASE}/store/orders/${q ? '?' + q : ''}`);
+}
+
+export async function updateOrderStatus(id, status) {
+  return request(`${API_BASE}/store/orders/${id}/`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status }),
+  });
+}
