@@ -29,6 +29,14 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
+      // ── Project conventions ─────────────────────────────────────
+      // This codebase uses React 18's automatic JSX runtime and does NOT
+      // use PropTypes (no component in the repo defines them), and it renders
+      // raw apostrophes/quotes in JSX text. The stock Vite template rules below
+      // never matched this project's real style, so we align them here.
+      'react/prop-types': 'off',
+      'react/no-unescaped-entities': 'off',
+      'no-unused-vars': 'warn',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

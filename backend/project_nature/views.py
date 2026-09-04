@@ -7,8 +7,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from accounts.models import UserProfile
-
 User = get_user_model()
 
 
@@ -68,7 +66,6 @@ class RegisterView(APIView):
                 first_name=first_name,
                 last_name=last_name,
             )
-            UserProfile.objects.get_or_create(user=user, defaults={'email_verified': True})
         except Exception as e:
             return Response(
                 {'detail': f'Registration failed: {str(e)}'},

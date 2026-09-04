@@ -91,37 +91,6 @@ export async function fetchCurrentUser() {
   return request(`${API_BASE}/me/`);
 }
 
-// ─── Password Reset ────────────────────────────────────────────────
-
-export async function requestPasswordReset(email) {
-  return request(`${API_BASE}/auth/password-reset/`, {
-    method: 'POST',
-    body: JSON.stringify({ email }),
-  });
-}
-
-export async function resetPassword(token, newPassword, confirmPassword) {
-  return request(`${API_BASE}/auth/password-reset/confirm/`, {
-    method: 'POST',
-    body: JSON.stringify({ token, new_password: newPassword, confirm_password: confirmPassword }),
-  });
-}
-
-// ─── Email Verification ───────────────────────────────────────────
-
-export async function sendVerificationCode(email) {
-  return request(`${API_BASE}/auth/send-verification/`, {
-    method: 'POST',
-    body: JSON.stringify({ email }),
-  });
-}
-
-export async function verifyEmail(email, code) {
-  return request(`${API_BASE}/auth/verify-email/`, {
-    method: 'POST',
-    body: JSON.stringify({ email, code }),
-  });
-}
 
 // ─── Change Password ──────────────────────────────────────────────
 

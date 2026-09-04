@@ -232,25 +232,7 @@ AXES_ENABLE_ADMIN = True        # protect admin login too
 ADMINS = [(a.strip(), a.strip()) for a in env('DJANGO_ADMINS', default='').split(',') if a.strip()]
 SERVER_EMAIL = env('SERVER_EMAIL', default='noreply@project-nature.local')
 
-# Email backend — use SMTP when real credentials are provided, console otherwise
-_email_host_user = env('EMAIL_HOST_USER', default='')
-_email_host_password = env('EMAIL_HOST_PASSWORD', default='')
-_has_smtp_credentials = bool(
-    _email_host_user
-    and _email_host_password
-    and 'your-email' not in _email_host_user  # skip placeholder values
-)
 
-EMAIL_BACKEND = env(
-    'EMAIL_BACKEND',
-    default='django.core.mail.backends.smtp.EmailBackend' if _has_smtp_credentials else 'django.core.mail.backends.console.EmailBackend',
-)
-EMAIL_HOST = env('EMAIL_HOST', default='smtp.gmail.com')
-EMAIL_PORT = env.int('EMAIL_PORT', default=587)
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
-EMAIL_HOST_USER = _email_host_user
-EMAIL_HOST_PASSWORD = _email_host_password
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default=_email_host_user or 'noreply@project-nature.dz')
 
 # Sentry (optional — set SENTRY_DSN in production)
 SENTRY_DSN = env('SENTRY_DSN', default='')

@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import UserProfile
+from .models import NewsletterSubscription
 
 
-@admin.register(UserProfile)
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'email_verified']
-    list_filter = ['email_verified']
+@admin.register(NewsletterSubscription)
+class NewsletterSubscriptionAdmin(admin.ModelAdmin):
+    list_display = ['email', 'is_active', 'created_at']
+    list_filter = ['is_active']

@@ -134,7 +134,6 @@ export default function LoginPage({ setCurrentPage, onLoginSuccess }) {
                       type="password"
                     />
                   </div>
-                  {/* Forgot password disabled — no SMTP configured */}
                 </div>
 
                 <div className="pt-4">

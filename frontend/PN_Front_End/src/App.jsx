@@ -13,9 +13,7 @@ import AboutPage from './components/AboutPage';
 import ExpeditionDetailsPage from './components/ExpeditionDetailsPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
-import EmailVerificationPage from './components/EmailVerificationPage';
-import ForgotPasswordPage from './components/ForgotPasswordPage';
-import NewPasswordPage from './components/NewPasswordPage';
+
 import ChangePasswordPage from './components/ChangePasswordPage';
 import { X, Calendar, User, Phone, Users, CheckCircle, AlertTriangle } from 'lucide-react';
 import AdminDashboard from './components/AdminDashboard';
@@ -27,7 +25,7 @@ import { fetchExpeditions, createInquiry, fetchInquiries, updateInquiryStatus, m
 export default function App() {
   const [currentPage, setCurrentPage] = useState('landing');
   const [currentUser, setCurrentUser] = useState(null);
-  const [registeredUser, setRegisteredUser] = useState(null);
+
   const [selectedTripDetails, setSelectedTripDetails] = useState(null);
   const [previousPage, setPreviousPage] = useState('landing');
   const [selectedTrip, setSelectedTrip] = useState(null);
@@ -240,22 +238,11 @@ export default function App() {
 
   if (currentPage === 'register') {
     return <RegisterPage setCurrentPage={handleSetPage} onRegisterSuccess={(userData) => {
-      setRegisteredUser(userData);
       setCurrentUser(userData);
     }} />;
   }
 
-  if (currentPage === 'verify-email') {
-    return <EmailVerificationPage setCurrentPage={handleSetPage} onVerifySuccess={() => setCurrentUser(registeredUser || { name: 'Wilderness Explorer', phone: '0555 12 34 56' })} />;
-  }
 
-  if (currentPage === 'forgot-password') {
-    return <ForgotPasswordPage setCurrentPage={handleSetPage} />;
-  }
-
-  if (currentPage === 'new-password') {
-    return <NewPasswordPage setCurrentPage={handleSetPage} />;
-  }
 
   if (currentPage === 'change-password') {
     return <ChangePasswordPage setCurrentPage={handleSetPage} currentUser={currentUser} />;

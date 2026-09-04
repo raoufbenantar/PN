@@ -11,29 +11,6 @@
 // ==========================================
 // 2. ACCOUNTS
 // ==========================================
-Table accounts_userprofile {
-  id integer [primary key]
-  user_id integer [ref: > auth.user(id), unique]
-  email_verified boolean [default: false]
-}
-
-Table accounts_emailverificationcode {
-  id integer [primary key]
-  email varchar
-  code varchar(6)
-  created_at timestamp
-  expires_at timestamp
-}
-
-Table accounts_passwordresettoken {
-  id integer [primary key]
-  email varchar
-  token varchar(100) [unique]
-  created_at timestamp
-  expires_at timestamp
-  used boolean [default: false]
-}
-
 Table accounts_newslettersubscription {
   id integer [primary key]
   email varchar [unique]
