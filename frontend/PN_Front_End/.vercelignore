@@ -1,0 +1,30 @@
+# Design mockup folders - not part of the Vite build
+about_us_mobile/
+add_trip_desktop/
+add_trip_mobile/
+create account/
+create account mobile/
+dashboard_desktop/
+dashboard_mobile/
+email ver /
+email ver mobile/
+expedition_details_desktop/
+expedition_details_mobile/
+exp manage/
+exp manage mobile/
+forgot pw/
+forgot pw mobile/
+kherjat_official/
+landing_page_desktop_new_design/
+landing_page_mobile_new_design/
+login page/
+login page mobile/
+new pw/
+new pw mobile/
+propos_official/
+registrations_desktop/
+registrations_mobile/
+souvenirs_mobile/
+souvenirs_official_desktop/
+wilderness_narrative/
+dist/

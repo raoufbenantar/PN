@@ -1,7 +1,9 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function AboutPage({ setCurrentPage }) {
+  const { getImage } = useSiteImages();
   return (
     <div className="pt-20 bg-brand-bg min-h-screen font-work">
       
@@ -44,7 +46,7 @@ export default function AboutPage({ setCurrentPage }) {
               <img 
                 alt="Mountain Landscape" 
                 className="w-full h-auto grayscale object-cover max-w-md" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFab2nh9VRs0VbD0H1zwtFc6LRcgDIxHySdLTxN5UPMXmamTmISDYqew8iumyu7zbXYgydY9IOAUlMXwho1ofNRdaqZsL3IiBOYQ_KL2iZxDzPaP4aghhhXb9LXnlFAU1i6JBjykb_Pl0FF4iTdu0QhdH5nEFX0Z_TxdafA2Aw1kvTH7KLa68WAg2hJ4lq8OSG0DhFAseeUr1neL_eZ9x7O7w_kzB44XPkCRxIfSsLgD7mxTOtosZVI0lQi18sD7x6OXOEBWcl0ac"
+                src={getImage('about.hero')}
               />
               {/* Established Badge */}
               <div className="absolute bottom-6 left-6 bg-brand-orange text-white px-4 py-1.5 text-xs font-space font-black -rotate-12 rounded border border-brand-forestDark shadow-[2px_2px_0px_rgba(0,0,0,1)]">
@@ -133,7 +135,7 @@ export default function AboutPage({ setCurrentPage }) {
               <img 
                 alt="Haithem" 
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAa6kaBxLx-qP2MRrqjAVGU1luaJoKUPJaOHNhyvpaiythKFCNSRuFUrKri4kjwDcGoDkZKfEuaHj1ZKMKgy5JARHv3QpTiUGyoLDwgBBnvK_uu1NGyODhnEgx2C-qYiBl-RkWx19nehB47oHv4_tneOlWjjLNpTwKkZKks8iUP6-EVCQ7BHlHh8Ui7tJnjnWTDeyynsGPD2tdW3Y6K7I7az_BoLDGUQph1Eojdo_gJVuEbsMRqCuw_ub0g2f2eABEcuAy_c3uz2o"
+                src={getImage('about.team.haithem')}
               />
             </div>
             <div className="absolute bottom-4 left-4 right-4 bg-brand-orange text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform -rotate-2">
@@ -150,7 +152,7 @@ export default function AboutPage({ setCurrentPage }) {
               <img 
                 alt="Rahim" 
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSyOEPIzr2_2--9wEutu0ggObOJQR0iUGw7ZdHmfRPOjKGkwXFqpv_9sReNJC82qSurjQCqHg5H3rYoJ8GMP4qX1m8KEG6ZLmNepa1IWRMjQviWHkY_WnxOHbxtcl21ToSnq6h5Q2KIfAglD82v5rhMMeR0jf-Kedgv75W7pohFrOXOg8ZrIfdpEKzoRxgqSqyMQSyvMtxXJFL_RU09QYtNdsAuXOZmdCKIjODVN81SR1RHs9db_ofLOJyMhgRG-cXUpQYjwZzh70"
+                src={getImage('about.team.rahim')}
               />
             </div>
             <div className="absolute bottom-4 left-4 right-4 bg-brand-forest text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform rotate-2">
@@ -167,7 +169,7 @@ export default function AboutPage({ setCurrentPage }) {
               <img 
                 alt="Amine" 
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzA_OgoKJjABjlEmgp-m4fRKidFCo5Atowcp2_nc8n6CA5_wJfOU9lEo5C-fpyTArB05yiSzEtPGXohDUwzS2rPX0nQj48mzz-_i3PR1urXms24Hcu1mlJldvO5PEWRarP87m9zYSOWs55DYvQYHY6C2ZqxuQBbCZS8jWBZbTVuF5ERg0lJSJg1rTiIiu5MPxqRDB0xaOMo5CyXkuAGJzTnNSUg7aHanQBkTqZYJoWqmK4Fwch9Ud9qWLhfA-MD2vdR_LIALaGmxk"
+                src={getImage('about.team.amine')}
               />
             </div>
             <div className="absolute bottom-4 left-4 right-4 bg-[#8E3A0D] text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform -rotate-1">
@@ -184,7 +186,7 @@ export default function AboutPage({ setCurrentPage }) {
               <img 
                 alt="Sarah" 
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRXJPyP3gNdz2iTuFXaNbDLxE-qdX3f1ufSmaDgx1_mJOUjseHtA3HkgEt2HGRjGS49KVPNvSD4ietq1jAuVCtOZPFewN85cp-TbNEXa55fGj2Ihr4ztTw3khFPLPtL-EGwcNPObrDBe53-Ba_Qo5zGS4x1V2q6-zfWm22G_WaB4LNqo5KIJP8e9HdaKIRy91CGKTDfRJ8JmAHNh2l-jROo4ep7Nn_y6WS2eYaINaR0Bak4Pg6W0AKIfT2to6QKySqdBzTpg4GGX4"
+                src={getImage('about.team.sarah')}
               />
             </div>
             <div className="absolute bottom-4 left-4 right-4 bg-brand-forestDark text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform rotate-3">

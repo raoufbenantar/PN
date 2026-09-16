@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowLeft, Eye, EyeOff, Lock, Compass, CheckCircle } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Eye, EyeOff, Lock, CheckCircle } from 'lucide-react';
 import { changePassword } from '../services/api';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function ChangePasswordPage({ setCurrentPage, currentUser }) {
+  const { getImage } = useSiteImages();
   const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -54,7 +56,7 @@ export default function ChangePasswordPage({ setCurrentPage, currentUser }) {
       <section className="hidden md:block w-1/2 relative border-r-4 border-brand-forestDark bg-brand-forestDark overflow-hidden min-h-screen">
         <div 
           className="absolute inset-0 bg-cover bg-center" 
-          style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuClg8-WJqIO1eN5vpejsvboHOpxFpdY90yTYsBhE_vTb6hNmxdiqgV2qzJPa96PA-_3M-xsJWnKbyUXn7GTTrX3uWcZ4bh7jMlwaEAtg-UHc-V-7_UGp2FSf1MCGhWRY0envMCOwPKhQmoghUycNxMugCjRBffWDdI2gfOyp9-1m8W9JljijhZ23KZSaEx1ZtLoDMmZIrkT7rDcGbnx6yyuRy_4xReEg3jQrqxmbTOFYOWi9Arabxc6')" }}
+          style={{ backgroundImage: `url('${getImage('auth.changePassword')}')` }}
         />
         <div className="absolute inset-0 bg-brand-forestDark/20 mix-blend-multiply"></div>
         
@@ -63,7 +65,7 @@ export default function ChangePasswordPage({ setCurrentPage, currentUser }) {
           className="absolute top-16 left-16 bg-white px-5 py-2.5 border-2 border-brand-forestDark shadow-[4px_4px_0px_0px_rgba(22,44,28,1)] rotate-[-2deg] cursor-pointer group"
         >
           <div className="flex items-center gap-2">
-            <Compass className="w-6 h-6 text-brand-orange group-hover:scale-110 transition-transform" />
+            <img src="/projet-nature.webp" alt="Project Nature logo" className="w-6 h-6 object-contain group-hover:scale-110 transition-transform" />
             <span className="font-syne text-xl font-black text-brand-forestDark tracking-tighter uppercase leading-[0.8]">
               PROJECT <span className="font-light italic text-brand-orange">NATURE</span>
             </span>
@@ -77,7 +79,7 @@ export default function ChangePasswordPage({ setCurrentPage, currentUser }) {
           onClick={() => setCurrentPage('landing')}
           className="md:hidden flex items-center gap-2 mb-10 w-full max-w-md self-start text-brand-forestDark cursor-pointer"
         >
-          <Compass className="w-7 h-7 text-brand-orange" />
+          <img src="/projet-nature.webp" alt="Project Nature logo" className="w-7 h-7 object-contain" />
           <span className="font-syne text-xl font-bold tracking-tighter uppercase">PROJECT NATURE</span>
         </div>
 

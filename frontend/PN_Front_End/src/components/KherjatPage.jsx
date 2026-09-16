@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Calendar, ArrowRight, MapPin, SlidersHorizontal, Search, ChevronRight } from 'lucide-react';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function KherjatPage({ onBookTrip, onSelectTrip, excursions: propExcursions }) {
+  const { getImage } = useSiteImages();
   const [searchTerm, setSearchTerm] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('All');
   const [categoryFilter, setCategoryFilter] = useState('All');
@@ -294,7 +296,7 @@ export default function KherjatPage({ onBookTrip, onSelectTrip, excursions: prop
             <img 
               alt="Immersion Nature" 
               className="relative z-10 w-full aspect-[4/3] object-cover border-2 border-brand-sand rounded shadow-brutalist-dark" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCibTEd5I-KSowPb_fIJWZlWnlJXjLghZ8qQXew7MDT-qcsm6nDL9QSgvhpHksML5q-Arw-wbFDFV0KQ75ch89xC7qhHK0BQOI6nkDkBVB-bNB5P2mjJKnim2YlCjWFMydVTjfayiSTthzEV81NSBb-U6IZ7s_091_31tewrune4_2KVs344VpZTTSuWeTHJJ1v1p2RmocCYPmD09PUe5Q3ypPwyR2qbAaws_3YDG7C6VrwA9YdKyT85GlK6eeBLGI13S20EFfk2qc"
+              src={getImage('kherjat.philosophy')}
             />
           </div>
           <div className="z-10">

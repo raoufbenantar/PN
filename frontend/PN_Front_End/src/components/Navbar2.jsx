@@ -6,7 +6,8 @@ export default function Navbar2({ currentPage, setCurrentPage, currentUser, onLo
     { name: 'Trips', icon: 'explore', page: 'admin-trips' },
     { name: 'Registrations', icon: 'assignment_ind', page: 'admin-registrations' },
     { name: 'Store Products', icon: 'inventory_2', page: 'admin-store-products' },
-    { name: 'Store Orders', icon: 'assignment', page: 'admin-store-orders' }
+    { name: 'Store Orders', icon: 'assignment', page: 'admin-store-orders' },
+    { name: 'Site Images', icon: 'image', page: 'admin-site-images' }
   ];
 
   return (
@@ -14,7 +15,10 @@ export default function Navbar2({ currentPage, setCurrentPage, currentUser, onLo
       {/* SideNavBar - Desktop */}
       <aside className="hidden md:flex flex-col h-screen sticky top-0 bg-white h-full w-64 border-r-2 border-primary shadow-[4px_4px_0px_0px_rgba(44,66,49,0.2)] z-50 shrink-0">
         <div className="p-8">
-          <h1 className="font-headline-lg text-2xl font-bold text-primary mb-1">Project Nature</h1>
+          <div className="flex items-center gap-3 mb-1">
+            <img src="/projet-nature.webp" alt="Project Nature logo" className="w-10 h-10 object-contain" />
+            <h1 className="font-headline-lg text-2xl font-bold text-primary">Project Nature</h1>
+          </div>
           <p className="font-label-sm text-xs text-on-surface-variant uppercase tracking-widest">Adventure Admin</p>
         </div>
         
@@ -72,7 +76,10 @@ export default function Navbar2({ currentPage, setCurrentPage, currentUser, onLo
 
       {/* Top Bar - Mobile Only */}
       <header className="md:hidden flex justify-between items-center px-6 w-full sticky top-0 z-40 bg-white h-16 border-b-2 border-primary">
-        <span className="font-bold text-xl text-primary font-syne uppercase">Project Nature</span>
+        <span className="flex items-center gap-2 font-bold text-xl text-primary font-syne uppercase">
+          <img src="/projet-nature.webp" alt="Project Nature logo" className="w-8 h-8 object-contain" />
+          Project Nature
+        </span>
         <div className="flex gap-4">
           <span className="material-symbols-outlined text-primary">notifications</span>
           <button 

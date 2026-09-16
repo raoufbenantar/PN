@@ -8,7 +8,20 @@ import {
   deleteProductVariant,
   createProductVariant,
   updateProductVariant,
+  updateStoreProduct,
+  createProductImage,
+  deleteProductImage,
 } from '../services/api';
+
+const ALLOWED_IMG = ['image/jpeg', 'image/png', 'image/webp'];
+const MAX_IMG_BYTES = 5 * 1024 * 1024;
+
+function validateImage(file) {
+  if (!file) return 'No file selected.';
+  if (file.size > MAX_IMG_BYTES) return 'Image must be less than 5 MB.';
+  if (!ALLOWED_IMG.includes(file.type)) return 'Only JPG, PNG, and WebP images are allowed.';
+  return null;
+}
 
 const CATEGORIES = [
   { value: 't-shirt', label: 'T-Shirt' },
@@ -46,6 +59,10 @@ export default function AdminStoreProducts({ currentPage, setCurrentPage, curren
   const [variantAdd, setVariantAdd] = useState({});
   const [variantEdit, setVariantEdit] = useState(null); // { id, size, color, stock }
   const [busyId, setBusyId] = useState(null);
+
+  const [imagesOpenId, setImagesOpenId] = useState(null);
+  const [imgBusy, setImgBusy] = useState(null);
+  const [lightbox, setLightbox] = useState(null);
 
   const loadProducts = useCallback(async () => {
     setLoading(true);
@@ -157,6 +174,58 @@ export default function AdminStoreProducts({ currentPage, setCurrentPage, curren
       alert(err.message || 'Failed to delete variant.');
     } finally {
       setBusyId(null);
+    }
+  };
+
+  const handleChangeCover = async (product, file) => {
+    const invalid = validateImage(file);
+    if (invalid) {
+      alert(invalid);
+      return;
+    }
+    setImgBusy(`cover-${product.id}`);
+    try {
+      await updateStoreProduct(product.slug, {}, file);
+      await loadProducts();
+    } catch (err) {
+      alert(err.message || 'Cover upload failed.');
+    } finally {
+      setImgBusy(null);
+    }
+  };
+
+  const handleAddProductImages = async (product, files) => {
+    if (!files || files.length === 0) return;
+    setImgBusy(`gallery-${product.id}`);
+    try {
+      let order = product.images?.length || 0;
+      for (const file of Array.from(files)) {
+        const invalid = validateImage(file);
+        if (invalid) {
+          alert(`${file.name}: ${invalid}`);
+          continue;
+        }
+        await createProductImage(product.id, file, '', order);
+        order += 1;
+      }
+      await loadProducts();
+    } catch (err) {
+      alert(err.message || 'Gallery upload failed.');
+    } finally {
+      setImgBusy(null);
+    }
+  };
+
+  const handleDeleteProductImage = async (imageId) => {
+    if (!window.confirm('Remove this product photo?')) return;
+    setImgBusy(`del-${imageId}`);
+    try {
+      await deleteProductImage(imageId);
+      await loadProducts();
+    } catch (err) {
+      alert(err.message || 'Failed to delete photo.');
+    } finally {
+      setImgBusy(null);
     }
   };
 
@@ -304,15 +373,112 @@ export default function AdminStoreProducts({ currentPage, setCurrentPage, curren
                         </p>
                       </div>
                     </div>
-                    <button
-                      onClick={() => handleDeleteProduct(product.slug)}
-                      disabled={busyId === product.slug}
-                      className="self-start px-3 py-1.5 text-error border-2 border-transparent hover:border-error hover:bg-red-55/20 transition-colors font-space font-black text-[10px] uppercase tracking-wider flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
-                    >
-                      <span className="material-symbols-outlined text-[16px]">delete</span>
-                      Delete
-                    </button>
+                    <div className="flex flex-col items-end gap-2 self-start">
+                      <button
+                        onClick={() => setImagesOpenId((v) => (v === product.id ? null : product.id))}
+                        className={`px-3 py-1.5 border-2 font-space font-black text-[10px] uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer ${
+                          imagesOpenId === product.id
+                            ? 'bg-secondary text-white border-primary'
+                            : 'border-secondary text-secondary hover:bg-secondary hover:text-white'
+                        }`}
+                      >
+                        <span className="material-symbols-outlined text-[16px]">photo_library</span>
+                        {imagesOpenId === product.id ? 'Close Photos' : 'Manage Photos'}
+                      </button>
+                      <button
+                        onClick={() => handleDeleteProduct(product.slug)}
+                        disabled={busyId === product.slug}
+                        className="px-3 py-1.5 text-error border-2 border-transparent hover:border-error hover:bg-red-55/20 transition-colors font-space font-black text-[10px] uppercase tracking-wider flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                      >
+                        <span className="material-symbols-outlined text-[16px]">delete</span>
+                        Delete
+                      </button>
+                    </div>
                   </div>
+
+                  {/* Inline image manager */}
+                  {imagesOpenId === product.id && (
+                    <div className="bg-slate-50 border-2 border-primary/20 rounded p-4 mb-4 space-y-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="font-space font-black text-[10px] text-primary uppercase tracking-widest flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[16px] text-secondary">image</span>
+                          Cover Image
+                        </span>
+                        <label className={`text-[9px] font-space font-black uppercase tracking-wider px-3 py-1.5 border-2 border-primary cursor-pointer transition-colors ${imgBusy === `cover-${product.id}` ? 'bg-slate-200 text-slate-400' : 'bg-secondary text-white hover:bg-primary'}`}>
+                          {imgBusy === `cover-${product.id}` ? 'Uploading...' : 'Change Cover'}
+                          <input
+                            type="file"
+                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                            className="hidden"
+                            disabled={imgBusy === `cover-${product.id}`}
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              e.target.value = '';
+                              if (file) handleChangeCover(product, file);
+                            }}
+                          />
+                        </label>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="w-32 h-32 shrink-0 rounded border-2 border-primary overflow-hidden bg-primary-container">
+                          {product.cover_image_url ? (
+                            <img src={product.cover_image_url} alt={product.name} className="w-full h-full object-cover cursor-zoom-in" onClick={() => setLightbox(product.cover_image_url)} />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-on-primary">
+                              <span className="material-symbols-outlined">image</span>
+                            </div>
+                          )}
+                        </div>
+                        <p className="font-work text-xs text-on-surface-variant font-medium">
+                          This is the main photo shown in the store grid.
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-t-2 border-primary/10 pt-4">
+                        <span className="font-space font-black text-[10px] text-primary uppercase tracking-widest flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[16px] text-secondary">collections</span>
+                          Gallery ({product.images?.length || 0})
+                        </span>
+                        <label className={`text-[9px] font-space font-black uppercase tracking-wider px-3 py-1.5 border-2 border-primary cursor-pointer transition-colors ${imgBusy === `gallery-${product.id}` ? 'bg-slate-200 text-slate-400' : 'bg-primary text-white hover:bg-secondary'}`}>
+                          {imgBusy === `gallery-${product.id}` ? 'Uploading...' : 'Add Photos'}
+                          <input
+                            type="file"
+                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                            className="hidden"
+                            multiple
+                            disabled={imgBusy === `gallery-${product.id}`}
+                            onChange={(e) => {
+                              const files = e.target.files;
+                              e.target.value = '';
+                              handleAddProductImages(product, files);
+                            }}
+                          />
+                        </label>
+                      </div>
+
+                      {product.images?.length ? (
+                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
+                          {product.images.map((im) => (
+                            <div key={im.id} className="relative group aspect-square rounded overflow-hidden border-2 border-primary">
+                              <img src={im.image} alt="Product" className="w-full h-full object-cover cursor-zoom-in" onClick={() => setLightbox(im.image)} />
+                              <button
+                                onClick={() => handleDeleteProductImage(im.id)}
+                                disabled={imgBusy === `del-${im.id}`}
+                                className="absolute top-1 right-1 w-6 h-6 rounded bg-red-600 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:opacity-50"
+                                title="Delete"
+                              >
+                                <span className="material-symbols-outlined text-[14px]">close</span>
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-xs text-on-surface-variant font-medium border-2 border-dashed border-primary/30 rounded p-4 text-center">
+                          No gallery photos yet.
+                        </p>
+                      )}
+                    </div>
+                  )}
 
                   {/* Variants */}
                   <div className="bg-slate-50 border-2 border-primary/20 rounded p-4">
@@ -409,6 +575,15 @@ export default function AdminStoreProducts({ currentPage, setCurrentPage, curren
           )}
         </div>
       </main>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-6 cursor-zoom-out"
+          onClick={() => setLightbox(null)}
+        >
+          <img src={lightbox} alt="Preview" className="max-h-full max-w-full object-contain border-4 border-white rounded" />
+        </div>
+      )}
     </div>
   );
 }

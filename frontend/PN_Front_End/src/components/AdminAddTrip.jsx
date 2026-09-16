@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import Navbar2 from './Navbar2';
-import { createExpedition, mapExpeditionToTrip } from '../services/api';
+import { createExpedition, mapExpeditionToTrip, createExpeditionImage } from '../services/api';
 
 export default function AdminAddTrip({
   currentPage,
@@ -19,9 +19,11 @@ export default function AdminAddTrip({
   const [location, setLocation] = useState('');
   const [coverImage, setCoverImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [galleryFiles, setGalleryFiles] = useState([]);
   const [isPublished, setIsPublished] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const fileInputRef = useRef(null);
+  const galleryInputRef = useRef(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -39,6 +41,28 @@ export default function AdminAddTrip({
       reader.onload = (ev) => setImagePreview(ev.target.result);
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleGalleryChange = (e) => {
+    const files = Array.from(e.target.files || []);
+    e.target.value = '';
+    const valid = [];
+    for (const file of files) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert(`${file.name} is larger than 5 MB and was skipped.`);
+        continue;
+      }
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+        alert(`${file.name} is not a JPG, PNG, or WebP image and was skipped.`);
+        continue;
+      }
+      valid.push(file);
+    }
+    if (valid.length) setGalleryFiles((prev) => [...prev, ...valid]);
+  };
+
+  const removeGalleryFile = (index) => {
+    setGalleryFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (e) => {
@@ -71,6 +95,18 @@ export default function AdminAddTrip({
       if (onAddTrip && result) {
         onAddTrip(mapExpeditionToTrip(result));
       }
+
+      // Upload any gallery photos the admin attached (best-effort).
+      if (result?.id && galleryFiles.length) {
+        for (let i = 0; i < galleryFiles.length; i++) {
+          try {
+            await createExpeditionImage(result.id, galleryFiles[i], '', i);
+          } catch (gErr) {
+            console.error('Gallery upload failed:', gErr.message);
+          }
+        }
+      }
+
       alert('Expedition created successfully!');
       setCurrentPage('admin-trips');
     } catch (err) {
@@ -267,6 +303,48 @@ export default function AdminAddTrip({
                   Publish immediately (visible to public)
                 </label>
               </div>
+            </section>
+
+            <section className="bg-white p-6 md:p-8 border-2 border-primary card-offset rounded-xl">
+              <h3 className="font-space font-black text-xs text-primary mb-4 border-b-2 border-primary pb-2 inline-block uppercase tracking-widest">04. GALLERY IMAGES</h3>
+              <p className="font-work text-xs text-on-surface-variant font-medium mb-4">Optional. Add extra photos shown on the expedition page. You can also manage these later from Manage Trips.</p>
+
+              <input
+                type="file"
+                ref={galleryInputRef}
+                onChange={handleGalleryChange}
+                accept=".jpg,.jpeg,.png,.webp"
+                multiple
+                className="hidden"
+              />
+
+              <button
+                type="button"
+                onClick={() => galleryInputRef.current.click()}
+                className="w-full border-2 border-dashed border-primary/50 p-6 text-center bg-white rounded-lg cursor-pointer hover:border-secondary hover:bg-orange-50/50 transition-colors"
+              >
+                <span className="material-symbols-outlined text-primary text-3xl mb-1">add_photo_alternate</span>
+                <p className="font-space font-black text-xs text-primary">Add gallery photos</p>
+                <p className="text-[10px] text-on-surface-variant mt-1">JPG, PNG, or WebP — max 5 MB each</p>
+              </button>
+
+              {galleryFiles.length > 0 && (
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mt-4">
+                  {galleryFiles.map((file, index) => (
+                    <div key={`${file.name}-${index}`} className="relative aspect-square rounded overflow-hidden border-2 border-primary">
+                      <img src={URL.createObjectURL(file)} alt={file.name} className="w-full h-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => removeGalleryFile(index)}
+                        className="absolute top-1 right-1 w-6 h-6 rounded bg-red-600 text-white flex items-center justify-center cursor-pointer"
+                        title="Remove"
+                      >
+                        <span className="material-symbols-outlined text-[14px]">close</span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </section>
 
             <footer className="flex flex-col sm:flex-row items-center gap-4 pt-4 pb-12">

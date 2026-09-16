@@ -1,7 +1,9 @@
 import React from 'react';
 import { ArrowRight, Mountain } from 'lucide-react';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function Hero() {
+  const { getImage } = useSiteImages();
   return (
     <section className="relative h-[70vh] md:h-screen min-h-[500px] md:min-h-screen pt-16 md:pt-24 flex items-center justify-center overflow-hidden">
       
@@ -10,7 +12,7 @@ export default function Hero() {
         <img 
           alt="Algerian Desert Sunset" 
           className="w-full h-full object-cover object-center scale-105" 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_3UMZoA6EZgR-Y3jnJbBBL2Sg5Miyl4gD6C77cLdpBu40XMFJYIv533XhOX85AEEUDgxoTKbsFSXO4YpdLJlITGiExFfw1s-YJmK7xH6O6GhWVB0pVlL3FME7tM-WYc3KbJagxnC2La18ctFOkUD94o0zti2CBOqoRo47wSxQoOTXnPbidrGuhG5d58OAZvrNlDk3lNS8MHI_1wMlBxLZWOljOL2eXS-BOuTyqbqY0ELYSaanvHTDIlRGhPqJ-EUUvrF6MqcgFJk"
+          src={getImage('hero.background')}
         />
         {/* Organic dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-brand-forestDark/80"></div>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Compass, Tent, Trees } from 'lucide-react';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function Services() {
+  const { getImage } = useSiteImages();
   return (
     <section id="services" className="py-12 md:py-24 px-6 max-w-7xl mx-auto overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -15,7 +17,7 @@ export default function Services() {
             <img 
               alt="Hiker in Algerian mountains" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7nxhAOiHeW2WXuHwO-24jmqtrNfxy22xwA94dzOhyl6O90l-SJ9rWm0tuOL7PjisPnEkk3XkYo6Rvwme4lQ2FP34uPgg6LmT67I0t-FD8yAb80eV6IzF43JHRiCB_fHfqaqJB123Na0yF8dbyrEq7dPEQNJVjDB3Tv_TqFpnUNTGqC-WUwkjEpbF8tsNgHP423KwsNV5Nv_5N7145URzeUREA6Ym--teRKPsA-CWQ-_id3wzJprUzrGeOhxaJeFlHpiiL_vYZH08"
+              src={getImage('services.hikes')}
             />
             
             {/* Overlay description badge */}

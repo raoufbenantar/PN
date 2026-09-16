@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { ArrowRight, ArrowLeft, KeyRound, Mail, Sparkles, CheckCircle2 } from 'lucide-react';
 import { loginUser, fetchCurrentUser } from '../services/api';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function LoginPage({ setCurrentPage, onLoginSuccess }) {
+  const { getImage } = useSiteImages();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -58,7 +60,8 @@ export default function LoginPage({ setCurrentPage, onLoginSuccess }) {
       <main className="w-full md:w-[40%] min-h-screen flex flex-col justify-center px-6 md:px-16 bg-brand-bg border-r-0 md:border-r-2 border-brand-forestDark z-10 relative">
         
         <div className="absolute top-8 md:top-16 left-6 md:left-16 cursor-pointer group" onClick={() => setCurrentPage('landing')}>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <img src="/projet-nature.webp" alt="Project Nature logo" className="w-10 h-10 object-contain" />
             <span className="font-syne text-2xl md:text-3xl font-extrabold text-brand-forestDark tracking-tighter uppercase leading-[0.8] block group-hover:text-brand-orange transition-colors">
               Project <span className="font-light italic text-brand-forest">Nature</span>
             </span>
@@ -165,7 +168,7 @@ export default function LoginPage({ setCurrentPage, onLoginSuccess }) {
       <aside className="hidden md:block w-[60%] relative overflow-hidden bg-brand-forestDark">
         <div 
           className="absolute inset-0 bg-cover bg-center" 
-          style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCljJvyaGkf1y2WXHrK93oDCMDZa-dvb6_qOgVZBoWlfKzz6WsI1Qz8CjxFwWAuxhB2lKbQe2d-NohY804mEsiusrygo-sidVE8xf-iq_WTcz54PuGsF13rAumRCYz1rXMdvNFcp3M7m6FyMrLOVCSJ1avl7kjZx-AR1zCUDVcnnhxEmrR7Rq9TdtGlcoxFp0LY49qRlvn8FnvHkOaAeO0SdZCpJyD1VVWG5ypqMmmo_xMG7BnDmv4L')" }}
+          style={{ backgroundImage: `url('${getImage('auth.login')}')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-forestDark/80 via-brand-forestDark/20 to-transparent mix-blend-multiply"></div>
         

@@ -12,8 +12,8 @@ export default function Footer() {
           {/* Brand/Logo Info Column */}
           <div>
             <div className="flex items-center space-x-3 mb-8" data-purpose="footer-logo">
-              <div className="relative flex items-center justify-center w-10 h-10 bg-brand-orange text-white rounded border-2 border-white shadow-[2px_2px_0px_rgba(255,255,255,1)] transform -rotate-3">
-                <span className="text-xl font-bold font-syne italic">△</span>
+              <div className="relative flex items-center justify-center w-12 h-12 transform -rotate-3">
+                <img src="/projet-nature.webp" alt="Project Nature logo" className="w-12 h-12 object-contain drop-shadow-[2px_2px_0px_rgba(255,255,255,0.35)]" />
               </div>
               <span className="text-2xl font-black font-syne tracking-tight text-brand-sand">
                 Project <span className="font-light italic text-white/70">Nature</span>

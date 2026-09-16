@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function Categories() {
+  const { getImage } = useSiteImages();
   const profiles = [
     {
       name: 'Youth',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxYS9U9_hRyyqbePwqEXfAFnGxbSc1hiEYJTDqjOvSfGCstYVwTfFuLt7phMTqHJDHvA7fweUSjQqAJdN7spbdRkvIo6uUeChbtD_sssdOm-wLRPH4fBJwuqWoq1uWQCORRgf1WuBfmVLYaM-QSL53BvBKU52QYJdxWgJaZ1HwSeKTPJcYe3lj5AfoZGmuYrxOZqDQqoVyb8z61Dd4DO2HWXQTsfe4WDJjQbMG9c5iMW9aVgET5luvbgfXB3CPaEsqEwI1qWWqWVk',
+      imageKey: 'categories.youth',
       borderColor: 'border-brand-orange',
       shadowColor: 'shadow-brutalist-orange',
       rotation: '-rotate-2',
@@ -12,7 +14,7 @@ export default function Categories() {
     },
     {
       name: 'Athletes',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKUM7kvjJdyRpGeUzJzUCLw4i4PSD8aRIKTlwF948s4ppyeRrGTV7m6OBTubAOWYP4yM0wpYjTr6B7vuNZxuearxt9Fjy4qBfqxBzYtkk16Q5sUC9zbcUOcWwUuTP42SO6xdNFgdMWGPKHy1Pglny0WxYqmRI5C1QCZDdtkhzr_J2Q8uy9H36y3enKKUZ26IZfRAhGdPUEfpgC8QNHzLqOnPNtx4iA_60aEZPq_YsmLCeLF2SSr9iIUKafkB5J0NnsINSPtdMSP4k',
+      imageKey: 'categories.athletes',
       borderColor: 'border-yellow-500',
       shadowColor: 'shadow-brutalist-dark',
       rotation: 'rotate-1',
@@ -20,7 +22,7 @@ export default function Categories() {
     },
     {
       name: 'Students',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAKy1GC84YvTvHR1yo8yOCa_zr3OkD7jSwg-F2r2gO6OrB_V1ogrDwnX9AHVLUc9Z_0ZEk6pYTGpjtq5CZ28fIq5H4Mk_YeE4gIa_1MrXzIwQveQ4dK9toP4bv-QEvkChxmJU1Zl8W74DR8CruZwLShcWbTxnae7DpNabXFITUphTuMVb9h-ZIJnkOz0aFOU0HX6upK4_X4X4AtJZ6auuFX8s-8OtmR9mabwzBgleaRIlu8-vGcFCkXKg1fsM5KnWee216SgbLntfA',
+      imageKey: 'categories.students',
       borderColor: 'border-brand-sand',
       shadowColor: 'shadow-brutalist-forest',
       rotation: '-rotate-1',
@@ -66,7 +68,7 @@ export default function Categories() {
                   <img 
                     alt={profile.name} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                    src={profile.image}
+                    src={getImage(profile.imageKey)}
                   />
                   {/* Subtle vignette overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent"></div>
@@ -94,7 +96,7 @@ export default function Categories() {
                 <img 
                   alt={profile.name} 
                   className="w-full h-full object-cover rounded-2xl" 
-                  src={profile.image}
+                  src={getImage(profile.imageKey)}
                 />
               </div>
               <span className="text-lg font-bold font-syne text-white uppercase tracking-wide">{profile.name}</span>

@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowLeft, Eye, EyeOff, User, Mail, Phone, Lock, Compass, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Eye, EyeOff, User, Mail, Phone, Lock, CheckCircle2 } from 'lucide-react';
 import { registerUser } from '../services/api';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
+  const { getImage } = useSiteImages();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -57,7 +59,12 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
       }, 1500);
     } catch (err) {
       console.error('[Register] Full error:', err);
-      setError(err.message || 'Registration failed. Please try again.');
+      const msg = err?.message || '';
+      setError(
+        /rate limit/i.test(msg)
+          ? 'Too many sign-ups right now — please wait about an hour and try again, or log in directly.'
+          : msg || 'Registration failed. Please try again.',
+      );
     } finally {
       setLoading(false);
     }
@@ -78,7 +85,7 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
       <section className="hidden md:flex md:w-1/2 relative bg-brand-forestDark overflow-hidden min-h-screen">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuANn4rhTzScBo3-lYlSShRYS5u7oJNZgB8_4AMmUm0T3_iNb40n0tZphNoSHyLK5yFs2ITGWVBnQ_fB4dpTwPKwos9ErrQdtgWP8xgbxD3oAud7FEuKKXDdqWB16EMajd0X6InBc30x-hf7SYV9A-S2g8Pt668wWFPNKIrXvP_PaEvi9Xb8Tqci0RLV6uHrqWK_Pjb-yNpMEkOjORfgc1InrZzle3q9OMOVDL6voYEh3mBGb3UPCNV9')" }}
+          style={{ backgroundImage: `url('${getImage('auth.register')}')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-forestDark/90 via-brand-forestDark/30 to-transparent mix-blend-multiply"></div>
 
@@ -92,7 +99,7 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
 
           <div className="mt-auto">
             <div className="flex items-center gap-3 mb-6 cursor-pointer group" onClick={() => setCurrentPage('landing')}>
-              <Compass className="w-10 h-10 text-brand-orange animate-spin-slow group-hover:scale-115 transition-transform" />
+              <img src="/projet-nature.webp" alt="Project Nature logo" className="w-10 h-10 object-contain group-hover:scale-105 transition-transform" />
               <h1 className="font-syne text-3xl font-extrabold tracking-tighter uppercase leading-[0.8]">
                 PROJECT <span className="font-light italic text-brand-orange">NATURE</span>
               </h1>
@@ -110,7 +117,7 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
           onClick={() => setCurrentPage('landing')}
           className="md:hidden flex items-center gap-2 mb-10 w-full max-w-md self-start text-brand-forestDark cursor-pointer"
         >
-          <Compass className="w-7 h-7 text-brand-orange" />
+          <img src="/projet-nature.webp" alt="Project Nature logo" className="w-7 h-7 object-contain" />
           <span className="font-syne text-xl font-bold tracking-tighter uppercase">PROJECT NATURE</span>
         </div>
 

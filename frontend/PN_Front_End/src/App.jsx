@@ -21,6 +21,10 @@ import AdminTrips from './components/AdminTrips';
 import AdminAddTrip from './components/AdminAddTrip';
 import AdminRegistrations from './components/AdminRegistrations';
 import { fetchExpeditions, createInquiry, fetchInquiries, updateInquiryStatus, mapExpeditionToTrip, fetchCurrentUser, removeToken, setMyInquiryId, getCart, setCartStorage } from './services/api';
+import { fetchExpeditions as sbFetchExpeditions, createInquiry as sbCreateInquiry, fetchInquiries as sbFetchInquiries, fetchCurrentUser as sbFetchCurrentUser } from './services/supabaseApi';
+import { isSupabaseConfigured } from './lib/supabaseClient';
+
+const USE_SUPABASE = isSupabaseConfigured;
 import MyTicket from './components/MyTicket';
 import StorePage from './components/StorePage';
 import ProductDetailPage from './components/ProductDetailPage';
@@ -28,6 +32,7 @@ import CartPage from './components/CartPage';
 import CheckoutPage from './components/CheckoutPage';
 import AdminStoreProducts from './components/AdminStoreProducts';
 import AdminStoreOrders from './components/AdminStoreOrders';
+import AdminSiteImages from './components/AdminSiteImages';
 
 // Friendly prompts that rotate while the client captures their selfie.
 const SELFIE_PROMPTS = [
@@ -142,18 +147,54 @@ export default function App() {
 
     async function loadTrips() {
       try {
-        const data = await fetchExpeditions({ page_size: 50 });
+        const data = USE_SUPABASE
+          ? await sbFetchExpeditions({ page_size: 50 })
+          : await fetchExpeditions({ page_size: 50 });
         if (!cancelled) {
-          const mapped = (data.results || []).map(mapExpeditionToTrip);
+          const list = data.results || data || [];
+          const mapped = list.map(mapExpeditionToTrip);
           setTrips(mapped);
         }
       } catch (err) {
+        // Supabase-first with Django fallback when configured
+        try {
+          if (USE_SUPABASE) {
+            const fb = await fetchExpeditions({ page_size: 50 });
+            if (!cancelled) {
+              setTrips(((fb.results || fb || [])).map(mapExpeditionToTrip));
+              return;
+            }
+          }
+        } catch {
+          // fall through to empty
+        }
         console.error('API call failed:', err.message);
         if (!cancelled) setTrips([]);
       }
     }
 
     async function loadUser() {
+      if (USE_SUPABASE) {
+        try {
+          const sbUser = await sbFetchCurrentUser();
+          if (!cancelled && sbUser) {
+            const meta = sbUser.user_metadata || {};
+            const appMeta = sbUser.app_metadata || {};
+            setCurrentUser({
+              name: meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || meta.username || (sbUser.email ? sbUser.email.split('@')[0] : 'Explorer'),
+              email: sbUser.email,
+              role: appMeta.role === 'admin' ? 'admin' : 'user',
+              username: meta.username || sbUser.email,
+            });
+            return;
+          }
+        } catch {
+          if (!cancelled) setCurrentUser(null);
+          return;
+        }
+        if (!cancelled) setCurrentUser(null);
+        return;
+      }
       try {
         const user = await fetchCurrentUser();
         if (!cancelled) {
@@ -172,7 +213,7 @@ export default function App() {
 
     async function loadInquiries() {
       try {
-        const data = await fetchInquiries();
+        const data = USE_SUPABASE ? await sbFetchInquiries() : await fetchInquiries();
         if (!cancelled) {
           const mapped = (data.results || data || []).map(mapInquiryToRegistration);
           setRegistrations(mapped);
@@ -300,7 +341,9 @@ export default function App() {
     };
 
     try {
-      const inq = await createInquiry(inquiryPayload, selfieFile);
+      const inq = USE_SUPABASE
+        ? await sbCreateInquiry(inquiryPayload, selfieFile)
+        : await createInquiry(inquiryPayload, selfieFile);
 
       const newReg = {
         id: inq.id || 'reg-' + Date.now(),
@@ -322,7 +365,7 @@ export default function App() {
 
       // Re-fetch inquiries from backend to keep admin view in sync
       try {
-        const data = await fetchInquiries();
+        const data = USE_SUPABASE ? await sbFetchInquiries() : await fetchInquiries();
         const mapped = (data.results || data || []).map(mapInquiryToRegistration);
         setRegistrations(mapped);
       } catch {
@@ -463,6 +506,17 @@ export default function App() {
   if (currentPage === 'admin-store-orders' && isAdmin) {
     return (
       <AdminStoreOrders
+        currentPage={currentPage}
+        setCurrentPage={handleSetPage}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+      />
+    );
+  }
+
+  if (currentPage === 'admin-site-images' && isAdmin) {
+    return (
+      <AdminSiteImages
         currentPage={currentPage}
         setCurrentPage={handleSetPage}
         currentUser={currentUser}

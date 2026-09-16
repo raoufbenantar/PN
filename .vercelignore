@@ -1,0 +1,9 @@
+# Only upload the frontend app (project Root Directory is frontend/PN_Front_End)
+/*
+!/frontend
+/frontend/*
+!/frontend/PN_Front_End
+**/node_modules
+**/dist
+**/.env*
+**/.vercel

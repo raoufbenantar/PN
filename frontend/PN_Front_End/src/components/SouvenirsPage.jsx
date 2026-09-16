@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Heart, Play, ArrowRight, Quote } from 'lucide-react';
+import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function SouvenirsPage({ setCurrentPage }) {
+  const { getImage } = useSiteImages();
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
@@ -44,7 +46,7 @@ export default function SouvenirsPage({ setCurrentPage }) {
                 <img 
                   alt="Expedition view" 
                   className="w-full h-[300px] md:h-[600px] object-cover filter grayscale-0 hover:grayscale-[15%] transition-all duration-700" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNJ6MthZV3LUC_FRUFQB1hYBzRZyykaGAHG0YydAG4-u6g88t1RZ6VOfsvsC5-iFzBx1yycxzjhU0il7NRjeoJ9kAiugENxsSjpLq51WQMg4O-A95-N4plyun3GEhALoC6xNTvZ_GmYxi0YwLxxkzhNlmRH3KLF8fiyP1Xdsec2oFQrZkDhji138zdU7W2AumJNXbZUUjqn7jDGqaQDn8KF5K-3hV_wpCxRTyUIBlZGyfEEamMxEU2iy0ymjtF2DRargDsMXap9Cw"
+                  src={getImage('souvenirs.ridge')}
                 />
                 
                 <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-brand-sand px-4 py-3 md:px-6 md:py-4 border-2 border-brand-forestDark shadow-[4px_4px_0px_rgba(22,44,28,1)] z-20 rounded">
@@ -90,7 +92,7 @@ export default function SouvenirsPage({ setCurrentPage }) {
                     <img 
                       alt="Hikers moving" 
                       className="absolute inset-0 w-full h-full object-cover opacity-40 blur-xs" 
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyNf55M1qfo_5nfXnDnIx4D5-2kRtOCWdaIAev2J0WYY6CELnwtB5qQHrNprkJYTccl06UBYmIQJb48pXiMNEuZ4j_9d__YOecvFGd0H9w2Ci9I3vNNlkId4Qudhxa7Ic7UTGullXCtitnCTHivigtRSBrGiV6NHnTYLXMi8FgS_R6a-K2WRefUsxKhaWEECFY2ruAmvpvLjhmOfi_kKEGKm6FUIBlLGdkIt0mLGuvKgoOveJLIvcFeVJzdVBeIRiHRyq1G8Jzbo0"
+                      src={getImage('souvenirs.video')}
                     />
                     <div className="relative z-10 text-center">
                       <div className="animate-pulse mb-3 font-space font-black text-xs text-brand-orange uppercase tracking-widest bg-brand-sand px-3 py-1 rounded inline-block border border-brand-forestDark">
@@ -109,7 +111,7 @@ export default function SouvenirsPage({ setCurrentPage }) {
                     <img 
                       alt="Hikers moving" 
                       className="w-full h-full object-cover" 
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyNf55M1qfo_5nfXnDnIx4D5-2kRtOCWdaIAev2J0WYY6CELnwtB5qQHrNprkJYTccl06UBYmIQJb48pXiMNEuZ4j_9d__YOecvFGd0H9w2Ci9I3vNNlkId4Qudhxa7Ic7UTGullXCtitnCTHivigtRSBrGiV6NHnTYLXMi8FgS_R6a-K2WRefUsxKhaWEECFY2ruAmvpvLjhmOfi_kKEGKm6FUIBlLGdkIt0mLGuvKgoOveJLIvcFeVJzdVBeIRiHRyq1G8Jzbo0"
+                      src={getImage('souvenirs.video')}
                     />
                     {/* Play Button Overlay */}
                     <div 
@@ -140,7 +142,7 @@ export default function SouvenirsPage({ setCurrentPage }) {
                 <img 
                   alt="Smiling explorer" 
                   className="w-full h-48 md:h-64 object-cover filter sepia-[0.15]" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOohTC0kfJuk7rKUMapilcSMUt5vq5KbAGUO4gGUk56YTjJkLyQKaAM06nHdg83ueAHrY56sACofIU83fIzxRIDzBpDbP-ootq5pGZnTNX4Gt8Oc5cV93bo22Zp4ZgNEQ9myGfhTsEk94zarXDCc_dFCLwb-TqG63xVrhIyGsPL3MohkZEsgvFMZtE8J1CWpeEEGNkWSIPoyT6HM9K7PKipaJGCBAunrsth3B29LvryZ0zm1fzQrkdzpOe8N6QUY8FUWKWtBrV9Ls"
+                  src={getImage('souvenirs.polaroid')}
                 />
               </div>
               <div className="mt-4 md:mt-6 flex items-center justify-between px-1">
@@ -158,7 +160,7 @@ export default function SouvenirsPage({ setCurrentPage }) {
                 <img 
                   alt="Campfire at night" 
                   className="w-full h-[200px] md:h-[300px] object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa17PPlXhB7xwgOKujX8dE3KJcIpGOvtBSfZLSc1VvztLeuy3t4aQUg4fqftLsDGKwiVwFmor6yFkmMNb5g7BuwoSaKBXCYDOKVb0mzWZgB7oyaSNG2lXeqRTWPVtithlkm9ki2unqNa8v-X_puuMxdjE5OXLKL4S0aSdMT1e_kunebs3MOww_XXwImlVEohD6_-up6g5C_-VEHxD6FbKvbBrmIts2oImVsHrN_eky7yhjtLefaVNt9qKU3ndl_JXUY2M1kpQCgAk"
+                  src={getImage('souvenirs.campfire')}
                 />
                 
                 <div className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 bg-brand-sand px-4 py-2 md:px-5 md:py-3 border-2 border-brand-forestDark z-20 rotate-[-3deg] rounded shadow-[2px_2px_0px_rgba(22,44,28,1)]">

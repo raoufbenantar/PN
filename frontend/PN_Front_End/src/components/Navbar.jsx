@@ -44,8 +44,8 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
             className="flex items-center space-x-3 group text-left focus:outline-none bg-transparent border-none cursor-pointer" 
             data-purpose="logo"
           >
-            <div className="relative flex items-center justify-center w-10 h-10 bg-brand-orange text-white rounded shadow-brutalist-forest border-2 border-brand-forestDark transform -rotate-3 group-hover:rotate-0 transition-transform">
-              <span className="text-xl font-bold font-syne italic">△</span>
+            <div className="relative flex items-center justify-center w-10 h-10 transform -rotate-3 group-hover:rotate-0 transition-transform">
+              <img src="/projet-nature.webp" alt="Project Nature logo" className="w-10 h-10 object-contain drop-shadow-[2px_2px_0px_rgba(22,44,28,1)]" />
             </div>
             <span className="text-2xl font-extrabold font-syne tracking-tight text-brand-dark group-hover:text-brand-orange transition-colors">
               Project <span className="font-light italic text-brand-forest">Nature</span>
@@ -133,8 +133,9 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
             setCurrentPage('landing');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="flex items-center gap-1.5 focus:outline-none bg-transparent border-none cursor-pointer"
+          className="flex items-center gap-2 focus:outline-none bg-transparent border-none cursor-pointer"
         >
+          <img src="/projet-nature.webp" alt="Project Nature logo" className="w-8 h-8 object-contain" />
           <span className="font-extrabold text-brand-orange text-xl tracking-tighter font-syne">Project Nature</span>
         </button>
 
