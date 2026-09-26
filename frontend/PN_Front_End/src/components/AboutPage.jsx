@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useSiteImages } from '../context/SiteImagesContext';
 
@@ -113,88 +112,6 @@ export default function AboutPage({ setCurrentPage }) {
             <p className="text-white/80 font-medium leading-relaxed">
               A rugged adventure does not mean reckless risk. Our team is fully trained in wilderness first aid.
             </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16 md:py-24 px-6 md:px-12 bg-white text-center">
-        <h2 className="text-3xl md:text-6xl font-black font-syne text-brand-orange mb-4 uppercase tracking-tight">
-          The Project Nature Team
-        </h2>
-        <p className="text-brand-dark/50 font-medium max-w-2xl mx-auto mb-12 md:mb-16">
-          Behind every climb are passionate people who live and breathe the outdoors.
-        </p>
-
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          {/* Team Member 1 */}
-          <div className="relative group">
-            <div className="bg-[#FFE8CC] rounded-3xl overflow-hidden aspect-[3/4] border-2 border-brand-forestDark shadow-brutalist-forest">
-              <img 
-                alt="Haithem" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src={getImage('about.team.haithem')}
-              />
-            </div>
-            <div className="absolute bottom-4 left-4 right-4 bg-brand-orange text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform -rotate-2">
-              <h4 className="font-syne font-black text-lg uppercase">Haithem</h4>
-              <p className="font-space font-bold text-[9px] uppercase tracking-wider opacity-90">
-                Founder &amp; Lead Guide
-              </p>
-            </div>
-          </div>
-
-          {/* Team Member 2 */}
-          <div className="relative group animate-delay-100">
-            <div className="bg-brand-sand rounded-3xl overflow-hidden aspect-[3/4] border-2 border-brand-forestDark shadow-brutalist-forest">
-              <img 
-                alt="Rahim" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src={getImage('about.team.rahim')}
-              />
-            </div>
-            <div className="absolute bottom-4 left-4 right-4 bg-brand-forest text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform rotate-2">
-              <h4 className="font-syne font-black text-lg uppercase">Rahim</h4>
-              <p className="font-space font-bold text-[9px] uppercase tracking-wider opacity-90">
-                Co-Founder &amp; Logistics
-              </p>
-            </div>
-          </div>
-
-          {/* Team Member 3 */}
-          <div className="relative group animate-delay-200">
-            <div className="bg-brand-sand rounded-3xl overflow-hidden aspect-[3/4] border-2 border-brand-forestDark shadow-brutalist-forest">
-              <img 
-                alt="Amine" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src={getImage('about.team.amine')}
-              />
-            </div>
-            <div className="absolute bottom-4 left-4 right-4 bg-[#8E3A0D] text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform -rotate-1">
-              <h4 className="font-syne font-black text-lg uppercase">Amine</h4>
-              <p className="font-space font-bold text-[9px] uppercase tracking-wider opacity-90">
-                Senior Mountaineering Guide
-              </p>
-            </div>
-          </div>
-
-          {/* Team Member 4 */}
-          <div className="relative group animate-delay-300">
-            <div className="bg-[#FFE8CC] rounded-3xl overflow-hidden aspect-[3/4] border-2 border-brand-forestDark shadow-brutalist-forest">
-              <img 
-                alt="Sarah" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                src={getImage('about.team.sarah')}
-              />
-            </div>
-            <div className="absolute bottom-4 left-4 right-4 bg-brand-forestDark text-white p-4 rounded border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(0,0,0,1)] text-left transform rotate-3">
-              <h4 className="font-syne font-black text-lg uppercase">Sarah</h4>
-              <p className="font-space font-bold text-[9px] uppercase tracking-wider opacity-90">
-                Expedition Photographer
-              </p>
-            </div>
           </div>
 
         </div>
