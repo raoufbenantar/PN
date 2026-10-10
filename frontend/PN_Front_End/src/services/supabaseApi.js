@@ -100,20 +100,31 @@ export async function createInquiry(data, selfieFile) {
       .upload(selfiePath, selfieFile, { contentType: selfieFile.type || 'image/jpeg', upsert: false });
     if (upErr) throw upErr;
   }
-  const { data: row, error } = await supabase
+  const payload = {
+    name: data.name,
+    phone: data.phone ?? '',
+    email: data.email ?? '',
+    message: data.message ?? '',
+    expedition_id: data.expedition_id ?? data.expedition ?? null,
+    selfie: selfiePath,
+  };
+  const { error: insErr } = await supabase
     .from('pn_inquiries')
-    .insert({
-      name: data.name,
-      phone: data.phone ?? '',
-      email: data.email ?? '',
-      message: data.message ?? '',
-      expedition_id: data.expedition_id ?? data.expedition ?? null,
-      selfie: selfiePath,
-    })
-    .select()
-    .single();
-  if (error) throw error;
-  return row;
+    .insert(payload);
+  if (insErr) throw insErr;
+
+  let row = null;
+  if (payload.email) {
+    const { data: readData } = await supabase
+      .from('pn_inquiries')
+      .select('id,name,phone,email,message,expedition_id,selfie,status,created_at')
+      .eq('email', payload.email)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    row = readData;
+  }
+  return row ?? { id: null, ...payload };
 }
 
 export async function fetchInquiryTicket(id) {

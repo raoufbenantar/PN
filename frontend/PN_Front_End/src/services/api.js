@@ -414,25 +414,38 @@ export async function createInquiry(data, selfieFile) {
     if (selfieFile && typeof selfieFile === 'object' && 'size' in selfieFile && selfieFile.size > 0) {
       selfiePath = await uploadTo('pn-inquiry-selfies', 'selfies', selfieFile);
     }
-    const { data: row, error } = await supabase
+    const payload = {
+      name: data.name,
+      phone: data.phone ?? '',
+      email: data.email ?? '',
+      message: data.message ?? '',
+      expedition_id: data.expedition_id ?? data.expedition ?? null,
+      selfie: selfiePath,
+    };
+    const { error: insErr } = await supabase
       .from('pn_inquiries')
-      .insert({
-        name: data.name,
-        phone: data.phone ?? '',
-        email: data.email ?? '',
-        message: data.message ?? '',
-        expedition_id: data.expedition_id ?? data.expedition ?? null,
-        selfie: selfiePath,
-      })
-      .select()
-      .single();
-    if (error) throw error;
+      .insert(payload);
+    if (insErr) throw insErr;
+
+    let row = null;
+    if (payload.email) {
+      const { data: readData } = await supabase
+        .from('pn_inquiries')
+        .select('id,name,phone,email,message,expedition_id,selfie,status,created_at')
+        .eq('email', payload.email)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      row = readData;
+    }
+
+    const resRow = row ?? { id: null, ...payload };
     let expedition_title = null;
-    if (row.expedition_id) {
-      const { data: ex } = await supabase.from('pn_expeditions').select('title').eq('id', row.expedition_id).single();
+    if (resRow.expedition_id) {
+      const { data: ex } = await supabase.from('pn_expeditions').select('title').eq('id', resRow.expedition_id).single();
       expedition_title = ex?.title || null;
     }
-    return { ...row, selfie_url: await selfieUrl(row.selfie), expedition_title };
+    return { ...resRow, selfie_url: await selfieUrl(resRow.selfie), expedition_title };
   }
   const url = `${API_BASE}/inquiries/`;
   const formData = new FormData();
