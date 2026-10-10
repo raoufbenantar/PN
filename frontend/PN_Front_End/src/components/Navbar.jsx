@@ -75,7 +75,7 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
           {/* Desktop Buttons */}
           {currentUser ? (
             <div className="flex items-center space-x-3">
-              {currentUser.role === 'admin' && (
+              {(currentUser.role === 'admin' || currentUser.is_staff || currentUser.is_admin) && (
                 <button
                   onClick={() => setCurrentPage('admin-dashboard')}
                   className="px-4 py-2 bg-brand-forest hover:bg-brand-forestDark text-white font-space font-black text-xs uppercase tracking-wider border-2 border-brand-forestDark shadow-[3px_3px_0px_rgba(22,44,28,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all rounded cursor-pointer"
@@ -167,7 +167,7 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
                   <Ticket className="w-3.5 h-3.5 text-brand-orange" />
                   My Ticket
                 </button>
-                {currentUser.role === 'admin' && (
+                {(currentUser.role === 'admin' || currentUser.is_staff || currentUser.is_admin) && (
                   <button 
                     onClick={() => {
                       setShowMobileUserMenu(false);

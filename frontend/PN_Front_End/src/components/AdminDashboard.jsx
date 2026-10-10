@@ -35,13 +35,23 @@ export default function AdminDashboard({
               <p className="font-work text-sm text-on-surface-variant font-medium">The wild is calling. Here is the current pulse of your expeditions.</p>
             </div>
             
-            <div className="flex items-center gap-4 bg-white p-4 rounded-xl border-2 border-primary hard-shadow text-left">
-              <div className="w-12 h-12 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold text-xl border-2 border-primary">
-                {currentUser?.name ? currentUser.name.split(' ').map(w => w[0]).join('') : 'AD'}
-              </div>
-              <div>
-                <p className="font-syne font-bold text-base text-primary leading-none">{currentUser?.name || 'Admin User'}</p>
-                <p className="font-space text-[10px] text-on-surface-variant font-bold mt-1 uppercase tracking-wider">Adventure Lead</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => setCurrentPage('landing')}
+                className="px-4 py-3 bg-amber-50 hover:bg-amber-100 text-primary border-2 border-primary rounded-xl font-space font-black text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer hard-shadow hover:translate-x-0.5 active:translate-y-0.5 transition-all"
+                title="Switch back to client website"
+              >
+                <span className="material-symbols-outlined text-base">storefront</span>
+                Back to Client View
+              </button>
+              <div className="flex items-center gap-4 bg-white p-4 rounded-xl border-2 border-primary hard-shadow text-left">
+                <div className="w-12 h-12 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold text-xl border-2 border-primary">
+                  {currentUser?.name ? currentUser.name.split(' ').map(w => w[0]).join('') : 'AD'}
+                </div>
+                <div>
+                  <p className="font-syne font-bold text-base text-primary leading-none">{currentUser?.name || 'Admin User'}</p>
+                  <p className="font-space text-[10px] text-on-surface-variant font-bold mt-1 uppercase tracking-wider">Adventure Lead</p>
+                </div>
               </div>
             </div>
           </header>

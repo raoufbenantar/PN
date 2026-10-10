@@ -14,12 +14,24 @@ export default function Navbar2({ currentPage, setCurrentPage, currentUser, onLo
     <>
       {/* SideNavBar - Desktop */}
       <aside className="hidden md:flex flex-col h-screen sticky top-0 bg-white h-full w-64 border-r-2 border-primary shadow-[4px_4px_0px_0px_rgba(44,66,49,0.2)] z-50 shrink-0">
-        <div className="p-8">
+        <div className="p-8 pb-4">
           <div className="flex items-center gap-3 mb-1">
             <img src="/projet-nature.webp" alt="Project Nature logo" className="w-10 h-10 object-contain" />
             <h1 className="font-headline-lg text-2xl font-bold text-primary">Project Nature</h1>
           </div>
           <p className="font-label-sm text-xs text-on-surface-variant uppercase tracking-widest">Adventure Admin</p>
+        </div>
+
+        {/* Quick Action - Back to Client View */}
+        <div className="px-4 pb-4">
+          <button
+            onClick={() => setCurrentPage('landing')}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-amber-50 hover:bg-amber-100 text-primary border-2 border-primary rounded-xl font-space font-black text-xs uppercase tracking-wider transition-all cursor-pointer hard-shadow hover:translate-x-0.5 active:translate-y-0.5"
+            title="Return to client website"
+          >
+            <span className="material-symbols-outlined text-base">storefront</span>
+            <span>Back to Client View</span>
+          </button>
         </div>
         
         <nav className="flex-1 px-4 space-y-2">
@@ -43,7 +55,7 @@ export default function Navbar2({ currentPage, setCurrentPage, currentUser, onLo
         </nav>
 
         {/* Action Button & User Info */}
-        <div className="p-4 mt-auto border-t-2 border-primary/10 space-y-4">
+        <div className="p-4 mt-auto border-t-2 border-primary/10 space-y-3">
           <button
             onClick={() => setCurrentPage('admin-add-trip')}
             className={`w-full py-3 bg-secondary text-white font-bold rounded sturdy-border btn-shadow flex items-center justify-center gap-2 cursor-pointer focus:outline-none transition-all ${
@@ -75,19 +87,19 @@ export default function Navbar2({ currentPage, setCurrentPage, currentUser, onLo
       </aside>
 
       {/* Top Bar - Mobile Only */}
-      <header className="md:hidden flex justify-between items-center px-6 w-full sticky top-0 z-40 bg-white h-16 border-b-2 border-primary">
-        <span className="flex items-center gap-2 font-bold text-xl text-primary font-syne uppercase">
-          <img src="/projet-nature.webp" alt="Project Nature logo" className="w-8 h-8 object-contain" />
+      <header className="md:hidden flex justify-between items-center px-4 w-full sticky top-0 z-40 bg-white h-16 border-b-2 border-primary">
+        <span className="flex items-center gap-2 font-bold text-lg text-primary font-syne uppercase">
+          <img src="/projet-nature.webp" alt="Project Nature logo" className="w-7 h-7 object-contain" />
           Project Nature
         </span>
-        <div className="flex gap-4">
-          <span className="material-symbols-outlined text-primary">notifications</span>
+        <div className="flex items-center gap-2">
           <button 
             onClick={() => setCurrentPage('landing')} 
-            className="flex items-center text-primary"
-            title="Go to landing page"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-primary border-2 border-primary rounded-lg font-space font-black text-[11px] uppercase tracking-wider cursor-pointer hard-shadow active:translate-y-0.5"
+            title="Back to client view"
           >
-            <span className="material-symbols-outlined">home</span>
+            <span className="material-symbols-outlined text-sm">storefront</span>
+            Client View
           </button>
         </div>
       </header>
