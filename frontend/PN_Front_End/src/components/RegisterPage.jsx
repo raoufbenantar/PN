@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, ArrowLeft, Eye, EyeOff, User, Mail, Phone, Lock, CheckCircle2 } from 'lucide-react';
-import { registerUser } from '../services/api';
+import { registerUser, fetchCurrentUser } from '../services/api';
 import { useSiteImages } from '../context/SiteImagesContext';
 
 export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
@@ -46,16 +46,27 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
       });
 
       setSuccess(true);
+      let userData = {
+        name: fullName,
+        email,
+        phone,
+        username: data.user?.username || email,
+      };
+      try {
+        const u = await fetchCurrentUser();
+        if (u) userData = u;
+      } catch {
+        // fallback
+      }
       if (onRegisterSuccess) {
-        onRegisterSuccess({
-          name: fullName,
-          email,
-          phone,
-          username: data.user?.username || email,
-        });
+        onRegisterSuccess(userData);
       }
       setTimeout(() => {
-        setCurrentPage('landing');
+        if (userData?.is_staff || userData?.is_admin || userData?.role === 'admin') {
+          setCurrentPage('admin-dashboard');
+        } else {
+          setCurrentPage('landing');
+        }
       }, 800);
     } catch (err) {
       console.error('[Register] Full error:', err);

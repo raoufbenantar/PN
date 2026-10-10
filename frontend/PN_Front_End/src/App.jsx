@@ -154,6 +154,62 @@ export default function App() {
     };
   }
 
+  async function loadUser() {
+    if (USE_SUPABASE) {
+      try {
+        const sbUser = await sbFetchCurrentUser();
+        if (sbUser) {
+          const meta = sbUser.user_metadata || {};
+          const appMeta = sbUser.app_metadata || {};
+          const isAdmin = Boolean(
+            sbUser.is_staff ||
+            sbUser.is_admin ||
+            sbUser.role === 'admin' ||
+            appMeta.role === 'admin' ||
+            meta.role === 'admin' ||
+            meta.is_admin === true ||
+            sbUser.profile?.is_admin === true ||
+            sbUser.profile?.role === 'admin'
+          );
+          setCurrentUser({
+            name: sbUser.profile?.full_name || meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || meta.username || (sbUser.email ? sbUser.email.split('@')[0] : 'Explorer'),
+            email: sbUser.email,
+            role: isAdmin ? 'admin' : 'user',
+            is_staff: isAdmin,
+            is_admin: isAdmin,
+            username: meta.username || sbUser.email,
+          });
+          return;
+        }
+      } catch (err) {
+        console.warn('loadUser error:', err);
+      }
+      setCurrentUser(null);
+      return;
+    }
+    try {
+      const user = await fetchCurrentUser();
+      if (user) {
+        const isAdmin = Boolean(
+          user.is_staff ||
+          user.is_admin ||
+          user.role === 'admin'
+        );
+        setCurrentUser({
+          name: `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.username || user.name,
+          email: user.email,
+          role: isAdmin ? 'admin' : 'user',
+          is_staff: isAdmin,
+          is_admin: isAdmin,
+          username: user.username
+        });
+      }
+    } catch {
+      removeToken();
+      setCurrentUser(null);
+    }
+  }
+
   // ── Fetch expeditions from API on mount ──────────────────────────
   useEffect(() => {
     let cancelled = false;
@@ -183,63 +239,6 @@ export default function App() {
         }
         console.error('API call failed:', err.message);
         if (!cancelled) setTrips([]);
-      }
-    }
-
-    async function loadUser() {
-      if (USE_SUPABASE) {
-        try {
-          const sbUser = await sbFetchCurrentUser();
-          if (!cancelled && sbUser) {
-            const meta = sbUser.user_metadata || {};
-            const appMeta = sbUser.app_metadata || {};
-            const isAdmin = Boolean(
-              sbUser.is_staff ||
-              sbUser.is_admin ||
-              sbUser.role === 'admin' ||
-              appMeta.role === 'admin' ||
-              meta.role === 'admin' ||
-              meta.is_admin === true ||
-              sbUser.profile?.is_admin === true ||
-              sbUser.profile?.role === 'admin'
-            );
-            setCurrentUser({
-              name: sbUser.profile?.full_name || meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || meta.username || (sbUser.email ? sbUser.email.split('@')[0] : 'Explorer'),
-              email: sbUser.email,
-              role: isAdmin ? 'admin' : 'user',
-              is_staff: isAdmin,
-              is_admin: isAdmin,
-              username: meta.username || sbUser.email,
-            });
-            return;
-          }
-        } catch {
-          if (!cancelled) setCurrentUser(null);
-          return;
-        }
-        if (!cancelled) setCurrentUser(null);
-        return;
-      }
-      try {
-        const user = await fetchCurrentUser();
-        if (!cancelled && user) {
-          const isAdmin = Boolean(
-            user.is_staff ||
-            user.is_admin ||
-            user.role === 'admin'
-          );
-          setCurrentUser({
-            name: `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.username || user.name,
-            email: user.email,
-            role: isAdmin ? 'admin' : 'user',
-            is_staff: isAdmin,
-            is_admin: isAdmin,
-            username: user.username
-          });
-        }
-      } catch {
-        removeToken();
-        if (!cancelled) setCurrentUser(null);
       }
     }
 
@@ -458,14 +457,19 @@ export default function App() {
     }
   };
 
+  const handleAuthSuccess = async (userData) => {
+    if (userData) {
+      setCurrentUser(userData);
+    }
+    await loadUser();
+  };
+
   if (currentPage === 'login') {
-    return <LoginPage setCurrentPage={handleSetPage} onLoginSuccess={(userData) => setCurrentUser(userData)} />;
+    return <LoginPage setCurrentPage={handleSetPage} onLoginSuccess={handleAuthSuccess} />;
   }
 
   if (currentPage === 'register') {
-    return <RegisterPage setCurrentPage={handleSetPage} onRegisterSuccess={(userData) => {
-      setCurrentUser(userData);
-    }} />;
+    return <RegisterPage setCurrentPage={handleSetPage} onRegisterSuccess={handleAuthSuccess} />;
   }
 
 
