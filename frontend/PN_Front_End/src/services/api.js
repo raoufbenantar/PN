@@ -87,13 +87,32 @@ async function uploadTo(bucket, prefix, file) {
   return path;
 }
 
-function toDjangoUser(sbUser) {
+async function fetchProfile(userId) {
+  if (!userId) return null;
+  try {
+    const { data } = await supabase
+      .from('profiles')
+      .select('is_admin, role, full_name, phone')
+      .eq('id', userId)
+      .maybeSingle();
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+function toDjangoUser(sbUser, profile = null) {
   if (!sbUser) return null;
   const meta = sbUser.user_metadata || {};
   const appMeta = sbUser.app_metadata || {};
-  const full = meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ');
+  const full = profile?.full_name || meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ');
   const parts = (full || '').split(' ');
-  const isStaff = appMeta.role === 'admin';
+  const isStaff = Boolean(
+    profile?.is_admin === true ||
+    profile?.role === 'admin' ||
+    appMeta.role === 'admin' ||
+    meta.role === 'admin'
+  );
   return {
     id: sbUser.id,
     username: meta.username || sbUser.email,
@@ -103,7 +122,7 @@ function toDjangoUser(sbUser) {
     is_staff: isStaff,
     role: isStaff ? 'admin' : 'user',
     name: full || meta.username || sbUser.email,
-    phone: meta.phone || '',
+    phone: profile?.phone || meta.phone || '',
   };
 }
 
@@ -227,10 +246,11 @@ export async function loginUser(username, password) {
     }
 
     if (error) throw error;
+    const profile = await fetchProfile(data.user?.id);
     return {
       access: data.session?.access_token,
       refresh: data.session?.refresh_token,
-      user: toDjangoUser(data.user),
+      user: toDjangoUser(data.user, profile),
     };
   }
   const data = await request(`${API_BASE}/token/`, {
@@ -307,7 +327,8 @@ export async function fetchCurrentUser() {
       e.status = 401;
       throw e;
     }
-    return toDjangoUser(data.user);
+    const profile = await fetchProfile(data.user.id);
+    return toDjangoUser(data.user, profile);
   }
   return request(`${API_BASE}/me/`);
 }

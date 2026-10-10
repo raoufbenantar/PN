@@ -180,10 +180,16 @@ export default function App() {
           if (!cancelled && sbUser) {
             const meta = sbUser.user_metadata || {};
             const appMeta = sbUser.app_metadata || {};
+            const isAdmin = Boolean(
+              sbUser.is_staff ||
+              appMeta.role === 'admin' ||
+              sbUser.profile?.is_admin === true ||
+              sbUser.profile?.role === 'admin'
+            );
             setCurrentUser({
-              name: meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || meta.username || (sbUser.email ? sbUser.email.split('@')[0] : 'Explorer'),
+              name: sbUser.profile?.full_name || meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || meta.username || (sbUser.email ? sbUser.email.split('@')[0] : 'Explorer'),
               email: sbUser.email,
-              role: appMeta.role === 'admin' ? 'admin' : 'user',
+              role: isAdmin ? 'admin' : 'user',
               username: meta.username || sbUser.email,
             });
             return;

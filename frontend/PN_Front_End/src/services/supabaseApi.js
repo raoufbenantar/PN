@@ -57,7 +57,26 @@ export async function registerUser({ email, password, ...meta }) {
 export async function fetchCurrentUser() {
   const { data, error } = await supabase.auth.getUser();
   if (error) throw error;
-  return data.user;
+  if (!data?.user) return null;
+  try {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('is_admin, role, full_name, phone')
+      .eq('id', data.user.id)
+      .maybeSingle();
+    const isAdmin = Boolean(profile?.is_admin === true || profile?.role === 'admin' || data.user.app_metadata?.role === 'admin');
+    return {
+      ...data.user,
+      profile,
+      is_staff: isAdmin,
+      app_metadata: {
+        ...data.user.app_metadata,
+        role: isAdmin ? 'admin' : (data.user.app_metadata?.role || 'user'),
+      },
+    };
+  } catch {
+    return data.user;
+  }
 }
 
 export async function changePassword(newPassword) {
