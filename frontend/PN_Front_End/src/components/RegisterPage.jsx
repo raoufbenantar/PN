@@ -56,15 +56,20 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
       }
       setTimeout(() => {
         setCurrentPage('landing');
-      }, 1500);
+      }, 800);
     } catch (err) {
       console.error('[Register] Full error:', err);
       const msg = err?.message || '';
-      setError(
-        /rate limit/i.test(msg)
-          ? 'Too many sign-ups right now — please wait about an hour and try again, or log in directly.'
-          : msg || 'Registration failed. Please try again.',
-      );
+      if (
+        /already|registered|exists|deja/i.test(msg) ||
+        (err?.status === 400 && /registered|exists|user|email/i.test(msg))
+      ) {
+        setError('mail address deja exist');
+      } else if (/rate limit/i.test(msg)) {
+        setError('Too many sign-ups right now — please wait about an hour and try again, or log in directly.');
+      } else {
+        setError(msg || 'Registration failed. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -129,7 +134,7 @@ export default function RegisterPage({ setCurrentPage, onRegisterSuccess }) {
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h2 className="font-syne text-3xl font-black text-brand-forestDark uppercase mb-2">Account Created!</h2>
-              <p className="text-brand-dark/70 text-sm font-medium">Your explorer profile is ready. Redirecting you to email verification...</p>
+              <p className="text-brand-dark/70 text-sm font-medium">Your explorer profile is ready! Entering website...</p>
             </div>
           ) : (
             <>

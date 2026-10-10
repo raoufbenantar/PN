@@ -237,9 +237,17 @@ export async function registerUser(userData) {
         },
       },
     });
-    if (error) throw error;
+    if (error) {
+      if (/already|registered|exists|deja/i.test(error.message || '')) {
+        throw new Error('mail address deja exist');
+      }
+      throw error;
+    }
+    if (data?.user?.identities && data.user.identities.length === 0) {
+      throw new Error('mail address deja exist');
+    }
     return {
-      user: { username: userData.username || userData.email, email: userData.email },
+      user: toDjangoUser(data.user) || { username: userData.username || userData.email, email: userData.email, name: fullName, phone: userData.phone },
       session: data.session,
     };
   }
