@@ -571,14 +571,12 @@ export async function fetchInquiries() {
 
 export async function updateInquiryStatus(id, status) {
   if (USE_SUPABASE) {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('pn_inquiries')
       .update({ status })
-      .eq('id', id)
-      .select()
-      .single();
+      .eq('id', id);
     if (error) throw error;
-    return data;
+    return { id, status };
   }
   return request(`${API_BASE}/inquiries/${id}/`, {
     method: 'PATCH',

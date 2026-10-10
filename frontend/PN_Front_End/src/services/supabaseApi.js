@@ -196,8 +196,13 @@ export async function fetchInquiries() {
   return data;
 }
 
-export async function updateInquiryStatus() {
-  throw new Error('updateInquiryStatus: admin write not wired in phase-1');
+export async function updateInquiryStatus(id, status) {
+  const { error } = await supabase
+    .from('pn_inquiries')
+    .update({ status })
+    .eq('id', id);
+  if (error) throw error;
+  return { id, status };
 }
 
 // ─── Store: products (public read: is_active only) ──────────────
