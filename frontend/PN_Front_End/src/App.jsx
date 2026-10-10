@@ -22,7 +22,7 @@ import AdminAddTrip from './components/AdminAddTrip';
 import AdminRegistrations from './components/AdminRegistrations';
 import { fetchExpeditions, createInquiry, fetchInquiries, updateInquiryStatus, mapExpeditionToTrip, fetchCurrentUser, removeToken, setMyInquiryId, getCart, setCartStorage } from './services/api';
 import { fetchExpeditions as sbFetchExpeditions, createInquiry as sbCreateInquiry, fetchInquiries as sbFetchInquiries, fetchCurrentUser as sbFetchCurrentUser } from './services/supabaseApi';
-import { isSupabaseConfigured } from './lib/supabaseClient';
+import { supabase, isSupabaseConfigured } from './lib/supabaseClient';
 
 const USE_SUPABASE = isSupabaseConfigured;
 import MyTicket from './components/MyTicket';
@@ -127,13 +127,26 @@ export default function App() {
       'cancelled': 'SUSPENDED',
     };
     const created = new Date(inq.created_at);
+    let sUrl = inq.selfie_url || null;
+    if (!sUrl && inq.selfie) {
+      if (/^(https?:|data:|blob:|\/)/.test(inq.selfie)) {
+        sUrl = inq.selfie;
+      } else {
+        try {
+          const { data } = supabase.storage.from('pn-inquiry-selfies').getPublicUrl(inq.selfie);
+          sUrl = data?.publicUrl || null;
+        } catch {
+          // ignore
+        }
+      }
+    }
     return {
       id: inq.id,
       name: inq.name,
       level: 'Intermediate',
       phone: inq.phone,
       email: inq.email,
-      selfieUrl: inq.selfie_url || null,
+      selfieUrl: sUrl,
       tripTitle: inq.expedition_title || 'General Inquiry',
       tripSubtitle: inq.message?.substring(0, 40) || '',
       date: created.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase(),

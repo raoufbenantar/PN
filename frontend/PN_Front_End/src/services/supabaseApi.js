@@ -190,10 +190,42 @@ export async function fetchInquiryTicket(id) {
 }
 
 export async function fetchInquiries() {
-  // TODO(phase-2): admin only (requires role=admin session).
-  const { data, error } = await supabase.from('pn_inquiries').select('*').order('created_at', { ascending: false });
+  const { data, error } = await supabase
+    .from('pn_inquiries')
+    .select('*, pn_expeditions(title)')
+    .order('created_at', { ascending: false });
   if (error) throw error;
-  return data;
+  const rows = data || [];
+  return Promise.all(
+    rows.map(async (inq) => {
+      let sUrl = null;
+      if (inq.selfie) {
+        if (/^(https?:|data:|blob:|\/)/.test(inq.selfie)) {
+          sUrl = inq.selfie;
+        } else {
+          try {
+            const { data: signData, error: signErr } = await supabase.storage
+              .from('pn-inquiry-selfies')
+              .createSignedUrl(inq.selfie, 60 * 60 * 24 * 7);
+            if (!signErr && signData?.signedUrl) {
+              sUrl = signData.signedUrl;
+            } else {
+              const { data: pubData } = supabase.storage.from('pn-inquiry-selfies').getPublicUrl(inq.selfie);
+              sUrl = pubData?.publicUrl || null;
+            }
+          } catch {
+            const { data: pubData } = supabase.storage.from('pn-inquiry-selfies').getPublicUrl(inq.selfie);
+            sUrl = pubData?.publicUrl || null;
+          }
+        }
+      }
+      return {
+        ...inq,
+        selfie_url: sUrl,
+        expedition_title: inq.pn_expeditions?.title || null,
+      };
+    })
+  );
 }
 
 export async function updateInquiryStatus(id, status) {

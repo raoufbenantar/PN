@@ -46,8 +46,15 @@ async function selfieUrl(path) {
     const { data, error } = await supabase.storage
       .from('pn-inquiry-selfies')
       .createSignedUrl(path, 60 * 60 * 24 * 7);
-    if (error || !data?.signedUrl) return null;
-    return data.signedUrl;
+    if (!error && data?.signedUrl) return data.signedUrl;
+  } catch {
+    // fallback
+  }
+  try {
+    const { data: pubData } = supabase.storage
+      .from('pn-inquiry-selfies')
+      .getPublicUrl(path);
+    return pubData?.publicUrl || null;
   } catch {
     return null;
   }
@@ -562,9 +569,19 @@ export async function fetchInquiryTicket(id) {
 
 export async function fetchInquiries() {
   if (USE_SUPABASE) {
-    const { data, error } = await supabase.from('pn_inquiries').select('*').order('created_at', { ascending: false });
+    const { data, error } = await supabase
+      .from('pn_inquiries')
+      .select('*, pn_expeditions(title)')
+      .order('created_at', { ascending: false });
     if (error) throw error;
-    return data || [];
+    const rows = data || [];
+    return Promise.all(
+      rows.map(async (inq) => ({
+        ...inq,
+        selfie_url: inq.selfie ? await selfieUrl(inq.selfie) : null,
+        expedition_title: inq.pn_expeditions?.title || null,
+      }))
+    );
   }
   return request(`${API_BASE}/inquiries/`);
 }

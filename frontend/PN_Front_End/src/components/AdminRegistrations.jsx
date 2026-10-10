@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar2 from './Navbar2';
 
 export default function AdminRegistrations({
@@ -10,6 +10,7 @@ export default function AdminRegistrations({
   onConfirmRegistration,
   onSuspendRegistration
 }) {
+  const [selectedSelfie, setSelectedSelfie] = useState(null);
   const pendingCount = registrations.filter(r => r.status === 'PENDING').length;
   const confirmedCount = registrations.filter(r => r.status === 'CONFIRMED').length;
 
@@ -121,11 +122,21 @@ export default function AdminRegistrations({
                       </td>
                       <td className="p-5">
                         {reg.selfieUrl ? (
-                          <img
-                            src={reg.selfieUrl}
-                            alt={reg.name}
-                            className="w-12 h-12 rounded object-cover border-2 border-primary"
-                          />
+                          <button
+                            type="button"
+                            onClick={() => setSelectedSelfie(reg)}
+                            className="relative group/selfie block rounded-lg overflow-hidden border-2 border-primary cursor-pointer hover:shadow-md transition-all focus:outline-none"
+                            title="Click to view full selfie"
+                          >
+                            <img
+                              src={reg.selfieUrl}
+                              alt={reg.name}
+                              className="w-12 h-12 rounded object-cover group-hover/selfie:scale-110 transition-transform duration-200"
+                            />
+                            <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover/selfie:opacity-100 flex items-center justify-center transition-opacity">
+                              <span className="material-symbols-outlined text-white text-base">zoom_in</span>
+                            </div>
+                          </button>
                         ) : (
                           <div className="w-12 h-12 rounded bg-slate-100 border-2 border-primary/20 flex items-center justify-center text-primary/40">
                             <span className="material-symbols-outlined text-base">person</span>
@@ -195,6 +206,74 @@ export default function AdminRegistrations({
 
         </div>
       </main>
+
+      {/* Selfie Preview Modal */}
+      {selectedSelfie && (
+        <div
+          className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-sm"
+          onClick={() => setSelectedSelfie(null)}
+        >
+          <div
+            className="bg-white border-2 border-primary rounded-2xl max-w-lg w-full overflow-hidden hard-shadow relative animate-in fade-in zoom-in-95 duration-150"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="p-4 bg-amber-50 border-b-2 border-primary flex justify-between items-center">
+              <div>
+                <h3 className="font-syne font-black text-lg text-primary">{selectedSelfie.name}</h3>
+                <p className="font-space text-xs text-secondary uppercase font-bold">{selectedSelfie.tripTitle}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedSelfie(null)}
+                className="w-8 h-8 rounded-full border border-primary flex items-center justify-center hover:bg-slate-200 text-primary transition-colors cursor-pointer"
+                title="Close"
+              >
+                <span className="material-symbols-outlined text-lg">close</span>
+              </button>
+            </div>
+
+            {/* Selfie Image Display */}
+            <div className="p-4 flex flex-col items-center justify-center bg-slate-900/5 min-h-[300px]">
+              <img
+                src={selectedSelfie.selfieUrl}
+                alt={`Selfie of ${selectedSelfie.name}`}
+                className="max-h-[65vh] w-auto max-w-full rounded-xl border-2 border-primary object-contain shadow-md"
+              />
+            </div>
+
+            {/* Modal Footer with Details */}
+            <div className="p-4 bg-white border-t-2 border-primary flex flex-wrap items-center justify-between gap-3 text-xs font-space">
+              <div>
+                <span className="text-on-surface-variant">Phone: </span>
+                <span className="font-bold text-primary">{selectedSelfie.phone || 'N/A'}</span>
+              </div>
+              <div>
+                <span className="text-on-surface-variant">Status: </span>
+                <span className={`px-2 py-0.5 rounded font-black text-[10px] uppercase ${
+                  selectedSelfie.status === 'CONFIRMED'
+                    ? 'bg-emerald-100 text-emerald-800'
+                    : selectedSelfie.status === 'SUSPENDED'
+                    ? 'bg-rose-100 text-rose-800'
+                    : 'bg-amber-100 text-amber-800'
+                }`}>
+                  {selectedSelfie.status}
+                </span>
+              </div>
+              <a
+                href={selectedSelfie.selfieUrl}
+                target="_blank"
+                rel="noreferrer"
+                download
+                className="ml-auto inline-flex items-center gap-1 text-primary hover:underline font-bold"
+              >
+                <span className="material-symbols-outlined text-sm">open_in_new</span>
+                Open full size
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
