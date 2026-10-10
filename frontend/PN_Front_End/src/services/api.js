@@ -97,15 +97,16 @@ async function uploadTo(bucket, prefix, file) {
 async function fetchProfile(userId) {
   if (!userId) return null;
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('profiles')
-      .select('is_admin, role, full_name, phone')
+      .select('*')
       .eq('id', userId)
       .maybeSingle();
-    return data;
-  } catch {
-    return null;
+    if (!error && data) return data;
+  } catch (err) {
+    console.warn('[fetchProfile] error:', err);
   }
+  return null;
 }
 
 function toDjangoUser(sbUser, profile = null) {
@@ -118,7 +119,8 @@ function toDjangoUser(sbUser, profile = null) {
     profile?.is_admin === true ||
     profile?.role === 'admin' ||
     appMeta.role === 'admin' ||
-    meta.role === 'admin'
+    meta.role === 'admin' ||
+    meta.is_admin === true
   );
   return {
     id: sbUser.id,
@@ -127,6 +129,7 @@ function toDjangoUser(sbUser, profile = null) {
     first_name: meta.first_name || parts[0] || '',
     last_name: meta.last_name || parts.slice(1).join(' ') || '',
     is_staff: isStaff,
+    is_admin: isStaff,
     role: isStaff ? 'admin' : 'user',
     name: full || meta.username || sbUser.email,
     phone: profile?.phone || meta.phone || '',

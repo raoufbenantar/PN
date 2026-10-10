@@ -23,16 +23,24 @@ export default function LoginPage({ setCurrentPage, onLoginSuccess }) {
     try {
       await loginUser(email, password);
       const user = await fetchCurrentUser();
+      const isAdmin = Boolean(
+        user?.is_staff ||
+        user?.is_admin ||
+        user?.role === 'admin' ||
+        user?.app_metadata?.role === 'admin'
+      );
       const userData = {
-        name: `${user.first_name} ${user.last_name}`.trim() || user.username,
+        name: `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.username || user.name || (user.email ? user.email.split('@')[0] : 'Explorer'),
         email: user.email,
-        role: user.is_staff ? 'admin' : 'user',
-        username: user.username
+        role: isAdmin ? 'admin' : 'user',
+        is_staff: isAdmin,
+        is_admin: isAdmin,
+        username: user.username || user.email
       };
       setSuccess(true);
       if (onLoginSuccess) onLoginSuccess(userData);
       setTimeout(() => {
-        if (user.is_staff) {
+        if (isAdmin) {
           setCurrentPage('admin-dashboard');
         } else {
           setCurrentPage('landing');

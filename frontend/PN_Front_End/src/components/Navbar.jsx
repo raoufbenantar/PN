@@ -140,9 +140,18 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
         </button>
 
         {currentUser ? (
-          <div className="relative">
-            <button 
-              onClick={() => setShowMobileUserMenu(!showMobileUserMenu)}
+          <div className="flex items-center gap-2">
+            {(currentUser.role === 'admin' || currentUser.is_staff || currentUser.is_admin) && (
+              <button 
+                onClick={() => setCurrentPage('admin-dashboard')}
+                className="px-2.5 py-1.5 bg-brand-forest hover:bg-brand-forestDark text-white font-space font-black text-[10px] uppercase tracking-wider rounded border border-brand-forestDark shadow-[2px_2px_0px_rgba(22,44,28,1)] cursor-pointer"
+              >
+                Admin
+              </button>
+            )}
+            <div className="relative">
+              <button 
+                onClick={() => setShowMobileUserMenu(!showMobileUserMenu)}
               className="flex items-center gap-2 bg-brand-sand/30 border border-brand-forest/20 rounded-full py-1.5 px-3 focus:outline-none cursor-pointer"
             >
               <div className="w-6 h-6 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xs">
@@ -189,6 +198,7 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
                 </button>
               </div>
             )}
+            </div>
           </div>
         ) : (
           <button 

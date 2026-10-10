@@ -195,7 +195,11 @@ export default function App() {
             const appMeta = sbUser.app_metadata || {};
             const isAdmin = Boolean(
               sbUser.is_staff ||
+              sbUser.is_admin ||
+              sbUser.role === 'admin' ||
               appMeta.role === 'admin' ||
+              meta.role === 'admin' ||
+              meta.is_admin === true ||
               sbUser.profile?.is_admin === true ||
               sbUser.profile?.role === 'admin'
             );
@@ -203,6 +207,8 @@ export default function App() {
               name: sbUser.profile?.full_name || meta.name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || meta.username || (sbUser.email ? sbUser.email.split('@')[0] : 'Explorer'),
               email: sbUser.email,
               role: isAdmin ? 'admin' : 'user',
+              is_staff: isAdmin,
+              is_admin: isAdmin,
               username: meta.username || sbUser.email,
             });
             return;
@@ -216,11 +222,18 @@ export default function App() {
       }
       try {
         const user = await fetchCurrentUser();
-        if (!cancelled) {
+        if (!cancelled && user) {
+          const isAdmin = Boolean(
+            user.is_staff ||
+            user.is_admin ||
+            user.role === 'admin'
+          );
           setCurrentUser({
-            name: `${user.first_name} ${user.last_name}`.trim() || user.username,
+            name: `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.username || user.name,
             email: user.email,
-            role: user.is_staff ? 'admin' : 'user',
+            role: isAdmin ? 'admin' : 'user',
+            is_staff: isAdmin,
+            is_admin: isAdmin,
             username: user.username
           });
         }
@@ -245,7 +258,23 @@ export default function App() {
     loadTrips();
     loadUser();
     loadInquiries();
-    return () => { cancelled = true; };
+
+    let authSub = null;
+    if (USE_SUPABASE) {
+      const { data } = supabase.auth.onAuthStateChange((event) => {
+        if (event === 'SIGNED_IN' || event === 'USER_UPDATED' || event === 'TOKEN_REFRESHED') {
+          loadUser();
+        } else if (event === 'SIGNED_OUT') {
+          setCurrentUser(null);
+        }
+      });
+      authSub = data?.subscription;
+    }
+
+    return () => {
+      cancelled = true;
+      if (authSub) authSub.unsubscribe();
+    };
   }, []);
 
   const handleBookClick = (trip) => {
@@ -456,7 +485,11 @@ export default function App() {
   }
 
   // ── Admin route guards: redirect non-staff users ────────────────
-  const isAdmin = currentUser?.role === 'admin';
+  const isAdmin = Boolean(
+    currentUser?.role === 'admin' ||
+    currentUser?.is_staff ||
+    currentUser?.is_admin
+  );
 
   if (currentPage === 'admin-dashboard' && isAdmin) {
     return (

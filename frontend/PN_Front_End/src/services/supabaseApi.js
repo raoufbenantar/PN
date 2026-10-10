@@ -55,28 +55,51 @@ export async function registerUser({ email, password, ...meta }) {
 }
 
 export async function fetchCurrentUser() {
-  const { data, error } = await supabase.auth.getUser();
-  if (error) throw error;
-  if (!data?.user) return null;
-  try {
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('is_admin, role, full_name, phone')
-      .eq('id', data.user.id)
-      .maybeSingle();
-    const isAdmin = Boolean(profile?.is_admin === true || profile?.role === 'admin' || data.user.app_metadata?.role === 'admin');
-    return {
-      ...data.user,
-      profile,
-      is_staff: isAdmin,
-      app_metadata: {
-        ...data.user.app_metadata,
-        role: isAdmin ? 'admin' : (data.user.app_metadata?.role || 'user'),
-      },
-    };
-  } catch {
-    return data.user;
+  const { data } = await supabase.auth.getUser();
+  let user = data?.user;
+  if (!user) {
+    try {
+      const { data: sessData } = await supabase.auth.getSession();
+      user = sessData?.session?.user || null;
+    } catch {
+      // ignore
+    }
   }
+  if (!user) return null;
+
+  let profile = null;
+  try {
+    const { data: prof, error: profErr } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .maybeSingle();
+    if (!profErr && prof) {
+      profile = prof;
+    }
+  } catch (err) {
+    console.warn('[supabaseApi.fetchCurrentUser] profile fetch error:', err);
+  }
+
+  const isAdmin = Boolean(
+    profile?.is_admin === true ||
+    profile?.role === 'admin' ||
+    user.app_metadata?.role === 'admin' ||
+    user.user_metadata?.role === 'admin' ||
+    user.user_metadata?.is_admin === true
+  );
+
+  return {
+    ...user,
+    profile,
+    is_staff: isAdmin,
+    is_admin: isAdmin,
+    role: isAdmin ? 'admin' : 'user',
+    app_metadata: {
+      ...user.app_metadata,
+      role: isAdmin ? 'admin' : (user.app_metadata?.role || 'user'),
+    },
+  };
 }
 
 export async function changePassword(newPassword) {
