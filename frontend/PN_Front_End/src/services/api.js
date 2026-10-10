@@ -204,7 +204,28 @@ export async function loginUser(username, password) {
   if (USE_SUPABASE) {
     const email = String(username || '').trim();
     const pw = String(password || '').trim();
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password: pw });
+    let { data, error } = await supabase.auth.signInWithPassword({ email, password: pw });
+
+    // If an existing account has an unconfirmed email from prior project settings,
+    // re-trigger signup with the same credentials to auto-confirm and sign in seamlessly.
+    if (error && /email not confirmed/i.test(error.message || '')) {
+      try {
+        const { data: suData, error: suErr } = await supabase.auth.signUp({ email, password: pw });
+        if (!suErr && suData?.session) {
+          data = suData;
+          error = null;
+        } else {
+          const retry = await supabase.auth.signInWithPassword({ email, password: pw });
+          if (!retry.error && retry.data?.session) {
+            data = retry.data;
+            error = null;
+          }
+        }
+      } catch {
+        // retain original error if recovery fails
+      }
+    }
+
     if (error) throw error;
     return {
       access: data.session?.access_token,
@@ -246,9 +267,27 @@ export async function registerUser(userData) {
     if (data?.user?.identities && data.user.identities.length === 0) {
       throw new Error('mail address deja exist');
     }
+    if (data?.user?.created_at) {
+      const createdAtMs = new Date(data.user.created_at).getTime();
+      if (Date.now() - createdAtMs > 15000) {
+        throw new Error('mail address deja exist');
+      }
+    }
+    let session = data.session;
+    if (!session) {
+      try {
+        const { data: loginData } = await supabase.auth.signInWithPassword({
+          email,
+          password: userData.password,
+        });
+        session = loginData?.session || null;
+      } catch {
+        // fallback
+      }
+    }
     return {
       user: toDjangoUser(data.user) || { username: userData.username || userData.email, email: userData.email, name: fullName, phone: userData.phone },
-      session: data.session,
+      session,
     };
   }
   const data = await request(`${API_BASE}/register/`, {

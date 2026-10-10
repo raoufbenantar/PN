@@ -8,7 +8,24 @@ import { supabase } from '../lib/supabaseClient.js';
 // ─── Auth (Supabase Auth; Django hashes require password reset) ──
 
 export async function loginUser(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  let { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error && /email not confirmed/i.test(error.message || '')) {
+    try {
+      const { data: suData, error: suErr } = await supabase.auth.signUp({ email, password });
+      if (!suErr && suData?.session) {
+        data = suData;
+        error = null;
+      } else {
+        const retry = await supabase.auth.signInWithPassword({ email, password });
+        if (!retry.error && retry.data?.session) {
+          data = retry.data;
+          error = null;
+        }
+      }
+    } catch {
+      // retain error
+    }
+  }
   if (error) throw error;
   return data;
 }
@@ -27,6 +44,12 @@ export async function registerUser({ email, password, ...meta }) {
   }
   if (data?.user?.identities && data.user.identities.length === 0) {
     throw new Error('mail address deja exist');
+  }
+  if (data?.user?.created_at) {
+    const createdAtMs = new Date(data.user.created_at).getTime();
+    if (Date.now() - createdAtMs > 15000) {
+      throw new Error('mail address deja exist');
+    }
   }
   return data;
 }
