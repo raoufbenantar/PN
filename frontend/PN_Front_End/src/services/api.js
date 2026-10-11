@@ -1024,13 +1024,19 @@ export async function fetchSiteImages() {
 export async function updateSiteImage(key, file) {
   if (USE_SUPABASE) {
     const path = await uploadTo('pn-site-images', 'site', file);
-    const { data, error } = await supabase
+    const { data: upsertData, error: upsertErr } = await supabase
       .from('pn_site_images')
       .upsert({ key, image: path }, { onConflict: 'key' })
-      .select()
-      .single();
-    if (error) throw error;
-    return toSiteImage(data);
+      .select();
+    if (upsertErr) {
+      // Fallback: upsert without select
+      const { error: plainErr } = await supabase
+        .from('pn_site_images')
+        .upsert({ key, image: path }, { onConflict: 'key' });
+      if (plainErr) throw plainErr;
+    }
+    const row = (upsertData && upsertData[0]) ? upsertData[0] : { key, image: path };
+    return toSiteImage(row);
   }
   const fd = new FormData();
   fd.append('key', key);
