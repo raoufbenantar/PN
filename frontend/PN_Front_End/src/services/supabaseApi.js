@@ -81,17 +81,13 @@ export async function fetchCurrentUser() {
     console.warn('[supabaseApi.fetchCurrentUser] profile fetch error:', err);
   }
 
-  const emailLower = (user.email || '').toLowerCase();
   const meta = user.user_metadata || {};
-  const metaNameLower = `${meta.name || ''} ${meta.first_name || ''} ${meta.last_name || ''}`.toLowerCase();
   const isAdmin = Boolean(
     profile?.is_admin === true ||
     profile?.role === 'admin' ||
     user.app_metadata?.role === 'admin' ||
     meta.role === 'admin' ||
-    meta.is_admin === true ||
-    emailLower.includes('benantar') ||
-    metaNameLower.includes('benantar')
+    meta.is_admin === true
   );
 
   return {

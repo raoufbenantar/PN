@@ -12,14 +12,10 @@ export default function Navbar({ currentPage, setCurrentPage, currentUser, onLog
     { name: 'About', href: '#about' }
   ];
 
-  const emailLower = (currentUser?.email || '').toLowerCase();
-  const nameLower = (currentUser?.name || '').toLowerCase();
   const isUserAdmin = Boolean(
     currentUser?.role === 'admin' ||
     currentUser?.is_staff ||
-    currentUser?.is_admin ||
-    emailLower.includes('benantar') ||
-    nameLower.includes('benantar')
+    currentUser?.is_admin
   );
 
   const handleNavClick = (e, link) => {
